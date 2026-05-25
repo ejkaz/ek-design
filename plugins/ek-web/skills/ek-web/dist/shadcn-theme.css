@@ -1,0 +1,128 @@
+/*
+  AUTO-GENERATED FROM ek-design design-model.yaml — DO NOT EDIT MANUALLY
+  Source: ek-design v0.1.0 · brand_version: ek-2026-Q3-v1
+  Generated: 2026-05-25T05:52:11Z
+  Regenerate: python3 plugins/ek-web/skills/ek-web/scripts/export-shadcn.py
+*/
+
+/* ek-design shadcn/ui theme — drop into your app's globals.css.
+   Use shadcn components directly; they reference --background, --foreground,
+   --primary, --secondary, --accent, --destructive, --border, --ring, --radius.
+   ek-design extensions are below the shadcn block (status, agent state,
+   primitive aliases, effects, fonts). */
+
+:root {
+  /* ─── shadcn standard ──────────────────────────────────────────── */
+  --background: #0A0A14;
+  --foreground: #FFFFFF;
+  --card: #15151F;
+  --card-foreground: #FFFFFF;
+  --popover: #15151F;
+  --popover-foreground: #FFFFFF;
+  --primary: #FF2A6D;
+  --primary-foreground: #FFFFFF;
+  --secondary: #00D1FF;
+  --secondary-foreground: #0A0A14;
+  --muted: #15151F;
+  --muted-foreground: #A8A8BC;
+  --accent: #A6FF00;
+  --accent-foreground: #0A0A14;
+  --destructive: #FF003C;
+  --destructive-foreground: #FFFFFF;
+  --border: #2E2E40;
+  --input: #15151F;
+  --ring: #FF2A6D;
+
+  --radius: 6px;
+
+  /* ─── status semantics (locked) ────────────────────────────────── */
+  --status-success: #A6FF00;
+  --status-warn: #FFB800;
+  --status-error: #FF003C;
+  --status-info: #00D1FF;
+
+  /* ─── agent state ──────────────────────────────────────────────── */
+  --agent-active: #A6FF00;
+  --agent-thinking: #00D1FF;
+  --agent-tool-use: #3B3B92;
+  --agent-complete: #A6FF00;
+  --agent-blocked: #FFB800;
+  --agent-error: #FF003C;
+  --agent-idle: #5C5C70;
+
+  /* ─── typography ───────────────────────────────────────────────── */
+  --font-display: "Chakra Petch", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Menlo", monospace;
+
+  /* ─── ek-primitive aliases (for cases shadcn's set doesn't cover) ─ */
+  --ek-neutral-0: #FFFFFF;
+  --ek-neutral-50: #F0F0F5;
+  --ek-neutral-100: #E0E0EA;
+  --ek-neutral-200: #C8C8D6;
+  --ek-neutral-300: #A8A8BC;
+  --ek-neutral-400: #7A7A92;
+  --ek-neutral-500: #5C5C70;
+  --ek-neutral-600: #3F3F50;
+  --ek-neutral-700: #2E2E40;
+  --ek-neutral-800: #1F1F2A;
+  --ek-neutral-850: #15151F;
+  --ek-neutral-900: #0F0F18;
+  --ek-neutral-950: #0A0A14;
+  --ek-neutral-1000: #000000;
+  --ek-magenta-50: #FFE5EF;
+  --ek-magenta-100: #FFCCDF;
+  --ek-magenta-200: #FF99BF;
+  --ek-magenta-300: #FF7BAA;
+  --ek-magenta-400: #FF4D8C;
+  --ek-magenta-500: #FF2A6D;
+  --ek-magenta-600: #E11D5F;
+  --ek-magenta-700: #B0144A;
+  --ek-magenta-800: #7A0E33;
+  --ek-magenta-900: #4F0820;
+  --ek-cyan-50: #E0FAFF;
+  --ek-cyan-100: #B8F3FF;
+  --ek-cyan-200: #80EAFF;
+  --ek-cyan-300: #5EEAFF;
+  --ek-cyan-400: #2DD9FF;
+  --ek-cyan-500: #00D1FF;
+  --ek-cyan-600: #00A3CC;
+  --ek-cyan-700: #0090B8;
+  --ek-cyan-800: #005F77;
+  --ek-cyan-900: #003344;
+  --ek-lime-50: #F2FFCC;
+  --ek-lime-100: #E5FF99;
+  --ek-lime-200: #D2FF66;
+  --ek-lime-300: #C8FF40;
+  --ek-lime-400: #B3FF1A;
+  --ek-lime-500: #A6FF00;
+  --ek-lime-600: #86CC00;
+  --ek-lime-700: #6B9E00;
+  --ek-lime-800: #4A6E00;
+  --ek-lime-900: #2A3F00;
+  --ek-steel-violet-300: #6B6BC4;
+  --ek-steel-violet-500: #3B3B92;
+  --ek-steel-violet-700: #1E1E60;
+  --ek-steel-violet-900: #0F0F33;
+  --ek-slate-50: #F2F2F7;
+  --ek-slate-100: #E0E0E8;
+  --ek-slate-300: #9999B0;
+  --ek-slate-500: #5C5C70;
+  --ek-slate-700: #2E2E40;
+  --ek-slate-900: #15151F;
+  --ek-red-500: #FF003C;
+  --ek-red-600: #CC0030;
+  --ek-red-700: #B0142D;
+  --ek-amber-500: #FFB800;
+  --ek-amber-600: #CC9300;
+  --ek-amber-700: #8C6500;
+
+  /* ─── effects ──────────────────────────────────────────────────── */
+  --ek-neon-glow-magenta: 0 0 8px #FF2A6D, 0 0 16px #FF2A6D40;
+  --ek-neon-glow-cyan: 0 0 8px #00D1FF, 0 0 16px #00D1FF40;
+  --ek-neon-glow-lime: 0 0 6px #A6FF00, 0 0 12px #A6FF0040;
+  --ek-focus-ring-magenta: 0 0 0 2px #0A0A14, 0 0 0 4px #FF2A6D;
+  --ek-focus-ring-cyan: 0 0 0 2px #0A0A14, 0 0 0 4px #00D1FF;
+  --ek-panel-lift: 0 1px 0 0 #2E2E40, 0 8px 24px -8px #00000080;
+  --ek-scanline-overlay: repeating-linear-gradient(0deg, transparent 0, transparent 2px, #FFFFFF06 2px, #FFFFFF06 3px);
+}

@@ -13,6 +13,13 @@
       "source": "./plugins/ek-design",
       "category": "design-system",
       "tags": ["brand", "design-system", "cyberpunk", "neo-tokyo", "agentic-ui", "tokens", "design-model"]
+    },
+    {
+      "name": "ek-web",
+      "description": "ek-web token exporter. Reads design-model.yaml from the ek-design plugin and emits consumable token files for web codebases: Tailwind v4 config (tailwind-tokens.ts), shadcn theme CSS variables (shadcn-theme.css), and flat CSS variables (ek-tokens.css). Brand evolution → re-run → downstream apps pick up new tokens.",
+      "source": "./plugins/ek-web",
+      "category": "design-system",
+      "tags": ["ek-design", "tailwind", "shadcn", "css-variables", "design-tokens", "exporter", "web"]
     }
   ]
 }

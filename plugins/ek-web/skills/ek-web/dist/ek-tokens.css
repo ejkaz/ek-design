@@ -1,0 +1,227 @@
+/*
+  AUTO-GENERATED FROM ek-design design-model.yaml — DO NOT EDIT MANUALLY
+  Source: ek-design v0.1.0 · brand_version: ek-2026-Q3-v1
+  Generated: 2026-05-25T05:52:11Z
+  Regenerate: python3 plugins/ek-web/skills/ek-web/scripts/export-css-vars.py
+*/
+
+/* ek-design flat CSS variables — for plain CSS contexts.
+
+   Role tokens (--ek-cta, --ek-link-on-dark, etc.) reference primitive
+   tokens via var() so a downstream consumer can swap the primitive value
+   at any cascade level (e.g. an embedded white-label widget overriding
+   --ek-magenta-500 to red would cascade through to --ek-cta automatically).
+
+   For Tailwind v4 use tailwind-tokens.ts instead.
+   For shadcn/ui use shadcn-theme.css instead. */
+
+:root {
+  /* ─── Surfaces ───────────────────────────────────────────── */
+  --ek-bg: #0A0A14;
+  --ek-panel: #15151F;
+  --ek-off-white: #F0F0F5;
+  --ek-white: #FFFFFF;
+  --ek-terminal-bg: #000000;
+
+  /* ─── Primitives — neutral ─── */
+  --ek-neutral-0: #FFFFFF;
+  --ek-neutral-50: #F0F0F5;
+  --ek-neutral-100: #E0E0EA;
+  --ek-neutral-200: #C8C8D6;
+  --ek-neutral-300: #A8A8BC;
+  --ek-neutral-400: #7A7A92;
+  --ek-neutral-500: #5C5C70;
+  --ek-neutral-600: #3F3F50;
+  --ek-neutral-700: #2E2E40;
+  --ek-neutral-800: #1F1F2A;
+  --ek-neutral-850: #15151F;
+  --ek-neutral-900: #0F0F18;
+  --ek-neutral-950: #0A0A14;
+  --ek-neutral-1000: #000000;
+
+  /* ─── Primitives — magenta ─── */
+  --ek-magenta-50: #FFE5EF;
+  --ek-magenta-100: #FFCCDF;
+  --ek-magenta-200: #FF99BF;
+  --ek-magenta-300: #FF7BAA;
+  --ek-magenta-400: #FF4D8C;
+  --ek-magenta-500: #FF2A6D;
+  --ek-magenta-600: #E11D5F;
+  --ek-magenta-700: #B0144A;
+  --ek-magenta-800: #7A0E33;
+  --ek-magenta-900: #4F0820;
+
+  /* ─── Primitives — cyan ─── */
+  --ek-cyan-50: #E0FAFF;
+  --ek-cyan-100: #B8F3FF;
+  --ek-cyan-200: #80EAFF;
+  --ek-cyan-300: #5EEAFF;
+  --ek-cyan-400: #2DD9FF;
+  --ek-cyan-500: #00D1FF;
+  --ek-cyan-600: #00A3CC;
+  --ek-cyan-700: #0090B8;
+  --ek-cyan-800: #005F77;
+  --ek-cyan-900: #003344;
+
+  /* ─── Primitives — lime ─── */
+  --ek-lime-50: #F2FFCC;
+  --ek-lime-100: #E5FF99;
+  --ek-lime-200: #D2FF66;
+  --ek-lime-300: #C8FF40;
+  --ek-lime-400: #B3FF1A;
+  --ek-lime-500: #A6FF00;
+  --ek-lime-600: #86CC00;
+  --ek-lime-700: #6B9E00;
+  --ek-lime-800: #4A6E00;
+  --ek-lime-900: #2A3F00;
+
+  /* ─── Primitives — steel violet ─── */
+  --ek-steel-violet-300: #6B6BC4;
+  --ek-steel-violet-500: #3B3B92;
+  --ek-steel-violet-700: #1E1E60;
+  --ek-steel-violet-900: #0F0F33;
+
+  /* ─── Primitives — slate ─── */
+  --ek-slate-50: #F2F2F7;
+  --ek-slate-100: #E0E0E8;
+  --ek-slate-300: #9999B0;
+  --ek-slate-500: #5C5C70;
+  --ek-slate-700: #2E2E40;
+  --ek-slate-900: #15151F;
+
+  /* ─── Primitives — red ─── */
+  --ek-red-500: #FF003C;
+  --ek-red-600: #CC0030;
+  --ek-red-700: #B0142D;
+
+  /* ─── Primitives — amber ─── */
+  --ek-amber-500: #FFB800;
+  --ek-amber-600: #CC9300;
+  --ek-amber-700: #8C6500;
+
+  /* ─── Role tokens (semantic) ─────────────────────────────── */
+  --ek-cta: var(--ek-magenta-500);
+  --ek-cta-hover: var(--ek-magenta-600);
+  --ek-cta-active: var(--ek-magenta-700);
+  --ek-cta-text: var(--ek-neutral-0);
+  --ek-secondary-action: var(--ek-cyan-500);
+  --ek-secondary-action-hover: var(--ek-cyan-400);
+  --ek-link-on-dark: var(--ek-cyan-500);
+  --ek-link-on-light: var(--ek-cyan-700);
+  --ek-info-on-dark: var(--ek-cyan-500);
+  --ek-info-on-light: var(--ek-cyan-700);
+  --ek-accent-type-on-dark: var(--ek-magenta-500);
+  --ek-accent-type-on-light: var(--ek-magenta-800);
+  --ek-status-success-on-dark: var(--ek-lime-500);
+  --ek-status-success-on-light: var(--ek-lime-800);
+  --ek-agent-status-active: var(--ek-lime-500);
+  --ek-agent-status-complete: var(--ek-lime-500);
+  --ek-agent-status-idle: var(--ek-slate-500);
+  --ek-status-error-on-dark: var(--ek-red-500);
+  --ek-status-error-on-light: var(--ek-red-700);
+  --ek-status-warn-on-dark: var(--ek-amber-500);
+  --ek-status-warn-on-light: var(--ek-amber-700);
+  --ek-destructive-action: var(--ek-red-500);
+  --ek-ambient-glow: var(--ek-steel-violet-500);
+  --ek-ambient-deep: var(--ek-steel-violet-700);
+  --ek-ambient-subtle: var(--ek-steel-violet-900);
+  --ek-body-chrome-on-dark: var(--ek-slate-300);
+  --ek-body-chrome-on-light: var(--ek-slate-500);
+  --ek-border-neutral-dark: var(--ek-slate-700);
+  --ek-border-neutral-light: var(--ek-slate-100);
+  --ek-surface-app: var(--ek-neutral-950);
+  --ek-surface-panel: var(--ek-neutral-850);
+  --ek-surface-panel-alt: var(--ek-neutral-800);
+  --ek-surface-marketing: var(--ek-neutral-950);
+  --ek-surface-light: var(--ek-neutral-50);
+  --ek-surface-terminal: var(--ek-neutral-1000);
+  --ek-surface-terminal-border: var(--ek-cyan-700);
+  --ek-text-dark-primary: var(--ek-neutral-0);
+  --ek-text-dark-secondary: var(--ek-neutral-300);
+  --ek-text-dark-tertiary: var(--ek-neutral-500);
+  --ek-text-light-primary: var(--ek-neutral-950);
+  --ek-text-light-secondary: var(--ek-neutral-700);
+  --ek-text-light-tertiary: var(--ek-neutral-500);
+  --ek-text-mono-default: var(--ek-neutral-0);
+  --ek-text-mono-accent: var(--ek-cyan-500);
+  --ek-border-dark: var(--ek-slate-700);
+  --ek-border-light: var(--ek-slate-100);
+  --ek-border-focus: var(--ek-magenta-500);
+  --ek-border-focus-secondary: var(--ek-cyan-500);
+  --ek-agent-thinking: var(--ek-cyan-500);
+  --ek-agent-tool-use: var(--ek-steel-violet-500);
+  --ek-agent-error: var(--ek-red-500);
+  --ek-agent-blocked: var(--ek-amber-500);
+  --ek-chart-1-dark: var(--ek-magenta-500);
+  --ek-chart-2-dark: var(--ek-cyan-500);
+  --ek-chart-3-dark: var(--ek-lime-500);
+  --ek-chart-4-dark: var(--ek-steel-violet-300);
+  --ek-chart-5-dark: var(--ek-amber-500);
+  --ek-chart-6-dark: var(--ek-slate-300);
+  --ek-chart-1-light: var(--ek-magenta-700);
+  --ek-chart-2-light: var(--ek-cyan-700);
+  --ek-chart-3-light: var(--ek-lime-800);
+  --ek-chart-4-light: var(--ek-steel-violet-700);
+  --ek-chart-5-light: var(--ek-amber-700);
+  --ek-chart-6-light: var(--ek-slate-500);
+
+  /* ─── Typography ─────────────────────────────────────────── */
+  --ek-font-display: "Chakra Petch", sans-serif;
+  --ek-font-body: "Inter", system-ui, sans-serif;
+  --ek-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Menlo", monospace;
+  --ek-text-display: clamp(2.5rem, 6vw, 5.5rem);
+  --ek-text-h1: clamp(1.875rem, 4.5vw, 3.75rem);
+  --ek-text-h2: clamp(1.5rem, 3vw, 2.5rem);
+  --ek-text-h3: clamp(1.125rem, 2vw, 1.5rem);
+  --ek-text-body-lg: clamp(1rem, 1.6vw, 1.125rem);
+  --ek-text-body: clamp(0.875rem, 1.4vw, 1rem);
+  --ek-text-small: clamp(0.75rem, 1vw, 0.875rem);
+  --ek-text-eyebrow: clamp(0.7rem, 0.9vw, 0.85rem);
+  --ek-text-mono: clamp(0.8125rem, 1.1vw, 0.9375rem);
+  --ek-text-mono-sm: clamp(0.6875rem, 0.85vw, 0.8125rem);
+  --ek-text-code: clamp(0.8125rem, 1.1vw, 0.9375rem);
+
+  /* ─── Spacing ────────────────────────────────────────────── */
+  --ek-space-xs: 4px;
+  --ek-space-sm: 8px;
+  --ek-space-md: 16px;
+  --ek-space-lg: 24px;
+  --ek-space-xl: 32px;
+  --ek-space-2xl: 48px;
+  --ek-space-3xl: 64px;
+  --ek-space-4xl: 96px;
+  --ek-space-5xl: 128px;
+
+  /* ─── Radii / cuts ───────────────────────────────────────── */
+  --ek-radius-element: 2px;
+  --ek-radius-control: 4px;
+  --ek-radius-component: 6px;
+  --ek-radius-container: 8px;
+  --ek-radius-pill: 9999px;
+  --ek-cut-sm: 8px;
+  --ek-cut-md: 12px;
+  --ek-cut-lg: 16px;
+
+  /* ─── Motion ─────────────────────────────────────────────── */
+  --ek-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ek-duration-fast: 100ms;
+  --ek-duration-normal: 200ms;
+  --ek-duration-slow: 400ms;
+
+  /* ─── Effects ────────────────────────────────────────────── */
+  --ek-neon-glow-magenta: 0 0 8px #FF2A6D, 0 0 16px #FF2A6D40;
+  --ek-neon-glow-cyan: 0 0 8px #00D1FF, 0 0 16px #00D1FF40;
+  --ek-neon-glow-lime: 0 0 6px #A6FF00, 0 0 12px #A6FF0040;
+  --ek-focus-ring-magenta: 0 0 0 2px #0A0A14, 0 0 0 4px #FF2A6D;
+  --ek-focus-ring-cyan: 0 0 0 2px #0A0A14, 0 0 0 4px #00D1FF;
+  --ek-panel-lift: 0 1px 0 0 #2E2E40, 0 8px 24px -8px #00000080;
+  --ek-scanline-overlay: repeating-linear-gradient(0deg, transparent 0, transparent 2px, #FFFFFF06 2px, #FFFFFF06 3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ek-duration-fast: 80ms;
+    --ek-duration-normal: 80ms;
+    --ek-duration-slow: 80ms;
+  }
+}

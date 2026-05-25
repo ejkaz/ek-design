@@ -1,0 +1,13 @@
+{
+  "name": "ek-web",
+  "version": "0.1.0",
+  "description": "ek-web token exporter — reads design-model.yaml from the ek-design plugin and emits consumable token artifacts for web codebases: Tailwind v4 config (tailwind-tokens.ts), shadcn theme CSS variables (shadcn-theme.css), and flat CSS variables (ek-tokens.css). Brand evolution → re-run → downstream apps pick up new tokens.",
+  "author": {
+    "name": "ejkaz",
+    "url": "https://github.com/ejkaz"
+  },
+  "homepage": "https://github.com/ejkaz/ek-design",
+  "repository": "https://github.com/ejkaz/ek-design",
+  "license": "MIT",
+  "keywords": ["ek-design", "ek-web", "tailwind", "shadcn", "css-variables", "design-tokens", "exporter"]
+}
