@@ -13,18 +13,20 @@ Token exporter. Reads `design-model.yaml` from the sibling `ek-design` plugin an
 
 | Output | Path | What consumes it |
 |---|---|---|
-| Tailwind config | `dist/tailwind-tokens.ts` | Tailwind v4 — `theme.extend` for `colors`, `fontFamily`, `spacing`, `borderRadius`, `boxShadow` |
-| shadcn theme | `dist/shadcn-theme.css` | shadcn/ui — `:root` block with the standard `--background`, `--foreground`, `--primary`, etc. |
+| **Tailwind v4 (CSS-first)** | `dist/tailwind-v4.css` | **Default for Tailwind v4 apps** — `@theme inline` block. cepsra uses this. |
+| Tailwind v3 (JS config) | `dist/tailwind-tokens.ts` | Legacy Tailwind v3 — `theme.extend` JS object. Storybook, non-Next.js consumers. |
+| shadcn theme | `dist/shadcn-theme.css` | shadcn/ui — `:root` block with standard `--background`, `--primary`, etc. + ek extensions |
 | Flat CSS vars | `dist/ek-tokens.css` | Plain CSS / marketing pages / embedded widgets — `:root { --ek-magenta-500, ... }` |
 
-All three regenerate from one source. The yaml stays the SSoT; the exporters are deterministic.
+All four regenerate from one source. The yaml stays the SSoT; the exporters are deterministic.
 
 ## Operations
 
 ### Export one format
 
 ```bash
-python3 scripts/export-tailwind.py     # → dist/tailwind-tokens.ts
+python3 scripts/export-tailwind-v4.py   # → dist/tailwind-v4.css      (default for Tailwind v4)
+python3 scripts/export-tailwind.py      # → dist/tailwind-tokens.ts   (legacy v3 JS config)
 python3 scripts/export-shadcn.py        # → dist/shadcn-theme.css
 python3 scripts/export-css-vars.py      # → dist/ek-tokens.css
 ```
@@ -50,25 +52,40 @@ After running, summarize what changed: which output files, how many tokens emitt
 
 ## How a consumer wires this in
 
-### Tailwind (Next.js + Tailwind v4)
+### Tailwind v4 (Next.js / CSS-first config) ★ default
 
-`tailwind.config.ts`:
+In `app/globals.css`:
 
-```ts
-import { ekTokens } from "../path/to/ek-design/plugins/ek-web/skills/ek-web/dist/tailwind-tokens"
+```css
+@import "tailwindcss";
 
-export default {
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
-  theme: { extend: ekTokens },
+/* paste the contents of dist/tailwind-v4.css here, OR @import it */
+@theme inline {
+  --color-background: #0A0A14;
+  --color-magenta-500: #FF2A6D;
+  /* ... full set from dist/tailwind-v4.css ... */
 }
 ```
 
 Then in any `.tsx`:
 
 ```tsx
-<button className="bg-magenta-500 text-white font-display rounded-control">
+<button className="bg-magenta-500 text-foreground font-display rounded-control shadow-neon-glow-magenta">
   Run agent
 </button>
+```
+
+cepsra uses the inline-paste approach because the ek-design repo is gitignored
+from the cepsra repo; pasting at brand-evolution time is the manual-but-mechanical
+flow. When ek-design ships as a published npm package, switch to `@import`.
+
+### Tailwind v3 (legacy / Storybook)
+
+`tailwind.config.ts`:
+
+```ts
+import { ekTokens } from "<path>/dist/tailwind-tokens"
+export default { content: [...], theme: { extend: ekTokens } }
 ```
 
 ### shadcn/ui

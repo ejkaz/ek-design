@@ -1,0 +1,178 @@
+/*
+  AUTO-GENERATED FROM ek-design design-model.yaml — DO NOT EDIT MANUALLY
+  Source: ek-design v0.1.0 · brand_version: ek-2026-Q3-v1
+  Generated: 2026-05-25T05:59:31Z
+  Regenerate: python3 plugins/ek-web/skills/ek-web/scripts/export-tailwind-v4.py
+*/
+
+/* ek-design tokens for Tailwind v4 (CSS-first config).
+   Tailwind v4 deprecated tailwind.config.ts in favor of @theme blocks
+   inside CSS. This file IS the config.
+
+   Wire into your app's globals.css:
+     @import "tailwindcss";
+     @import "<path>/ek-design/plugins/ek-web/skills/ek-web/dist/tailwind-v4.css";
+
+   Then in any .tsx:
+     <button className="bg-magenta-500 font-display text-foreground rounded-control shadow-neon-glow-magenta">
+       Run agent
+     </button>
+
+   The legacy tailwind-tokens.ts exporter (Tailwind v3 JS-config shape) remains
+   for v3 consumers and for Storybook / non-Next consumers that prefer JS objects.
+*/
+
+@theme inline {
+  /* ─── Semantic surfaces (bg-*, text-*) ─────────── */
+  --color-background: #0A0A14;
+  --color-foreground: #FFFFFF;
+  --color-bg: #0A0A14;
+  --color-panel: #15151F;
+  --color-off-white: #F0F0F5;
+  --color-terminal-bg: #000000;
+
+  /* neutral */
+  --color-neutral-0: #FFFFFF;
+  --color-neutral-50: #F0F0F5;
+  --color-neutral-100: #E0E0EA;
+  --color-neutral-200: #C8C8D6;
+  --color-neutral-300: #A8A8BC;
+  --color-neutral-400: #7A7A92;
+  --color-neutral-500: #5C5C70;
+  --color-neutral-600: #3F3F50;
+  --color-neutral-700: #2E2E40;
+  --color-neutral-800: #1F1F2A;
+  --color-neutral-850: #15151F;
+  --color-neutral-900: #0F0F18;
+  --color-neutral-950: #0A0A14;
+  --color-neutral-1000: #000000;
+
+  /* magenta */
+  --color-magenta-50: #FFE5EF;
+  --color-magenta-100: #FFCCDF;
+  --color-magenta-200: #FF99BF;
+  --color-magenta-300: #FF7BAA;
+  --color-magenta-400: #FF4D8C;
+  --color-magenta-500: #FF2A6D;
+  --color-magenta-600: #E11D5F;
+  --color-magenta-700: #B0144A;
+  --color-magenta-800: #7A0E33;
+  --color-magenta-900: #4F0820;
+
+  /* cyan */
+  --color-cyan-50: #E0FAFF;
+  --color-cyan-100: #B8F3FF;
+  --color-cyan-200: #80EAFF;
+  --color-cyan-300: #5EEAFF;
+  --color-cyan-400: #2DD9FF;
+  --color-cyan-500: #00D1FF;
+  --color-cyan-600: #00A3CC;
+  --color-cyan-700: #0090B8;
+  --color-cyan-800: #005F77;
+  --color-cyan-900: #003344;
+
+  /* lime */
+  --color-lime-50: #F2FFCC;
+  --color-lime-100: #E5FF99;
+  --color-lime-200: #D2FF66;
+  --color-lime-300: #C8FF40;
+  --color-lime-400: #B3FF1A;
+  --color-lime-500: #A6FF00;
+  --color-lime-600: #86CC00;
+  --color-lime-700: #6B9E00;
+  --color-lime-800: #4A6E00;
+  --color-lime-900: #2A3F00;
+
+  /* steel violet */
+  --color-steel-violet-300: #6B6BC4;
+  --color-steel-violet-500: #3B3B92;
+  --color-steel-violet-700: #1E1E60;
+  --color-steel-violet-900: #0F0F33;
+
+  /* slate */
+  --color-slate-50: #F2F2F7;
+  --color-slate-100: #E0E0E8;
+  --color-slate-300: #9999B0;
+  --color-slate-500: #5C5C70;
+  --color-slate-700: #2E2E40;
+  --color-slate-900: #15151F;
+
+  /* red */
+  --color-red-500: #FF003C;
+  --color-red-600: #CC0030;
+  --color-red-700: #B0142D;
+
+  /* amber */
+  --color-amber-500: #FFB800;
+  --color-amber-600: #CC9300;
+  --color-amber-700: #8C6500;
+
+  /* ─── Role tokens — common reach-for shortcuts ─── */
+  --color-cta: #FF2A6D;
+  --color-cta-hover: #E11D5F;
+  --color-primary: #FF2A6D;
+  --color-secondary: #00D1FF;
+  --color-destructive: #FF003C;
+  --color-success: #A6FF00;
+  --color-warn: #FFB800;
+  --color-error: #FF003C;
+  --color-info: #00D1FF;
+  --color-link: #00D1FF;
+  --color-agent-active: #A6FF00;
+  --color-agent-thinking: #00D1FF;
+  --color-agent-blocked: #FFB800;
+  --color-agent-error: #FF003C;
+  --color-agent-idle: #5C5C70;
+  --color-border: #2E2E40;
+  --color-border-focus: #FF2A6D;
+
+  /* ─── Typography ───────────────────────────────── */
+  --font-display: "Chakra Petch", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Menlo", monospace;
+
+  /* type-scale (text-display, text-h1, text-body, text-mono) */
+  --text-display: clamp(2.5rem, 6vw, 5.5rem);
+  --text-h1: clamp(1.875rem, 4.5vw, 3.75rem);
+  --text-h2: clamp(1.5rem, 3vw, 2.5rem);
+  --text-h3: clamp(1.125rem, 2vw, 1.5rem);
+  --text-body-lg: clamp(1rem, 1.6vw, 1.125rem);
+  --text-body: clamp(0.875rem, 1.4vw, 1rem);
+  --text-small: clamp(0.75rem, 1vw, 0.875rem);
+  --text-eyebrow: clamp(0.7rem, 0.9vw, 0.85rem);
+  --text-mono: clamp(0.8125rem, 1.1vw, 0.9375rem);
+  --text-mono-sm: clamp(0.6875rem, 0.85vw, 0.8125rem);
+  --text-code: clamp(0.8125rem, 1.1vw, 0.9375rem);
+
+  /* ─── Spacing (p-xs, gap-md, mt-xl, etc.) ──────── */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+  --spacing-5xl: 128px;
+
+  /* ─── Radii ────────────────────────────────────── */
+  --radius-element: 2px;
+  --radius-control: 4px;
+  --radius-component: 6px;
+  --radius-container: 8px;
+  --radius-pill: 9999px;
+
+  /* ─── Shadows / glows ──────────────────────────── */
+  --shadow-neon-glow-magenta: 0 0 8px #FF2A6D, 0 0 16px #FF2A6D40;
+  --shadow-neon-glow-cyan: 0 0 8px #00D1FF, 0 0 16px #00D1FF40;
+  --shadow-neon-glow-lime: 0 0 6px #A6FF00, 0 0 12px #A6FF0040;
+  --shadow-focus-ring-magenta: 0 0 0 2px #0A0A14, 0 0 0 4px #FF2A6D;
+  --shadow-focus-ring-cyan: 0 0 0 2px #0A0A14, 0 0 0 4px #00D1FF;
+  --shadow-panel-lift: 0 1px 0 0 #2E2E40, 0 8px 24px -8px #00000080;
+
+  /* ─── Motion ───────────────────────────────────── */
+  --ease-ek: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 400ms;
+}

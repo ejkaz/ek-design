@@ -14,10 +14,8 @@ def main() -> int:
     here = Path(__file__).resolve().parent
     sys.path.insert(0, str(here))
 
-    modules = ["export_tailwind", "export_shadcn", "export_css_vars"]
     # Hyphen → underscore for python module names
-    for mod_name in ["export-tailwind", "export-shadcn", "export-css-vars"]:
-        py_name = mod_name.replace("-", "_")
+    for mod_name in ["export-tailwind", "export-tailwind-v4", "export-shadcn", "export-css-vars"]:
         # Import the .py file directly since filenames use hyphens
         path = here / f"{mod_name}.py"
         spec_globals = {"__name__": "__not_main__", "__file__": str(path)}
