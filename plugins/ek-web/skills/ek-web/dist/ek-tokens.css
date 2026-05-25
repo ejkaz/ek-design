@@ -1,7 +1,7 @@
 /*
   AUTO-GENERATED FROM ek-design design-model.yaml — DO NOT EDIT MANUALLY
-  Source: ek-design v0.1.0 · brand_version: ek-2026-Q3-v1
-  Generated: 2026-05-25T05:52:11Z
+  Source: ek-design v0.2.0 · brand_version: ek-2026-Q4-v1
+  Generated: 2026-05-25T06:40:03Z
   Regenerate: python3 plugins/ek-web/skills/ek-web/scripts/export-css-vars.py
 */
 
@@ -17,8 +17,8 @@
 
 :root {
   /* ─── Surfaces ───────────────────────────────────────────── */
-  --ek-bg: #0A0A14;
-  --ek-panel: #15151F;
+  --ek-bg: #070711;
+  --ek-panel: #171727;
   --ek-off-white: #F0F0F5;
   --ek-white: #FFFFFF;
   --ek-terminal-bg: #000000;
@@ -32,11 +32,11 @@
   --ek-neutral-400: #7A7A92;
   --ek-neutral-500: #5C5C70;
   --ek-neutral-600: #3F3F50;
-  --ek-neutral-700: #2E2E40;
-  --ek-neutral-800: #1F1F2A;
-  --ek-neutral-850: #15151F;
-  --ek-neutral-900: #0F0F18;
-  --ek-neutral-950: #0A0A14;
+  --ek-neutral-700: #2C2A45;
+  --ek-neutral-800: #23233A;
+  --ek-neutral-850: #171727;
+  --ek-neutral-900: #10101A;
+  --ek-neutral-950: #070711;
   --ek-neutral-1000: #000000;
 
   /* ─── Primitives — magenta ─── */
@@ -99,6 +99,12 @@
   --ek-amber-600: #CC9300;
   --ek-amber-700: #8C6500;
 
+  /* ─── Primitives — finance ─── */
+  --ek-finance-gain: #4ADE80;
+  --ek-finance-loss: #F87171;
+  --ek-finance-watch: #FBBF24;
+  --ek-finance-info_blue: #60A5FA;
+
   /* ─── Role tokens (semantic) ─────────────────────────────── */
   --ek-cta: var(--ek-magenta-500);
   --ek-cta-hover: var(--ek-magenta-600);
@@ -112,30 +118,65 @@
   --ek-info-on-light: var(--ek-cyan-700);
   --ek-accent-type-on-dark: var(--ek-magenta-500);
   --ek-accent-type-on-light: var(--ek-magenta-800);
-  --ek-status-success-on-dark: var(--ek-lime-500);
-  --ek-status-success-on-light: var(--ek-lime-800);
-  --ek-agent-status-active: var(--ek-lime-500);
-  --ek-agent-status-complete: var(--ek-lime-500);
-  --ek-agent-status-idle: var(--ek-slate-500);
   --ek-status-error-on-dark: var(--ek-red-500);
   --ek-status-error-on-light: var(--ek-red-700);
   --ek-status-warn-on-dark: var(--ek-amber-500);
   --ek-status-warn-on-light: var(--ek-amber-700);
+  --ek-status-success-on-dark: var(--ek-lime-500);
+  --ek-status-success-on-light: var(--ek-lime-800);
   --ek-destructive-action: var(--ek-red-500);
-  --ek-ambient-glow: var(--ek-steel-violet-500);
-  --ek-ambient-deep: var(--ek-steel-violet-700);
-  --ek-ambient-subtle: var(--ek-steel-violet-900);
+  --ek-agent-command: var(--ek-magenta-500);
+  --ek-agent-command-active: var(--ek-magenta-500);
+  --ek-agent-trace: var(--ek-cyan-500);
+  --ek-agent-thinking: var(--ek-cyan-500);
+  --ek-agent-tool-use: var(--ek-steel-violet-300);
+  --ek-agent-attention: var(--ek-amber-500);
+  --ek-agent-blocked: var(--ek-amber-500);
+  --ek-agent-complete: var(--ek-lime-500);
+  --ek-agent-success: var(--ek-lime-500);
+  --ek-agent-risk: var(--ek-red-500);
+  --ek-agent-error: var(--ek-red-500);
+  --ek-agent-status-active: var(--ek-lime-500);
+  --ek-agent-status-idle: var(--ek-slate-500);
+  --ek-finance-gain: var(--ek-finance-gain);
+  --ek-finance-loss: var(--ek-finance-loss);
+  --ek-finance-watch: var(--ek-finance-watch);
+  --ek-finance-neutral: var(--ek-neutral-300);
+  --ek-finance-info: var(--ek-finance-info_blue);
+  --ek-finance-cash: var(--ek-lime-500);
+  --ek-finance-runway: var(--ek-amber-500);
+  --ek-finance-burn: var(--ek-finance-loss);
+  --ek-finance-arr: var(--ek-lime-500);
+  --ek-finance-gross-margin: var(--ek-cyan-500);
+  --ek-finance-forecast-variance: var(--ek-finance-watch);
+  --ek-finance-budget-variance: var(--ek-finance-watch);
+  --ek-finance-headcount-plan: var(--ek-steel-violet-300);
+  --ek-finance-aws-ai-cogs: var(--ek-steel-violet-300);
+  --ek-finance-approval-required: var(--ek-magenta-500);
+  --ek-data-live: var(--ek-lime-500);
+  --ek-data-synced: var(--ek-cyan-500);
+  --ek-data-stale: var(--ek-amber-500);
+  --ek-data-failed: var(--ek-red-500);
+  --ek-data-manual-override: var(--ek-magenta-500);
+  --ek-trace-rail: var(--ek-cyan-500);
+  --ek-trace-source: var(--ek-cyan-500);
+  --ek-trace-breadcrumb: var(--ek-cyan-300);
+  --ek-trace-drill-through: var(--ek-cyan-500);
+  --ek-trace-lineage: var(--ek-cyan-500);
   --ek-body-chrome-on-dark: var(--ek-slate-300);
   --ek-body-chrome-on-light: var(--ek-slate-500);
   --ek-border-neutral-dark: var(--ek-slate-700);
   --ek-border-neutral-light: var(--ek-slate-100);
   --ek-surface-app: var(--ek-neutral-950);
+  --ek-surface-cockpit: var(--ek-neutral-950);
   --ek-surface-panel: var(--ek-neutral-850);
   --ek-surface-panel-alt: var(--ek-neutral-800);
+  --ek-surface-panel-subtle: var(--ek-neutral-900);
   --ek-surface-marketing: var(--ek-neutral-950);
   --ek-surface-light: var(--ek-neutral-50);
   --ek-surface-terminal: var(--ek-neutral-1000);
   --ek-surface-terminal-border: var(--ek-cyan-700);
+  --ek-surface-board-safe: var(--ek-neutral-950);
   --ek-text-dark-primary: var(--ek-neutral-0);
   --ek-text-dark-secondary: var(--ek-neutral-300);
   --ek-text-dark-tertiary: var(--ek-neutral-500);
@@ -144,26 +185,27 @@
   --ek-text-light-tertiary: var(--ek-neutral-500);
   --ek-text-mono-default: var(--ek-neutral-0);
   --ek-text-mono-accent: var(--ek-cyan-500);
-  --ek-border-dark: var(--ek-slate-700);
+  --ek-text-mono-dim: var(--ek-neutral-300);
+  --ek-border-dark: var(--ek-neutral-700);
+  --ek-border-soft: var(--ek-neutral-800);
   --ek-border-light: var(--ek-slate-100);
+  --ek-border-active: var(--ek-magenta-500);
   --ek-border-focus: var(--ek-magenta-500);
   --ek-border-focus-secondary: var(--ek-cyan-500);
-  --ek-agent-thinking: var(--ek-cyan-500);
-  --ek-agent-tool-use: var(--ek-steel-violet-500);
-  --ek-agent-error: var(--ek-red-500);
-  --ek-agent-blocked: var(--ek-amber-500);
-  --ek-chart-1-dark: var(--ek-magenta-500);
-  --ek-chart-2-dark: var(--ek-cyan-500);
-  --ek-chart-3-dark: var(--ek-lime-500);
+  --ek-chart-1-dark: var(--ek-cyan-500);
+  --ek-chart-2-dark: var(--ek-lime-500);
+  --ek-chart-3-dark: var(--ek-amber-500);
   --ek-chart-4-dark: var(--ek-steel-violet-300);
-  --ek-chart-5-dark: var(--ek-amber-500);
+  --ek-chart-5-dark: var(--ek-finance-info_blue);
   --ek-chart-6-dark: var(--ek-slate-300);
-  --ek-chart-1-light: var(--ek-magenta-700);
-  --ek-chart-2-light: var(--ek-cyan-700);
-  --ek-chart-3-light: var(--ek-lime-800);
+  --ek-chart-agentic-dark: var(--ek-magenta-500);
+  --ek-chart-1-light: var(--ek-cyan-700);
+  --ek-chart-2-light: var(--ek-lime-800);
+  --ek-chart-3-light: var(--ek-amber-700);
   --ek-chart-4-light: var(--ek-steel-violet-700);
-  --ek-chart-5-light: var(--ek-amber-700);
+  --ek-chart-5-light: var(--ek-finance-info_blue);
   --ek-chart-6-light: var(--ek-slate-500);
+  --ek-chart-agentic-light: var(--ek-magenta-700);
 
   /* ─── Typography ─────────────────────────────────────────── */
   --ek-font-display: "Chakra Petch", sans-serif;
@@ -212,10 +254,18 @@
   --ek-neon-glow-magenta: 0 0 8px #FF2A6D, 0 0 16px #FF2A6D40;
   --ek-neon-glow-cyan: 0 0 8px #00D1FF, 0 0 16px #00D1FF40;
   --ek-neon-glow-lime: 0 0 6px #A6FF00, 0 0 12px #A6FF0040;
-  --ek-focus-ring-magenta: 0 0 0 2px #0A0A14, 0 0 0 4px #FF2A6D;
-  --ek-focus-ring-cyan: 0 0 0 2px #0A0A14, 0 0 0 4px #00D1FF;
-  --ek-panel-lift: 0 1px 0 0 #2E2E40, 0 8px 24px -8px #00000080;
+  --ek-focus-ring-magenta: 0 0 0 2px #070711, 0 0 0 4px #FF2A6D;
+  --ek-focus-ring-cyan: 0 0 0 2px #070711, 0 0 0 4px #00D1FF;
+  --ek-panel-lift: 0 1px 0 0 #2C2A45, 0 8px 24px -8px #00000080;
   --ek-scanline-overlay: repeating-linear-gradient(0deg, transparent 0, transparent 2px, #FFFFFF06 2px, #FFFFFF06 3px);
+  --ek-confidence-halo-amber: inset 0 0 0 1px #FFB80080;
+  --ek-confidence-halo-red: inset 0 0 0 1px #FF003C80;
+  --ek-trace-rail-glow-cyan: 0 0 4px #00D1FF80;
+  --ek-operator-layer-glow: 0 0 12px #FF2A6D60, 0 0 24px #FF2A6D30;
+  --ek-board-safe-neon-glow-magenta: inset 0 0 0 1px #FF2A6D;
+  --ek-board-safe-neon-glow-cyan: inset 0 0 0 1px #00D1FF;
+  --ek-board-safe-neon-glow-lime: inset 0 0 0 1px #A6FF00;
+  --ek-board-safe-focus-ring: 0 0 0 2px #FF2A6D;
 }
 
 @media (prefers-reduced-motion: reduce) {

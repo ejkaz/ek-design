@@ -4,8 +4,8 @@
 <!--
     AUTO-GENERATED FROM design-model.yaml — DO NOT EDIT MANUALLY
     Regenerate: python3 scripts/generate-brand-portal.py
-    Generated: 2026-05-25 05:44 UTC
-    design-model.yaml version: 0.1.0 · brand_version: ek-2026-Q3-v1
+    Generated: 2026-05-25 06:39 UTC
+    design-model.yaml version: 0.2.0 · brand_version: ek-2026-Q4-v1
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,9 +15,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0A0A14;
-  --bg-2: #15151F;
-  --bg-3: #1F1F2A;
+  /* v0.2 — Dark Ledger / Neon Operator palette */
+  --bg: #070711;
+  --bg-1: #10101A;
+  --bg-2: #171727;
+  --bg-3: #23233A;
   --bg-deep: #000000;
   --fg: #FFFFFF;
   --fg-muted: rgba(255,255,255,0.68);
@@ -28,6 +30,10 @@
   --amber: #FFB800;
   --red: #FF003C;
   --steel-violet: #3B3B92;
+  --gain: #4ADE80;
+  --loss: #F87171;
+  --watch: #FBBF24;
+  --info-blue: #60A5FA;
   --border: rgba(255,255,255,0.10);
   --border-soft: rgba(255,255,255,0.06);
   --gap-sm: clamp(0.5rem, 1vw, 1rem);
@@ -228,9 +234,152 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
 .scanline-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,0.06) 2px, rgba(255,255,255,0.06) 3px); }
 
-.diagonal-cut { background: var(--bg-2); border: 1px solid #2E2E40;
+.diagonal-cut { background: var(--bg-2); border: 1px solid #2C2A45;
   padding: 24px 28px; color: var(--fg); font-family: 'Chakra Petch', sans-serif;
   font-weight: 600; clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
+
+/* ★ v0.2 finance cockpit components ─────────────────────────────────── */
+
+.kpi-card { background: var(--bg-2); border: 1px solid #2C2A45; border-radius: 6px;
+  padding: 16px; min-width: 180px; }
+.kpi-card .kpi-label { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--fg-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.kpi-card .kpi-label .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.kpi-card .kpi-value { font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: 1.875rem; line-height: 1.0; letter-spacing: -0.010em; color: var(--fg);
+  font-feature-settings: "tnum"; }
+.kpi-card .kpi-delta { font-family: 'JetBrains Mono', monospace; font-weight: 600;
+  font-size: 0.78125rem; margin-top: 6px; font-feature-settings: "tnum"; }
+.kpi-card .kpi-delta.gain { color: var(--gain); }
+.kpi-card .kpi-delta.loss { color: var(--loss); }
+.kpi-card.state-watch { border-color: var(--watch); }
+.kpi-card.state-breach { border-color: var(--red); }
+.kpi-card.state-agent { border-color: var(--magenta);
+  box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+
+.finance-panel { background: var(--bg-2); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: 16px; margin-bottom: var(--gap-sm); }
+.finance-panel.active { box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+.finance-panel .fp-header { display: flex; justify-content: space-between;
+  align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 12px; }
+.finance-panel .fp-title { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 1rem; }
+.finance-panel .fp-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem;
+  color: var(--fg-muted); display: flex; gap: 12px; }
+.finance-panel .fp-meta .trace-link { color: var(--cyan); cursor: pointer; }
+
+.variance-row { display: grid;
+  grid-template-columns: 1.5fr repeat(5, 1fr); gap: 12px; padding: 8px 0;
+  border-bottom: 1px solid var(--border-soft); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8125rem; align-items: center; font-feature-settings: "tnum"; }
+.variance-row.header { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.7rem; letter-spacing: 0.10em; text-transform: uppercase; color: var(--fg-muted); }
+.variance-row .label { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--fg); }
+.variance-row .num { text-align: right; }
+.variance-row .num.budget { color: var(--fg-muted); }
+.variance-row .num.forecast { color: var(--fg-muted); }
+.variance-row .num.gain { color: var(--gain); }
+.variance-row .num.loss { color: var(--loss); }
+
+.data-badge { display: inline-flex; align-items: center; gap: 4px; padding: 1px 6px;
+  border: 1px solid currentColor; border-radius: 999px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.060em; }
+.data-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.data-badge.live { color: var(--lime); }
+.data-badge.synced { color: var(--cyan); }
+.data-badge.stale { color: var(--amber); }
+.data-badge.failed { color: var(--red); }
+.data-badge.manual { color: var(--magenta); }
+
+.trace-rail { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: var(--cyan); }
+.trace-rail .crumb { padding: 1px 6px; border: 1px solid rgba(0,209,255,0.3);
+  border-radius: 3px; }
+.trace-rail .arrow { color: rgba(0,209,255,0.5); }
+
+.command-bar { background: var(--bg-1); border: 1px solid #2C2A45;
+  border-radius: 8px; padding: 16px; display: flex; gap: 12px; align-items: center;
+  max-width: 720px; }
+.command-bar .agent-status { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem;
+  color: var(--magenta); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+.command-bar input { flex: 1; background: transparent; border: 0; color: var(--fg);
+  font-family: 'Inter', sans-serif; font-size: 0.9375rem; outline: none; }
+.command-bar input::placeholder { color: var(--fg-muted); }
+.command-bar .tool-chip { display: inline-flex; gap: 4px; padding: 2px 8px;
+  background: var(--bg-2); border: 1px solid rgba(0,209,255,0.4); color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.625rem;
+  border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+.command-bar button { background: var(--magenta); color: var(--fg); border: 0;
+  padding: 8px 16px; border-radius: 4px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.02em; cursor: pointer; }
+
+.approval-card { background: var(--bg-2); border: 1px dashed var(--amber);
+  border-radius: 6px; padding: 16px; max-width: 480px; }
+.approval-card .ac-header { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.7rem; letter-spacing: 0.080em; text-transform: uppercase; color: var(--amber);
+  margin-bottom: 8px; }
+.approval-card h4 { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 1rem; margin: 0 0 8px 0; }
+.approval-card .ac-evidence { background: #000000; border: 1px solid #0090B8;
+  border-radius: 2px; padding: 8px 12px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: var(--cyan); margin: 8px 0; }
+.approval-card .ac-impact { font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem;
+  margin: 8px 0; font-feature-settings: "tnum"; }
+.approval-card .ac-impact .gain { color: var(--gain); }
+.approval-card .ac-impact .loss { color: var(--loss); }
+.approval-card .ac-actions { display: flex; gap: 8px; margin-top: 12px; }
+.approval-card .ac-actions .approve { background: var(--magenta); color: var(--fg); border: 0; padding: 6px 12px; border-radius: 4px;
+  font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 0.78125rem; cursor: pointer; }
+.approval-card .ac-actions .reject { background: transparent; color: var(--red);
+  border: 1px solid var(--red); padding: 6px 12px; border-radius: 4px;
+  font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 0.78125rem; cursor: pointer; }
+.approval-card .ac-actions .inspect { background: transparent; color: var(--cyan);
+  border: 1px solid var(--cyan); padding: 6px 12px; border-radius: 4px;
+  font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 0.78125rem; cursor: pointer; }
+
+/* Forecast confidence halo */
+.confidence-halo-amber { box-shadow: inset 0 0 0 1px rgba(255,184,0,0.5); }
+.confidence-halo-red { box-shadow: inset 0 0 0 1px rgba(255,0,60,0.5); }
+
+/* Sample cockpit layout */
+.cockpit-frame { background: var(--bg); border: 1px solid #2C2A45; border-radius: 8px;
+  overflow: hidden; }
+.cockpit-topbar { background: var(--bg-1); border-bottom: 1px solid var(--border-soft);
+  padding: 10px 16px; display: flex; gap: 24px; align-items: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; }
+.cockpit-topbar .brand { font-family: 'Chakra Petch', sans-serif; font-weight: 700;
+  font-size: 0.85rem; letter-spacing: 0.08em; color: var(--magenta);
+  text-shadow: 0 0 6px rgba(255,42,109,0.3); }
+.cockpit-topbar .topbar-meta { display: flex; gap: 16px; margin-left: auto; color: var(--fg-muted); }
+.cockpit-topbar .topbar-meta .live { color: var(--lime); }
+.cockpit-body { display: grid; grid-template-columns: 200px 1fr 280px; min-height: 460px; }
+.cockpit-rail { background: var(--bg-1); border-right: 1px solid var(--border-soft);
+  padding: 16px 8px; display: flex; flex-direction: column; gap: 4px; }
+.cockpit-rail .rail-item { padding: 6px 12px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 500; font-size: 0.78125rem; color: var(--fg-muted); border-radius: 4px;
+  border-left: 2px solid transparent; }
+.cockpit-rail .rail-item.active { color: var(--fg); border-left-color: var(--magenta);
+  background: rgba(255,42,109,0.08); }
+.cockpit-main { padding: 16px; overflow: auto; }
+.cockpit-kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px; margin-bottom: 16px; }
+.cockpit-kpi-strip .kpi-card { padding: 10px 12px; min-width: 0; }
+.cockpit-kpi-strip .kpi-value { font-size: 1.25rem; }
+.cockpit-feed { background: var(--bg-1); border-left: 1px solid var(--border-soft);
+  padding: 16px; overflow: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; }
+.cockpit-feed .feed-title { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--fg-muted); margin-bottom: 12px; }
+.cockpit-feed .feed-event { padding: 6px 0; border-bottom: 1px solid var(--border-soft);
+  line-height: 1.5; }
+.cockpit-feed .feed-event .ts { color: var(--fg-dim); }
+.cockpit-feed .feed-event.command { color: var(--magenta); }
+.cockpit-feed .feed-event.sync { color: var(--cyan); }
+.cockpit-feed .feed-event.approval { color: var(--amber); }
+.cockpit-feed .feed-event.complete { color: var(--lime); }
+.cockpit-feed .feed-event.error { color: var(--red); }
 
 .portal-footer { max-width: 1240px; margin: var(--gap-lg) auto 0;
   padding: var(--gap-md); border-top: 1px solid var(--border);
@@ -252,9 +401,9 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
   <div class="portal-header-inner">
     <div class="portal-mark">
       <strong>EK·DESIGN</strong>
-      <span class="portal-meta">Brand Portal · v0.1.0 · ek-2026-Q3-v1</span>
+      <span class="portal-meta">Brand Portal · v0.2.0 · ek-2026-Q4-v1</span>
     </div>
-    <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item" href="motifs.html">Motifs</a><a class="portal-nav-item active" href="components.html">Components</a></nav>
+    <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item" href="motifs.html">Motifs</a><a class="portal-nav-item active" href="components.html">Components</a><a class="portal-nav-item" href="cockpit.html">Cockpit</a></nav>
   </div>
 </header>
 
@@ -339,11 +488,254 @@ focus: border cyan.500 + focus-ring cyan</pre>
   <span class="spec-key">return</span> result;
 {"}"}</pre>
 </div>
-<pre class="spec-pre">background: neutral.900 (#0F0F18)
+<pre class="spec-pre">background: neutral.900 (#10101A)
 color: neutral.0 (#FFFFFF)
-border: 1px solid slate.700
+border: 1px solid neutral.700 (#2C2A45)
 syntax accent: cyan.500
 font-family: JetBrains Mono</pre>
+
+<!-- ★ v0.2 finance cockpit components ───────────────────────────────── -->
+
+<h2 class="section">KPI card (★ v0.2)</h2>
+<div class="component-stage">
+  <div class="kpi-card">
+    <div class="kpi-label"><span class="dot" style="color:var(--lime);"></span>Cash · on hand</div>
+    <div class="kpi-value">$12.8M</div>
+    <div class="kpi-delta gain">+8.4% MoM</div>
+  </div>
+  <div class="kpi-card state-watch">
+    <div class="kpi-label" style="color:var(--amber);"><span class="dot"></span>Runway · forecast</div>
+    <div class="kpi-value">15.2mo</div>
+    <div class="kpi-delta loss">-1.8mo vs plan</div>
+  </div>
+  <div class="kpi-card state-breach">
+    <div class="kpi-label" style="color:var(--red);"><span class="dot"></span>Covenant · breach</div>
+    <div class="kpi-value">62%</div>
+    <div class="kpi-delta loss">7pp over threshold</div>
+  </div>
+  <div class="kpi-card state-agent">
+    <div class="kpi-label" style="color:var(--magenta);"><span class="dot"></span>Agent · recomputing ARR</div>
+    <div class="kpi-value">$14.2M</div>
+    <div class="kpi-delta gain">+8.2% confidence: 64%</div>
+  </div>
+</div>
+<pre class="spec-pre">label:   kpi_label (Chakra Petch 600 · 0.72rem · letter-spacing 0.14em · uppercase)
+value:   kpi_value (JetBrains Mono 700 · 1.875rem · tnum)
+delta:   delta (JetBrains Mono 600 · tnum · color_gain finance.gain / color_loss finance.loss)
+state:   healthy (lime) · watch (amber border) · breach (red border) · agent_active (magenta border + neon-glow)</pre>
+
+<h2 class="section">Finance panel (★ v0.2)</h2>
+<div class="component-stage">
+  <div class="finance-panel" style="width:100%;max-width:520px;">
+    <div class="fp-header">
+      <div class="fp-title">Operating expense · FY26 Q2</div>
+      <div class="fp-meta">
+        <span class="data-badge synced"><span class="dot"></span>synced 12s ago</span>
+        <span class="trace-link">drill →</span>
+      </div>
+    </div>
+    <div class="variance-row header">
+      <div>Line</div><div class="num">Actual</div><div class="num">Budget</div><div class="num">Forecast</div><div class="num">Var $</div><div class="num">Var %</div>
+    </div>
+    <div class="variance-row">
+      <div class="label">Payroll · Engineering</div>
+      <div class="num">847,212</div>
+      <div class="num budget">820,000</div>
+      <div class="num forecast">840,000</div>
+      <div class="num loss">-27,212</div>
+      <div class="num loss">-3.3%</div>
+    </div>
+    <div class="variance-row">
+      <div class="label">AWS · compute</div>
+      <div class="num">142,847</div>
+      <div class="num budget">160,000</div>
+      <div class="num forecast">150,000</div>
+      <div class="num gain">+17,153</div>
+      <div class="num gain">+10.7%</div>
+    </div>
+    <div class="variance-row">
+      <div class="label">AI · model spend</div>
+      <div class="num">28,471</div>
+      <div class="num budget">22,000</div>
+      <div class="num forecast">26,000</div>
+      <div class="num loss">-6,471</div>
+      <div class="num loss">-29.4%</div>
+    </div>
+  </div>
+</div>
+<pre class="spec-pre">background:    surface_2 (neutral.850, #171727)
+border:        1px solid border_soft (neutral.800, #23233A)
+radius:        component (6px)
+glow_default:  none  /* sober — Dark Ledger thesis */
+glow_active:   operator_layer_glow  /* ONLY when agent is acting */
+header:        title (Chakra Petch h3) + period (timestamp) + source_freshness (cyan) + drill_through (cyan)</pre>
+
+<h2 class="section">Agent command bar (★ v0.2)</h2>
+<div class="component-stage">
+  <div class="command-bar">
+    <span class="agent-status">agent · ready</span>
+    <input placeholder="Run forecast for FY26 Q3 ARR including new SDR hires" />
+    <span class="tool-chip">qb</span>
+    <span class="tool-chip">forecast</span>
+    <span class="tool-chip">hubspot</span>
+    <button>Run</button>
+  </div>
+</div>
+<pre class="spec-pre">background:     surface_1 (neutral.900, #10101A)
+border:         1px solid border (neutral.700, #2C2A45)
+primary_action: magenta — agentic command monopoly (locked invariant)
+tool_chip:      cyan border + cyan text — trace lineage register
+agent_status:   magenta mono</pre>
+
+<h2 class="section">Agent-status badges (★ expanded v0.2)</h2>
+<div class="component-stage">
+  <span class="badge active"><span class="dot"></span>active</span>
+  <span class="badge thinking"><span class="dot"></span>thinking</span>
+  <span class="badge tool"><span class="dot"></span>tool_use</span>
+  <span class="badge active" style="color:var(--magenta);box-shadow:0 0 8px var(--magenta);"><span class="dot"></span>command_active</span>
+  <span class="badge complete"><span class="dot"></span>complete</span>
+  <span class="badge blocked"><span class="dot"></span>blocked</span>
+  <span class="badge blocked" style="border-style:dashed;"><span class="dot"></span>approval_required</span>
+  <span class="badge error"><span class="dot"></span>error</span>
+  <span class="badge idle"><span class="dot"></span>idle</span>
+</div>
+<pre class="spec-pre">active            · lime  + neon-glow-lime         (always-on agent alive indicator)
+thinking          · cyan  + pulse animation         (model generating)
+tool_use          · steel_violet.300               (tool call in progress)
+command_active    · magenta + neon-glow-magenta    (★ v0.2 — agent executing a command)
+complete          · lime
+blocked           · amber                          (awaiting user)
+approval_required · amber dashed border             (★ v0.2 — needs decision)
+error             · red
+idle              · slate</pre>
+
+<h2 class="section">Data freshness badge (★ v0.2)</h2>
+<div class="component-stage">
+  <span class="data-badge live"><span class="dot"></span>live</span>
+  <span class="data-badge synced"><span class="dot"></span>synced</span>
+  <span class="data-badge stale"><span class="dot"></span>stale</span>
+  <span class="data-badge failed"><span class="dot"></span>failed</span>
+  <span class="data-badge manual"><span class="dot"></span>manual override</span>
+</div>
+<pre class="spec-pre">live             · lime    (sub-minute fresh)
+synced           · cyan    (within sync interval)
+stale            · amber   (past freshness threshold)
+failed           · red     (last sync failed)
+manual_override  · magenta (human override active)</pre>
+
+<h2 class="section">Source trace row (★ v0.2)</h2>
+<div class="component-stage" style="flex-direction:column;align-items:stretch;gap:0;max-width:720px;">
+  <div style="display:grid;grid-template-columns:1.3fr 1fr 0.9fr 0.7fr 0.5fr 0.5fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-soft);font-family:'Chakra Petch',sans-serif;font-size:0.7rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--fg-muted);">
+    <div>Source</div><div>Object</div><div>Last sync</div><div>Owner</div><div style="text-align:right;">Conf</div><div style="text-align:right;">Drill</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.3fr 1fr 0.9fr 0.7fr 0.5fr 0.5fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-soft);font-family:'JetBrains Mono',monospace;font-size:0.8125rem;align-items:center;">
+    <div style="color:var(--cyan);">QuickBooks</div>
+    <div style="color:var(--fg-muted);">invoices</div>
+    <div style="color:var(--fg-muted);">12s ago</div>
+    <div style="font-family:'Inter',sans-serif;">eric</div>
+    <div style="text-align:right;color:var(--gain);">99%</div>
+    <div style="text-align:right;color:var(--cyan);">↗</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.3fr 1fr 0.9fr 0.7fr 0.5fr 0.5fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-soft);font-family:'JetBrains Mono',monospace;font-size:0.8125rem;align-items:center;">
+    <div style="color:var(--cyan);">HubSpot</div>
+    <div style="color:var(--fg-muted);">deals</div>
+    <div style="color:var(--amber);">4h ago</div>
+    <div style="font-family:'Inter',sans-serif;">jay</div>
+    <div style="text-align:right;color:var(--amber);">82%</div>
+    <div style="text-align:right;color:var(--cyan);">↗</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.3fr 1fr 0.9fr 0.7fr 0.5fr 0.5fr;gap:12px;padding:8px 0;font-family:'JetBrains Mono',monospace;font-size:0.8125rem;align-items:center;">
+    <div style="color:var(--cyan);">AWS · Cost Explorer</div>
+    <div style="color:var(--fg-muted);">monthly_spend</div>
+    <div style="color:var(--red);">failed</div>
+    <div style="font-family:'Inter',sans-serif;">eric</div>
+    <div style="text-align:right;color:var(--red);">—</div>
+    <div style="text-align:right;color:var(--cyan);">↗</div>
+  </div>
+</div>
+<pre class="spec-pre">columns: source_system (cyan mono) · object (mono dim) · last_sync (timestamp · freshness-colored)
+         · owner (Inter) · confidence (delta · gain/loss/amber) · drill_through (cyan arrow)
+border:  1px solid neutral.800 between rows</pre>
+
+<h2 class="section">Variance row — embedded in finance_panel above</h2>
+<p style="color:var(--fg-muted);font-size:0.9rem;margin-bottom:var(--gap-md);">See the Finance panel demo above — each row is a <code>variance_row</code> component instance. Columns: label · actual · budget · forecast · variance$ · variance% · materiality · agent_recommendation. All numerics use JetBrains Mono + <code>font-feature-settings: "tnum"</code>.</p>
+
+<h2 class="section">Approval card (★ v0.2)</h2>
+<div class="component-stage">
+  <div class="approval-card">
+    <div class="ac-header">Approval required · agent proposal</div>
+    <h4>Update revenue forecast model</h4>
+    <p style="color:var(--fg-muted);font-size:0.85rem;margin:0 0 12px 0;">Agent has detected a structural shift in close rates and proposes updating the FY26 forecast multiplier from 0.84 → 0.91.</p>
+    <div class="ac-evidence">
+      → 8 weeks of close-rate data (HubSpot)<br>
+      → χ² = 17.4, p &lt; 0.001<br>
+      → confidence: 94%
+    </div>
+    <div class="ac-impact">
+      Impact on Q3 ARR forecast: <span class="gain">+$1.2M (+8.4%)</span><br>
+      Impact on runway: <span class="gain">+2.1 months</span>
+    </div>
+    <div class="ac-actions">
+      <button class="approve">Approve</button>
+      <button class="reject">Reject</button>
+      <button class="inspect">Inspect</button>
+    </div>
+  </div>
+</div>
+<pre class="spec-pre">background:  neutral.850
+border:      1px DASHED amber  /* dashed signals "pending decision" */
+header:      amber Chakra Petch 600 uppercase
+evidence:    terminal-block-inset (black + cyan border + JetBrains Mono)
+impact:      mono + tnum · gain/loss colors
+actions:     approve (magenta) · reject (red ghost) · inspect (cyan ghost)</pre>
+
+<h2 class="section">Agent log (★ v0.2)</h2>
+<div class="component-stage">
+  <div class="terminal-demo" style="width:100%;max-width:560px;">
+    <div><span class="term-meta">[22:35:54.013]</span> <span style="color:var(--cyan);">→ sync</span>: QuickBooks · invoices · <span class="term-prompt">204 records · 142ms</span></div>
+    <div><span class="term-meta">[22:35:58.847]</span> <span style="color:var(--magenta);">→ command</span>: run forecast() · revenue · FY26 · Q3</div>
+    <div><span class="term-meta">[22:36:01.022]</span> <span style="color:#6B6BC4;">→ tool_use</span>: bash · python compute_forecast.py</div>
+    <div><span class="term-meta">[22:36:12.541]</span> <span style="color:var(--amber);">→ approval-required</span>: model update · runway recalc</div>
+    <div><span class="term-meta">[22:36:24.890]</span> <span class="term-prompt">→ complete</span>: forecast accepted · runway 15.2mo → 17.3mo</div>
+    <div><span class="term-meta">[22:36:47.301]</span> <span style="color:var(--red);">→ error</span>: AWS Cost Explorer sync failed (HTTP 503)</div>
+  </div>
+</div>
+<pre class="spec-pre">inherits:        terminal_block (pure black + cyan border + JetBrains Mono)
+timestamp_color: neutral.500
+event_types:
+  command:           magenta  /* agentic action */
+  sync:              cyan     /* data lineage */
+  tool_use:          steel_violet.300
+  approval_request:  amber
+  approval_granted:  lime
+  complete:          lime
+  error:             red</pre>
+
+<h2 class="section">Board export preview (★ v0.2)</h2>
+<p style="color:var(--fg-muted);font-size:0.9rem;margin-bottom:var(--gap-md);">Same dashboard, reduced neon. Live cockpit on the left; board-safe export on the right. Glow collapses to inset 1px border; animations pause; focus rings stay visible for accessibility. Activated via <code>body.board-safe</code>.</p>
+<div class="component-stage" style="align-items:flex-start;">
+  <div style="flex:1;min-width:240px;">
+    <div style="font-size:0.7rem;color:var(--fg-muted);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">live cockpit</div>
+    <div class="kpi-card state-agent">
+      <div class="kpi-label" style="color:var(--magenta);"><span class="dot"></span>Agent · recomputing ARR</div>
+      <div class="kpi-value">$14.2M</div>
+      <div class="kpi-delta gain">+8.2% confidence: 64%</div>
+    </div>
+  </div>
+  <div style="flex:1;min-width:240px;">
+    <div style="font-size:0.7rem;color:var(--fg-muted);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">board-safe export</div>
+    <div class="kpi-card" style="border:1px solid var(--magenta);box-shadow:none;">
+      <div class="kpi-label" style="color:var(--magenta);"><span class="dot"></span>Agent · recomputing ARR</div>
+      <div class="kpi-value">$14.2M</div>
+      <div class="kpi-delta gain">+8.2% confidence: 64%</div>
+    </div>
+  </div>
+</div>
+<pre class="spec-pre">body.board-safe overrides:
+  --neon-glow-*    → inset 0 0 0 1px {color}
+  --scanline-*     → none
+  --animation-*    → none (paused)
+  --focus-ring-*   → 0 0 0 2px {color}  /* stays visible — a11y */</pre>
 
 </main>
 

@@ -1,6 +1,6 @@
 // AUTO-GENERATED FROM ek-design design-model.yaml — DO NOT EDIT MANUALLY
-// Source: ek-design v0.1.0 · brand_version: ek-2026-Q3-v1
-// Generated: 2026-05-25T05:52:11Z
+// Source: ek-design v0.2.0 · brand_version: ek-2026-Q4-v1
+// Generated: 2026-05-25T06:40:03Z
 // Regenerate: python3 plugins/ek-web/skills/ek-web/scripts/export-tailwind.py
 
 /**
@@ -16,8 +16,8 @@
  */
 export const ekTokens = {
   colors: {
-    bg: "#0A0A14",
-    panel: "#15151F",
+    bg: "#070711",
+    panel: "#171727",
     "off-white": "#F0F0F5",
     "terminal-bg": "#000000",
     "neutral": {
@@ -29,11 +29,11 @@ export const ekTokens = {
     400: "#7A7A92",
     500: "#5C5C70",
     600: "#3F3F50",
-    700: "#2E2E40",
-    800: "#1F1F2A",
-    850: "#15151F",
-    900: "#0F0F18",
-    950: "#0A0A14",
+    700: "#2C2A45",
+    800: "#23233A",
+    850: "#171727",
+    900: "#10101A",
+    950: "#070711",
     1000: "#000000",
     },
     "magenta": {
@@ -96,6 +96,12 @@ export const ekTokens = {
     600: "#CC9300",
     700: "#8C6500",
     },
+    "finance": {
+    "gain": "#4ADE80",
+    "loss": "#F87171",
+    "watch": "#FBBF24",
+    "info_blue": "#60A5FA",
+    },
   },
   fontFamily: {
     display: ['"Chakra Petch"', "sans-serif"],
@@ -124,9 +130,15 @@ export const ekTokens = {
     "neon-glow-magenta": "0 0 8px #FF2A6D, 0 0 16px #FF2A6D40",
     "neon-glow-cyan": "0 0 8px #00D1FF, 0 0 16px #00D1FF40",
     "neon-glow-lime": "0 0 6px #A6FF00, 0 0 12px #A6FF0040",
-    "focus-ring-magenta": "0 0 0 2px #0A0A14, 0 0 0 4px #FF2A6D",
-    "focus-ring-cyan": "0 0 0 2px #0A0A14, 0 0 0 4px #00D1FF",
-    "panel-lift": "0 1px 0 0 #2E2E40, 0 8px 24px -8px #00000080",
+    "focus-ring-magenta": "0 0 0 2px #070711, 0 0 0 4px #FF2A6D",
+    "focus-ring-cyan": "0 0 0 2px #070711, 0 0 0 4px #00D1FF",
+    "panel-lift": "0 1px 0 0 #2C2A45, 0 8px 24px -8px #00000080",
+    "trace-rail-glow-cyan": "0 0 4px #00D1FF80",
+    "operator-layer-glow": "0 0 12px #FF2A6D60, 0 0 24px #FF2A6D30",
+    "board-safe-neon-glow-magenta": "inset 0 0 0 1px #FF2A6D",
+    "board-safe-neon-glow-cyan": "inset 0 0 0 1px #00D1FF",
+    "board-safe-neon-glow-lime": "inset 0 0 0 1px #A6FF00",
+    "board-safe-focus-ring": "0 0 0 2px #FF2A6D",
   },
   transitionTimingFunction: {
     ek: "cubic-bezier(0.2, 0.8, 0.2, 1)",

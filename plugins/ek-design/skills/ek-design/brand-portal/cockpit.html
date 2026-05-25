@@ -9,7 +9,7 @@
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ek-design Brand Portal — Typography</title>
+<title>ek-design Brand Portal — Cockpit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -403,28 +403,188 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
       <strong>EK·DESIGN</strong>
       <span class="portal-meta">Brand Portal · v0.2.0 · ek-2026-Q4-v1</span>
     </div>
-    <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item active" href="typography.html">Typography</a><a class="portal-nav-item" href="motifs.html">Motifs</a><a class="portal-nav-item" href="components.html">Components</a><a class="portal-nav-item" href="cockpit.html">Cockpit</a></nav>
+    <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item" href="motifs.html">Motifs</a><a class="portal-nav-item" href="components.html">Components</a><a class="portal-nav-item active" href="cockpit.html">Cockpit</a></nav>
   </div>
 </header>
 
 <main class="portal-main">
-  <h1 class="page-title">Typography</h1>
+  <h1 class="page-title">Cockpit</h1>
   
-<p class="page-lead">Three families. <strong>Chakra Petch</strong> for display + headers + eyebrows + UI chrome (cyber-coded angled cuts, highly legible). <strong>Inter</strong> for body + labels (neutral workhorse). <strong>JetBrains Mono</strong> for every identifier and every finance numeric (with tabular numerals locked via <code>font-feature-settings: "tnum"</code>). Mono-for-identifiers and tabular-numerals-for-finance are locked invariants; see <a href="color.html#invariants">color → invariants</a>.</p>
+<p class="page-lead">Sample FinanceOS layout demonstrating the <strong>Dark Ledger / Neon Operator</strong> thesis applied to a finance cockpit. <strong>This is a brand-portal reference page only</strong> — the actual cepsra cockpit implementation lives in a separate thread. Static finance panels are sober; the agentic execution layer (event feed, command bar, agent-active panels) is where neon emits.</p>
 
-<h2 class="section">Modes (★ v0.2)</h2>
-<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">Same locked families, different density expectations.</p>
-<div class="surface-card"><h3>Brand Portal</h3><div class="surface-meta">display: <strong>Chakra Petch</strong> · body: <strong>Inter</strong> · mono: <strong>JetBrains Mono</strong> · density: <strong>comfortable</strong></div><p class="surface-rationale">Marketing site, brand portal, onboarding, prose-heavy surfaces</p></div><div class="surface-card"><h3>Cockpit</h3><div class="surface-meta">display: <strong>Chakra Petch</strong> · body: <strong>Inter</strong> · mono: <strong>JetBrains Mono</strong> · density: <strong>dense</strong> · <strong>tabular numerals required</strong></div><p class="surface-rationale">FinanceOS dashboards, FP&A tables, agent consoles, KPI strips, dense data · <em>body_alt:</em> Geist · <em>mono_alt:</em> Geist Mono</p></div>
+<h2 class="section">Thesis applied</h2>
+<p style="color:var(--fg-muted);max-width:65ch;margin-bottom:var(--gap-md);">Topbar carries <code>machine-identifier-strip</code> motif (env, model, period, source freshness, agent ID). Left rail names the FinanceOS surfaces. Main column shows a KPI strip + a <code>finance_panel</code> (Operating expense variance, sober) + an active <code>finance_panel</code> (Revenue bridge, with <code>neon-operator-layer</code> glow because agent is actively recomputing). Right column carries <code>agent-event-feed</code>.</p>
 
-<h2 class="section">Families</h2>
-<div class="type-sample"><div class="type-meta">Display · <strong>Chakra Petch</strong></div><div class="type-render" style="font-family:'Chakra Petch',sans-serif;font-size:2rem;font-weight:600;">Neo-Tokyo Cyberpunk</div></div><div class="type-sample"><div class="type-meta">Body · <strong>Inter</strong></div><div class="type-render" style="font-family:'Inter',sans-serif;font-size:2rem;font-weight:600;">The operator scans identifiers constantly.</div></div><div class="type-sample"><div class="type-meta">Mono (required for identifiers) · <strong>JetBrains Mono</strong></div><div class="type-render" style="font-family:'JetBrains Mono',sans-serif;font-size:2rem;font-weight:600;">Aa Ee 01 — agent_id_0042</div></div>
+<div class="cockpit-frame">
+  <!-- Topbar / machine-identifier-strip -->
+  <div class="cockpit-topbar">
+    <span class="brand">PARSPEC · FINANCEOS</span>
+    <span><span style="color:var(--fg-muted);">env:</span> prod</span>
+    <span><span style="color:var(--fg-muted);">model:</span> <span style="color:var(--magenta);">claude-opus-4-7</span></span>
+    <span><span style="color:var(--fg-muted);">period:</span> FY26·Q2·CLOSED</span>
+    <div class="topbar-meta">
+      <span><span style="color:var(--fg-muted);">last sync:</span> <span class="live">12s ago</span></span>
+      <span><span style="color:var(--fg-muted);">agent:</span> <span style="color:var(--cyan);">エ·0042</span></span>
+    </div>
+  </div>
 
-<h2 class="section">Scale ladder</h2>
-<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">All sizes use <code>clamp(min, preferred, max)</code> for fluid scaling. Letter-spacing is explicit per step (Linear/Vercel pattern). v0.2 adds 5 finance type roles (<code>kpi_value</code>, <code>kpi_label</code>, <code>table_numeric</code>, <code>delta</code>, <code>timestamp</code>) all with tabular numerals.</p>
-<div class="type-sample"><div class="type-meta">display · <strong>Chakra Petch</strong> · weight:700 · size_clamp:clamp(2.5rem, 6vw, 5.5rem) · line_height:1.0 · letter_spacing:-0.020em</div><div class="type-render" style="font-family:'Chakra Petch',sans-serif;font-size:clamp(2.5rem, 6vw, 5.5rem);font-weight:700;line-height:1.0;letter-spacing:-0.020em;">Boot the agent</div></div><div class="type-sample"><div class="type-meta">h1 · <strong>Chakra Petch</strong> · weight:700 · size_clamp:clamp(1.875rem, 4.5vw, 3.75rem) · line_height:1.05 · letter_spacing:-0.015em</div><div class="type-render" style="font-family:'Chakra Petch',sans-serif;font-size:clamp(1.875rem, 4.5vw, 3.75rem);font-weight:700;line-height:1.05;letter-spacing:-0.015em;">Operator console</div></div><div class="type-sample"><div class="type-meta">h2 · <strong>Chakra Petch</strong> · weight:600 · size_clamp:clamp(1.5rem, 3vw, 2.5rem) · line_height:1.1 · letter_spacing:-0.010em</div><div class="type-render" style="font-family:'Chakra Petch',sans-serif;font-size:clamp(1.5rem, 3vw, 2.5rem);font-weight:600;line-height:1.1;letter-spacing:-0.010em;">Section header</div></div><div class="type-sample"><div class="type-meta">h3 · <strong>Chakra Petch</strong> · weight:600 · size_clamp:clamp(1.125rem, 2vw, 1.5rem) · line_height:1.15 · letter_spacing:-0.005em</div><div class="type-render" style="font-family:'Chakra Petch',sans-serif;font-size:clamp(1.125rem, 2vw, 1.5rem);font-weight:600;line-height:1.15;letter-spacing:-0.005em;">Subsection</div></div><div class="type-sample"><div class="type-meta">body_lg · <strong>Inter</strong> · weight:400 · size_clamp:clamp(1rem, 1.6vw, 1.125rem) · line_height:1.55 · letter_spacing:0</div><div class="type-render" style="font-family:'Inter',sans-serif;font-size:clamp(1rem, 1.6vw, 1.125rem);font-weight:400;line-height:1.55;letter-spacing:0;">Lead paragraph: the operator wants information, not whitespace.</div></div><div class="type-sample"><div class="type-meta">body · <strong>Inter</strong> · weight:400 · size_clamp:clamp(0.875rem, 1.4vw, 1rem) · line_height:1.55 · letter_spacing:0</div><div class="type-render" style="font-family:'Inter',sans-serif;font-size:clamp(0.875rem, 1.4vw, 1rem);font-weight:400;line-height:1.55;letter-spacing:0;">Body copy. ek-design treats the user as the operator; surface state plainly (model, agent ID, latency, token count).</div></div><div class="type-sample"><div class="type-meta">small · <strong>Inter</strong> · weight:500 · size_clamp:clamp(0.75rem, 1vw, 0.875rem) · line_height:1.45 · letter_spacing:0.003em</div><div class="type-render" style="font-family:'Inter',sans-serif;font-size:clamp(0.75rem, 1vw, 0.875rem);font-weight:500;line-height:1.45;letter-spacing:0.003em;">Small print, metadata, label text</div></div><div class="type-sample"><div class="type-meta">eyebrow · <strong>Chakra Petch</strong> · weight:600 · size_clamp:clamp(0.7rem, 0.9vw, 0.85rem) · line_height:1.2 · letter_spacing:0.180em · transform:uppercase</div><div class="type-render" style="font-family:'Chakra Petch',sans-serif;font-size:clamp(0.7rem, 0.9vw, 0.85rem);font-weight:600;line-height:1.2;letter-spacing:0.180em;text-transform:uppercase;">Eyebrow / Section Label</div></div><div class="type-sample"><div class="type-meta">mono · <strong>JetBrains Mono</strong> · weight:400 · size_clamp:clamp(0.8125rem, 1.1vw, 0.9375rem) · line_height:1.5 · letter_spacing:0 · font_feature_settings:"tnum"</div><div class="type-render" style="font-family:'JetBrains Mono',sans-serif;font-size:clamp(0.8125rem, 1.1vw, 0.9375rem);font-weight:400;line-height:1.5;letter-spacing:0;">model: claude-opus-4-7 · 2,847 tokens · 212ms</div></div><div class="type-sample"><div class="type-meta">mono_sm · <strong>JetBrains Mono</strong> · weight:400 · size_clamp:clamp(0.6875rem, 0.85vw, 0.8125rem) · line_height:1.45 · letter_spacing:0 · font_feature_settings:"tnum"</div><div class="type-render" style="font-family:'JetBrains Mono',sans-serif;font-size:clamp(0.6875rem, 0.85vw, 0.8125rem);font-weight:400;line-height:1.45;letter-spacing:0;">agent_id_0042 · 2026-05-24T22:35:54.013Z</div></div><div class="type-sample"><div class="type-meta">code · <strong>JetBrains Mono</strong> · weight:400 · size_clamp:clamp(0.8125rem, 1.1vw, 0.9375rem) · line_height:1.55 · letter_spacing:0</div><div class="type-render" style="font-family:'JetBrains Mono',sans-serif;font-size:clamp(0.8125rem, 1.1vw, 0.9375rem);font-weight:400;line-height:1.55;letter-spacing:0;">const result = await agent.run({ task, model });</div></div><div class="type-sample"><div class="type-meta">kpi_value · <strong>JetBrains Mono</strong> · weight:700 · size_clamp:clamp(1.5rem, 3vw, 2.25rem) · line_height:1.05 · letter_spacing:-0.010em · font_feature_settings:"tnum"</div><div class="type-render" style="font-family:'JetBrains Mono',sans-serif;font-size:clamp(1.5rem, 3vw, 2.25rem);font-weight:700;line-height:1.05;letter-spacing:-0.010em;">$12,847,392</div></div><div class="type-sample"><div class="type-meta">kpi_label · <strong>Chakra Petch</strong> · weight:600 · size_clamp:clamp(0.7rem, 0.9vw, 0.8rem) · line_height:1.2 · letter_spacing:0.140em · transform:uppercase</div><div class="type-render" style="font-family:'Chakra Petch',sans-serif;font-size:clamp(0.7rem, 0.9vw, 0.8rem);font-weight:600;line-height:1.2;letter-spacing:0.140em;text-transform:uppercase;">ARR · annual recurring</div></div><div class="type-sample"><div class="type-meta">table_numeric · <strong>JetBrains Mono</strong> · weight:400 · size_clamp:clamp(0.8125rem, 1vw, 0.875rem) · line_height:1.4 · letter_spacing:0 · font_feature_settings:"tnum"</div><div class="type-render" style="font-family:'JetBrains Mono',sans-serif;font-size:clamp(0.8125rem, 1vw, 0.875rem);font-weight:400;line-height:1.4;letter-spacing:0;">1,847,392.50    2,140,000.00    -292,607.50</div></div><div class="type-sample"><div class="type-meta">delta · <strong>JetBrains Mono</strong> · weight:600 · size_clamp:clamp(0.75rem, 0.9vw, 0.8125rem) · line_height:1.2 · letter_spacing:0 · font_feature_settings:"tnum"</div><div class="type-render" style="font-family:'JetBrains Mono',sans-serif;font-size:clamp(0.75rem, 0.9vw, 0.8125rem);font-weight:600;line-height:1.2;letter-spacing:0;">+18.4%   -2.1%   +312bps</div></div><div class="type-sample"><div class="type-meta">timestamp · <strong>JetBrains Mono</strong> · weight:400 · size_clamp:clamp(0.6875rem, 0.85vw, 0.75rem) · line_height:1.3 · letter_spacing:0.02em · font_feature_settings:"tnum"</div><div class="type-render" style="font-family:'JetBrains Mono',sans-serif;font-size:clamp(0.6875rem, 0.85vw, 0.75rem);font-weight:400;line-height:1.3;letter-spacing:0.02em;">2026-05-24T22:35:54.013Z · synced 12s ago</div></div>
+  <div class="cockpit-body">
+    <!-- Left rail -->
+    <nav class="cockpit-rail">
+      <div class="rail-item">Runway</div>
+      <div class="rail-item">Revenue</div>
+      <div class="rail-item active">Opex</div>
+      <div class="rail-item">Headcount</div>
+      <div class="rail-item">Infra / AI COGS</div>
+      <div class="rail-item">Forecast</div>
+      <div class="rail-item">Board Pack</div>
+      <div class="rail-item">Agent Logs</div>
+    </nav>
 
-<h2 class="section">Google Fonts URL</h2>
-<pre class="spec-pre">https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap</pre>
+    <!-- Main column -->
+    <main class="cockpit-main">
+      <!-- KPI strip -->
+      <div class="cockpit-kpi-strip">
+        <div class="kpi-card">
+          <div class="kpi-label"><span class="dot" style="color:var(--lime);"></span>Cash</div>
+          <div class="kpi-value">$12.8M</div>
+          <div class="kpi-delta gain">+8.4% MoM</div>
+        </div>
+        <div class="kpi-card state-watch">
+          <div class="kpi-label" style="color:var(--amber);"><span class="dot"></span>Runway</div>
+          <div class="kpi-value">15.2mo</div>
+          <div class="kpi-delta loss">-1.8mo vs plan</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span class="dot" style="color:var(--loss);"></span>Burn</div>
+          <div class="kpi-value">$847K</div>
+          <div class="kpi-delta loss">+3.3% MoM</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span class="dot" style="color:var(--lime);"></span>ARR</div>
+          <div class="kpi-value">$14.2M</div>
+          <div class="kpi-delta gain">+18.4% YoY</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span class="dot" style="color:var(--cyan);"></span>Gross Margin</div>
+          <div class="kpi-value">74%</div>
+          <div class="kpi-delta gain">+220bps</div>
+        </div>
+      </div>
+
+      <!-- Sober finance panel (no glow — Dark Ledger thesis) -->
+      <div class="finance-panel">
+        <div class="fp-header">
+          <div class="fp-title">Operating expense · FY26 Q2</div>
+          <div class="fp-meta">
+            <span class="data-badge synced"><span class="dot"></span>synced 12s ago</span>
+            <span class="trace-link">drill →</span>
+          </div>
+        </div>
+        <div class="variance-row header">
+          <div>Line</div><div class="num">Actual</div><div class="num">Budget</div><div class="num">Forecast</div><div class="num">Var $</div><div class="num">Var %</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">Payroll · Engineering</div>
+          <div class="num">847,212</div>
+          <div class="num budget">820,000</div>
+          <div class="num forecast">840,000</div>
+          <div class="num loss">-27,212</div>
+          <div class="num loss">-3.3%</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">Payroll · Sales</div>
+          <div class="num">412,890</div>
+          <div class="num budget">410,000</div>
+          <div class="num forecast">408,000</div>
+          <div class="num loss">-2,890</div>
+          <div class="num loss">-0.7%</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">AWS · compute</div>
+          <div class="num">142,847</div>
+          <div class="num budget">160,000</div>
+          <div class="num forecast">150,000</div>
+          <div class="num gain">+17,153</div>
+          <div class="num gain">+10.7%</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">AI · model spend</div>
+          <div class="num">28,471</div>
+          <div class="num budget">22,000</div>
+          <div class="num forecast">26,000</div>
+          <div class="num loss">-6,471</div>
+          <div class="num loss">-29.4%</div>
+        </div>
+      </div>
+
+      <!-- Agent-active finance panel (neon-operator-layer glow) -->
+      <div class="finance-panel active" style="margin-top:16px;">
+        <div class="fp-header">
+          <div class="fp-title" style="color:var(--magenta);">Revenue bridge · agent recomputing</div>
+          <div class="fp-meta">
+            <span class="data-badge manual"><span class="dot"></span>agent · acting</span>
+          </div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;color:var(--fg-muted);font-size:0.78rem;line-height:1.7;">
+          <div>→ claude-opus-4-7 · forecast() · 4.2k tokens · 1.8s elapsed</div>
+          <div>→ trace: HubSpot · deals · close_rate · 8w window</div>
+          <div>→ proposing model update · confidence 94%</div>
+          <div>→ <span style="color:var(--amber);">approval required</span></div>
+        </div>
+      </div>
+
+      <!-- Approval card -->
+      <div style="margin-top:16px;">
+        <div class="approval-card">
+          <div class="ac-header">Approval required · agent proposal</div>
+          <h4>Update revenue forecast multiplier 0.84 → 0.91</h4>
+          <div class="ac-evidence">
+            → 8 weeks of close-rate data (HubSpot)<br>
+            → χ² = 17.4, p &lt; 0.001 · confidence 94%
+          </div>
+          <div class="ac-impact">
+            Q3 ARR forecast: <span class="gain">+$1.2M (+8.4%)</span> · Runway: <span class="gain">+2.1 months</span>
+          </div>
+          <div class="ac-actions">
+            <button class="approve">Approve</button>
+            <button class="reject">Reject</button>
+            <button class="inspect">Inspect</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right column — agent event feed -->
+    <aside class="cockpit-feed">
+      <div class="feed-title">Agent · event feed</div>
+      <div class="feed-event sync"><span class="ts">[22:35:54]</span> → sync: QuickBooks · invoices · 204 records · 142ms</div>
+      <div class="feed-event command"><span class="ts">[22:35:58]</span> → command: run forecast() · revenue · FY26 Q3</div>
+      <div class="feed-event"><span class="ts">[22:36:01]</span> → tool_use: bash · python compute_forecast.py</div>
+      <div class="feed-event approval"><span class="ts">[22:36:12]</span> → approval-required: model update · runway recalc</div>
+      <div class="feed-event complete"><span class="ts">[22:36:24]</span> → complete: forecast accepted · runway 15.2mo → 17.3mo</div>
+      <div class="feed-event error"><span class="ts">[22:36:47]</span> → error: AWS Cost Explorer sync failed (HTTP 503)</div>
+      <div class="feed-event sync"><span class="ts">[22:37:02]</span> → sync: HubSpot · deals · 47 records · 218ms</div>
+      <div class="feed-event"><span class="ts">[22:37:18]</span> → tool_use: web_search · "covenant threshold reporting"</div>
+      <div class="feed-event command"><span class="ts">[22:37:31]</span> → command: generate board memo · Q2 close</div>
+      <div class="feed-event complete"><span class="ts">[22:37:54]</span> → complete: board memo drafted · 3.2k words</div>
+    </aside>
+  </div>
+</div>
+
+<h2 class="section">What this demonstrates</h2>
+<ul style="font-family:'Inter',sans-serif;line-height:1.7;color:var(--fg-muted);">
+  <li><strong style="color:var(--fg);">Dark sober finance truth:</strong> the Opex variance panel has no glow. Numerics are mono with tabular numerals. Gain/loss columns use finance directionality colors (not status colors).</li>
+  <li><strong style="color:var(--fg);">Luminous agent layer:</strong> the Revenue bridge panel and the agent_command_active state on the KPI strip carry the neon-operator-layer glow because an agent is actually acting on them.</li>
+  <li><strong style="color:var(--fg);">Cyan = trace:</strong> source freshness, drill-through links, source_trace_row source names — all cyan. The operator's "where did this come from?" signal.</li>
+  <li><strong style="color:var(--fg);">Amber = attention:</strong> Runway is amber-bordered (watch state). Approval-required event is amber. Stale data badge is amber.</li>
+  <li><strong style="color:var(--fg);">Red = real risk:</strong> covenant breach KPI border. Failed AWS sync. Material loss values. Operator scans red and knows to look.</li>
+  <li><strong style="color:var(--fg);">Magenta = command:</strong> CTAs (Approve, Run, Investigate). Active agent indicators. Command bar primary. Manual override badges. Never decorative.</li>
+  <li><strong style="color:var(--fg);">Mono everywhere identifiers live:</strong> topbar metadata, KPI values, table numerics, deltas, timestamps, agent IDs, model names — all JetBrains Mono.</li>
+</ul>
+
+<h2 class="section">Not for cepsra implementation reference</h2>
+<p style="color:var(--fg-muted);max-width:65ch;">This page is a <em>brand portal artifact</em> — a reference showing the thesis applied. The actual cepsra cockpit (component composition, routing, data plumbing) lives in a separate workstream. When implementing, consume the same <code>design-model.yaml</code> tokens via <code>ek-web</code> and pair them with cepsra's own component architecture.</p>
 
 </main>
 

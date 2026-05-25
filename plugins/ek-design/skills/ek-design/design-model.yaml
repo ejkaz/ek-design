@@ -1,329 +1,515 @@
 # ════════════════════════════════════════════════════════════════════
 # ek-design — Brand SSoT for Eric Kazmaier's personal agentic UI
-# Neo-Tokyo cyberpunk register. Read by ek-web, ek-craft, ek-review
-# (as they ship). Updated via the ek-design skill.
+# Neo-Tokyo cyberpunk register · Dark Ledger / Neon Operator thesis
+# Read by ek-web, ek-craft (ek-review backlog). Updated via ek-design.
 # ════════════════════════════════════════════════════════════════════
 
 meta:
-  version: "0.1.0"
-  brand_version: "ek-2026-Q3-v1"
+  version: "0.2.0"
+  brand_version: "ek-2026-Q4-v1"
   source: |
-    Founding palette ratified 2026-05-24. Architecturally inherited from
-    ejkaz/parspec-design v2.0.0 (composable-plugin pattern, yaml frontmatter
-    versioning, data-driven invariants). Brand tokens entirely replaced.
-    Aesthetic reference: Blade Runner 2049 / Ghost in the Shell / real
-    Shinjuku-Akihabara neon. Production-tuned for agentic UI (operator-
-    facing, mono-for-identifiers, dark-primary).
+    v0.2.0 ratified 2026-05-24. Evolves v0.1.0 (ek-2026-Q3-v1) around the
+    "Dark Ledger / Neon Operator" thesis: static finance truth lives in
+    sober dark surfaces; the agent layer emits signal. Adds finance
+    directionality colors (gain/loss/watch/info-blue), agentic role
+    semantics (command/trace/attention/health/risk), 8 finance-oriented
+    motifs, 10 cockpit components, and 6 new invariants that lock the
+    semantic boundaries (magenta = command not decoration, cyan = trace
+    not decoration, amber = attention not failure).
   updated: "2026-05-24"
   updated_by: "eric@parspec.io"
   status: "ratified"
   ratified: "2026-05-24"
   ratified_by: "eric@parspec.io"
-  supersedes: null
+  supersedes: "0.1.0"
   notes: |
-    v0.1.0 — Founding. Picked Neo-Tokyo Neon over Synthwave (too nostalgic),
-    Terminal/CRT (too austere for product), and Brutalist-cyber (too
-    monochrome — defeats the cyberpunk register). Magenta CTA monopoly chosen
-    deliberately to NOT collide with parspec orange; if I ever cross-brand
-    artifacts (parspec deck embedded in a cepsra screenshot), the CTA hues
-    sit far apart on the wheel.
+    v0.1.0 — Founding (ek-2026-Q3-v1). Neo-Tokyo neon palette, magenta CTA
+    monopoly, electric cyan secondary, acid lime alive/success on deep
+    blue-black (#0A0A14). Chakra Petch / Inter / JetBrains Mono. 7
+    invariants.
 
-    First consumer: cepsra (cepsr.app). Decision log: hub
-    Decisions.md D001-D003.
+    v0.2.0 — Dark Ledger / Neon Operator (ek-2026-Q4-v1). Tighter brand
+    thesis aimed at agentic finance cockpits and the broader operator-
+    facing surface area cepsra is growing into (Obsidian hub for projects
+    + FinanceOS for QuickBooks / forecasting / burn / unit economics /
+    headcount). Reframes existing colors with sharper semantic locks AND
+    adds new surface architecture for finance density. The base palette
+    is preserved; consumers re-export to pick up the violet-undertone
+    surface shift and finance role tokens.
+
+    Major changes from v0.1.0:
+      - SURFACES: background undertone shifted from `#0A0A14` (pure
+        blue-black) to `#070711` (deeper violet-black). Layered surfaces
+        also re-tuned: panel `#15151F` → `#171727` (surface_2), with new
+        surface_1 `#10101A` and surface_3 `#23233A` slots. Border default
+        `#2E2E40` → `#2C2A45` (steel-violet-tinted). Background reads as
+        "finance ledger black with violet atmospheric undertone."
+      - PRIMITIVES: added `finance:` family — semantic directionality
+        colors distinct from agent state. gain (#4ADE80) / loss (#F87171)
+        / watch (#FBBF24) / info_blue (#60A5FA). Used only for variance,
+        delta, financial health — never as brand accent or chart color
+        when the series isn't financially-directional.
+      - ROLES: added 4 new role groups —
+          `agent.*` (command, trace, attention, complete, risk, idle) —
+            tightens v0.1's agent_status_* with stronger semantic locks
+          `finance.*` (cash, runway, burn, arr, gross_margin,
+            forecast_variance, budget_variance, headcount_plan,
+            aws_ai_cogs) — semantic matrix for FinanceOS surfaces
+          `data.*` (live, synced, stale, failed, manual_override) —
+            data freshness / sync state
+          `trace.*` (rail, source, breadcrumb, drill_through) — cyan
+            lineage / inspectability
+      - MOTIFS: added 8 finance-oriented motifs (dark-ledger-panel,
+        neon-operator-layer, trace-rail, agent-event-feed,
+        forecast-confidence-halo, board-safe-mode, executive-command-state,
+        machine-identifier-strip). v0.1 motifs preserved.
+      - COMPONENTS: added 10 finance cockpit components (kpi_card,
+        finance_panel, agent_command_bar, agent_status_badge expanded,
+        data_freshness_badge, source_trace_row, variance_row,
+        approval_card, agent_log, board_export_preview).
+      - TYPOGRAPHY: added `modes` block documenting two contexts —
+        brand_portal (Chakra Petch headers + Inter body) and
+        cockpit (mono-forward density). Families stay locked; cockpit
+        mode adds optional Geist + Geist Mono alternatives. New rule:
+        finance numerics must use tabular numerals (`font-feature-settings:
+        "tnum"`).
+      - VOICE: added no-em-dashes rule (use colon, parens, comma, n-dash).
+      - INVARIANTS: 6 new — finance_directionality_locked,
+        agent_command_magenta_only, cyan_for_trace_only,
+        tabular_numerals_for_finance, no_em_dashes_in_copy,
+        board_safe_export_mode.
+      - AVOID list expanded — full-screen purple/pink gradients,
+        decorative glow on every card, chromatic aberration / rain /
+        cityscape imagery, magenta as decorative chart series.
+
+    Thesis statement (the v0.2 contract):
+      "The ledger is dark. The agents are luminous."
+
+      Static finance truth: sober dark panels, minimal glow, dense.
+      Data lineage / inspectability: cyan.
+      Agentic execution / command / automation: magenta.
+      CFO attention / watch / forecast uncertainty: amber.
+      Health / reconciliation / completion: lime.
+      True risk / sync failure / covenant breach / runway breach: red.
+      Atmosphere / depth: steel-violet (rarely text).
+
+    This is NOT synthwave, NOT a Bloomberg clone, NOT decorative cyberpunk.
+    It is "a Bloomberg Terminal from 2032, rebuilt by an autonomous CFO
+    agent in Neo-Tokyo."
 
 # ────────────────────────────────────────────────────────────────────
 # IDENTITY
 # ────────────────────────────────────────────────────────────────────
 name: "ek-design"
-description: "Personal cyberpunk brand for Eric Kazmaier's agentic UI surfaces"
+description: "Personal cyberpunk brand for Eric Kazmaier's agentic UI — finance cockpit and project hub surfaces"
+thesis: "Dark Ledger / Neon Operator"
+thesis_one_line: "The finance ledger stays dark; the agent layer emits signal."
 philosophy: |
   Operator-facing software register pulled from the visual vocabulary of
   Neo-Tokyo cinema (Blade Runner 2049, Ghost in the Shell) and real
-  Tokyo-after-dark neon. Deep blue-black ground, magenta-cyan-lime triad
-  with locked semantic roles, JetBrains Mono for everything that's an
-  identifier (model name, agent ID, timestamp, file path, token count).
-  The brand reads as "the operator's console" — Eric is always the
-  pilot, the UI is always one of his agents.
+  Tokyo-after-dark neon, tightened around an agentic finance cockpit
+  thesis: "Dark Ledger / Neon Operator."
+
+  The static finance truth layer is dark and sober. The data lineage
+  layer is cyan. The agentic execution layer is magenta. The CFO
+  attention layer is amber. The health/reconciliation layer is lime.
+  The risk layer is red. Steel-violet is atmospheric depth only —
+  rarely text.
+
+  Built for two concurrent purposes:
+    1. Obsidian hub for project management (cepsra side)
+    2. FinanceOS — agentic finance control plane connecting QuickBooks,
+       forecasting, burn analysis, headcount, AWS/AI unit economics
+
+  JetBrains Mono carries every identifier (model name, agent ID,
+  timestamp, file path, token count, hash, period, source freshness).
+  Tabular numerals carry every finance number.
+
+  Eric is always the operator; the UI is always one of his agents.
+product_metaphor:
+  - "CFO cockpit"
+  - "Autonomous finance control plane"
+  - "Operator console"
+  - "Agentic FP&A command center"
+  - "Project hub (Obsidian-adjacent)"
+what_this_is_not:
+  - "Not synthwave (no nostalgic sunset gradients)"
+  - "Not generic AI SaaS (no consumer-purple, no Tailwind indigo)"
+  - "Not nightclub neon (no decorative glow on every card)"
+  - "Not a Bloomberg clone (no green-on-black phosphor cosplay)"
+  - "Not decorative cyberpunk (no chromatic aberration, no rain, no cityscape imagery)"
+  - "Not Cyberpunk 2077 costume (no Orbitron, no Press Start 2P, no diagonal-cuts-everywhere)"
 primary_mode: "dark"
-brand_source: "Neo-Tokyo cinema visual reference + production agentic-UI requirements"
-brand_domain: "Personal / agentic productivity software"
+brand_source: "Neo-Tokyo cinema visual reference + production agentic-UI requirements + Dark Ledger / Neon Operator thesis (v0.2)"
+brand_domain: "Personal agentic productivity — project hub + FinanceOS cockpit"
 brand_type: "ui-rich"
 mono_for_code: true
-mono_for_metrics: true        # ← diverges from parspec: agentic UI surfaces every metric in mono
-mono_for_identifiers: true    # ← new vs parspec: locked invariant
+mono_for_metrics: true
+mono_for_identifiers: true
+mono_for_finance_numerics: true   # NEW v0.2 — finance numerics in mono with tabular numerals
 
 # ────────────────────────────────────────────────────────────────────
 # PRIMARY AXIS — LOCKED. Never modify without explicit override.
-# ek-craft (when shipped) enforces these as required tokens.
+# ek-craft enforces these as required tokens.
 # ────────────────────────────────────────────────────────────────────
 primary_axis_preserved:
   description: |
     The immovable anchors of the ek-design brand. Any palette evolution
     may change tints, atmospheric secondaries, motifs, or motion — but
     never these.
-  background:          "#0A0A14"   # Deep blue-black Tokyo night
-  panel:               "#15151F"   # Layered surface
+  background:          "#070711"   # Deeper violet-black (shifted v0.2 from #0A0A14)
+  panel:               "#171727"   # Surface_2 finance panel (shifted v0.2 from #15151F)
   off_white:           "#F0F0F5"   # Inverted (light-mode opt-in)
   white:               "#FFFFFF"
-  magenta_cta:         "#FF2A6D"   # Primary CTA monopoly
-  cyan_secondary:      "#00D1FF"   # Secondary action / info / link
-  lime_alive:          "#A6FF00"   # Success + agent active indicator
+  magenta_command:     "#FF2A6D"   # Primary CTA + agentic command monopoly
+  cyan_trace:          "#00D1FF"   # Trace / lineage / inspectability / secondary action
+  lime_health:         "#A6FF00"   # Success + completion + agent active
   typography_display:  "Chakra Petch"
   typography_body:     "Inter"
   typography_mono:     "JetBrains Mono"
   motifs:
-    - "neon-edge-glow"          # CSS box-shadow on focus/active surfaces
-    - "terminal-block-inset"    # Mono content on cyan-bordered black recess
-    - "katakana-numeric-id"     # Agent / job IDs styled with monospace + leading zeros
-    - "scanline-overlay"        # Optional, reduced-motion-safe horizontal CRT lines on hero
-    - "diagonal-cut-corner"     # Alternative to rounded corners on hero/feature surfaces
+    # v0.1.0 motifs (preserved)
+    - "neon-edge-glow"           # CSS box-shadow on focus/active surfaces — narrow role
+    - "terminal-block-inset"     # Mono content on cyan-bordered black recess
+    - "katakana-numeric-id"      # Agent / job IDs styled with monospace + leading zeros
+    - "scanline-overlay"         # Optional, reduced-motion-safe horizontal CRT lines on hero
+    - "diagonal-cut-corner"      # Alternative to rounded corners; use sparingly
+    # v0.2.0 finance motifs (new)
+    - "dark-ledger-panel"        # Sober finance panel, low-contrast border, minimal glow, dense
+    - "neon-operator-layer"      # Thin luminous layer for active agents / commands / approvals
+    - "trace-rail"               # Cyan micro-lines, source breadcrumbs, drill-through paths
+    - "agent-event-feed"         # Timestamped feed of tool calls / sync events / approvals
+    - "forecast-confidence-halo" # Subtle border / inline confidence indicator
+    - "board-safe-mode"          # Same dark system, reduced neon (PDF / board export)
+    - "executive-command-state"  # Magenta command button/bar — "Run forecast", "Approve", etc.
+    - "machine-identifier-strip" # Agent IDs / model version / source freshness in mono
 
 # ────────────────────────────────────────────────────────────────────
 # SURFACES — Mode-per-surface bindings
-# Codifies the dark-primary register. ek-craft enforces:
-# app + marketing default to dark; light is opt-in only.
+# v0.2 adds board_safe + cockpit as distinct surface contexts.
 # ────────────────────────────────────────────────────────────────────
 surfaces:
   app:
     mode: dark
     examples: [app-shell, dashboard, agent-console, task-list, briefing-view, chat-panel]
-    background: "{neutral.950}"        # #0A0A14
-    text_primary: "{neutral.0}"        # White
+    background: "{neutral.950}"        # #070711
+    text_primary: "{neutral.0}"
     rationale: |
-      cepsra and any future agentic surface defaults to dark. Reduces
-      eye strain during long operator sessions; neon accents read
-      vividly on near-black; mono identifiers maintain phosphor-CRT
-      legibility. All major agentic UI references (Claude desktop,
-      ChatGPT desktop, Cursor, Linear dark) are dark-default.
+      cepsra app surface defaults to dark. Reduces eye strain during long
+      operator sessions; neon accents read vividly on near-black; mono
+      identifiers maintain phosphor-CRT legibility. All major agentic UI
+      references (Claude desktop, ChatGPT desktop, Cursor, Linear dark)
+      are dark-default.
+  cockpit:
+    mode: dark
+    examples: [finance-cockpit, fp&a-dashboard, runway-view, burn-analysis, headcount-plan, board-pack, forecast-vs-actuals]
+    background: "{neutral.950}"        # #070711
+    text_primary: "{neutral.0}"
+    rationale: |
+      FinanceOS surfaces. Same dark register as `app` but density expectation
+      is higher — KPI strips, dense tables, source-trace rails, agent event
+      feeds. Inherits `dark-ledger-panel` motif as default chrome. Cockpit
+      content is sober; agentic elements (commands, approvals, automation)
+      are the only places that emit `neon-operator-layer` glow.
   marketing:
     mode: dark
     examples: [landing-page, hero-sections, feature-grid, pricing, docs-homepage]
-    background: "{neutral.950}"        # #0A0A14
-    text_primary: "{neutral.0}"        # White
+    background: "{neutral.950}"        # #070711
+    text_primary: "{neutral.0}"
     rationale: |
       Marketing site sits in the same dark register as the app so
       brand-to-app transition is seamless. Cyberpunk register reads
       as "for operators" — self-selects the right audience.
+  board_safe:
+    mode: dark
+    examples: [pdf-export, board-screenshot, investor-update-export, partner-deck-asset]
+    background: "{neutral.950}"        # #070711
+    text_primary: "{neutral.0}"
+    rationale: |
+      Same dark system but reduced neon — no scanlines, no decorative
+      glow, focus-and-state glow only. Suitable for PDF exports and
+      board screenshots where the cyberpunk register should sit beneath
+      the data, not on top. Activated by a `.board-safe` body class
+      that overrides effects.* tokens (see effects.board_safe_*).
   light:
     mode: light
-    examples: [print-views, exported-pdf, accessibility-mode]
-    background: "{neutral.50}"         # #F0F0F5 cool off-white
-    text_primary: "{neutral.950}"      # #0A0A14
+    examples: [print-views, accessibility-mode]
+    background: "{neutral.50}"         # #F0F0F5
+    text_primary: "{neutral.950}"
     rationale: |
-      Opt-in inverted mode for print exports, accessibility override,
-      and any surface where dark mode is wrong (rare). Same primary
-      axis; only mode bindings differ.
+      Opt-in inverted mode for print and accessibility override. Rare.
+      Same primary axis; only mode bindings differ.
   terminal_inset:
     mode: dark
-    examples: [code-block, agent-log, command-output, jsonl-stream, token-debug]
-    background: "{neutral.1000}"       # #000000 — pure black, deeper than app bg
-    text_primary: "{cyan.500}"         # Cyan mono — phosphor terminal
+    examples: [code-block, agent-log, command-output, jsonl-stream, token-debug, model-diff, sync-trace]
+    background: "{neutral.1000}"       # #000000
+    text_primary: "{cyan.500}"
     border: "1px solid {cyan.700}"
     rationale: |
-      The "console window inside the app" wedge. Pure black ground
-      + cyan border + JetBrains Mono content. Agentic UIs need a
-      visually-distinct surface for raw machine output (logs,
-      tool calls, JSON streams) — this is it.
+      The "console window inside the app" wedge. Pure-black ground +
+      cyan border + JetBrains Mono content. Agentic UIs need a visually-
+      distinct surface for raw machine output (logs, tool calls, JSON
+      streams, sync traces, model diffs) — this is it. Use sparingly;
+      not every dense surface needs terminal styling.
 
 # ────────────────────────────────────────────────────────────────────
 # PRIMITIVES — Raw scales
+# v0.2 shifts neutral dark stops to violet-undertone; adds finance family.
 # ────────────────────────────────────────────────────────────────────
 primitives:
   colors:
-    # Neutral ramp — cool-biased (subtle blue cast for Tokyo night atmosphere).
-    # Distinct from pure grayscale and from parspec's warm-charcoal neutral.
+    # Neutral ramp — cool/violet-biased (v0.2 dark stops re-tuned).
+    # Light stops unchanged. Dark stops carry deeper violet undertone
+    # for "finance ledger" register vs v0.1's pure blue-black.
     neutral:
-      0:    "#FFFFFF"  # White
-      50:   "#F0F0F5"  # Off-white (cool) — inverted/light-mode bg
+      0:    "#FFFFFF"
+      50:   "#F0F0F5"   # Off-white (cool) — inverted/light bg
       100:  "#E0E0EA"
       200:  "#C8C8D6"
       300:  "#A8A8BC"
       400:  "#7A7A92"
       500:  "#5C5C70"
       600:  "#3F3F50"
-      700:  "#2E2E40"
-      800:  "#1F1F2A"
-      850:  "#15151F"  # Panel — layered surface
-      900:  "#0F0F18"
-      950:  "#0A0A14"  # Background — Tokyo night (LOCKED)
-      1000: "#000000"  # Pure black — terminal_inset only
+      700:  "#2C2A45"   # ★ v0.2 — border default (was #2E2E40); steel-violet-tinted
+      800:  "#23233A"   # ★ v0.2 — surface_3 elevated (was #1F1F2A)
+      850:  "#171727"   # ★ v0.2 — surface_2 panel (was #15151F)
+      900:  "#10101A"   # ★ v0.2 — surface_1 (was #0F0F18)
+      950:  "#070711"   # ★ v0.2 — background, deeper violet-black (was #0A0A14)
+      1000: "#000000"   # Pure black — terminal_inset only
 
-    # Magenta — hero CTA monopoly. Cyberpunk pink anchor.
-    # ΔE from parspec brand orange = wide (different hue family entirely).
+    # Magenta — primary action / agentic command monopoly. Cyberpunk
+    # pink anchor. v0.2 re-frames: magenta is COMMAND, not nightclub.
     magenta:
       50:   "#FFE5EF"
       100:  "#FFCCDF"
       200:  "#FF99BF"
       300:  "#FF7BAA"
       400:  "#FF4D8C"
-      500:  "#FF2A6D"   # ★ LOCKED — Primary CTA monopoly
-      600:  "#E11D5F"   # CTA hover
+      500:  "#FF2A6D"   # ★ LOCKED — Primary action + agentic command
+      600:  "#E11D5F"   # CTA hover / command-active
       700:  "#B0144A"   # CTA active (press)
-      800:  "#7A0E33"   # accent_type_on_light — AA-safe on off-white (8.27:1)
+      800:  "#7A0E33"   # accent_type_on_light — AA-safe (8.27:1)
       900:  "#4F0820"
 
-    # Cyan — electric, secondary action / info / link / data viz cool.
-    # Phosphor-terminal cyan, biased slightly toward blue to differentiate
-    # from sci-fi-cliché pure-cyan (#00FFFF).
+    # Cyan — TRACE / lineage / inspectability / secondary action.
+    # v0.2 sharpens semantic: cyan = "where did this number come from?"
+    # NOT decorative.
     cyan:
       50:   "#E0FAFF"
       100:  "#B8F3FF"
       200:  "#80EAFF"
-      300:  "#5EEAFF"   # tint — dark-mode chart accent
+      300:  "#5EEAFF"
       400:  "#2DD9FF"
-      500:  "#00D1FF"   # ★ ANCHOR — Secondary, info, link, terminal_inset text
+      500:  "#00D1FF"   # ★ ANCHOR — Trace, secondary, info, link
       600:  "#00A3CC"
-      700:  "#0090B8"   # info_on_light — passes AA at 4.51:1 on off-white
+      700:  "#0090B8"   # info_on_light — AA at 4.51:1 on off-white
       800:  "#005F77"
       900:  "#003344"
 
-    # Lime — acid green, dual-bound to success AND agent-alive state.
-    # Locked semantic via `lime_alive_and_success_only` invariant.
-    # Cyberpunk register: green = phosphor terminal = "online / running".
+    # Lime — HEALTH / reconciliation / completion / agent active.
+    # Locked invariant: never decorative.
     lime:
       50:   "#F2FFCC"
       100:  "#E5FF99"
       200:  "#D2FF66"
-      300:  "#C8FF40"   # tint — chart series 3
+      300:  "#C8FF40"
       400:  "#B3FF1A"
-      500:  "#A6FF00"   # ★ ANCHOR — Success + agent.status_active
+      500:  "#A6FF00"   # ★ ANCHOR — Success, agent active, reconciled
       600:  "#86CC00"
-      700:  "#6B9E00"   # success_on_light — passes AA at 3.18:1 (large text only)
+      700:  "#6B9E00"   # success_on_light — AA at 3.18:1 (large only)
       800:  "#4A6E00"   # success_on_light_normal — AA 5.81:1
       900:  "#2A3F00"
 
-    # Steel-violet — atmospheric Tokyo-night purple-blue.
-    # Narrative job: secondary surface tints, narrative depth, "deep field"
-    # ambient color on hero/marketing. NOT a CTA, NOT a status. Distinct
-    # from the banned consumer-indigo `#6366F1` (this is darker, more
-    # blue-violet, less indigo).
+    # Steel-violet — ATMOSPHERIC depth only. Rarely text. v0.2 sharpens:
+    # used for inactive-machine-state, deep-field marketing glow, subtle
+    # borders. NOT a brand accent. NOT a CTA.
     steel_violet:
       300:  "#6B6BC4"
-      500:  "#3B3B92"   # info_on_dark accent, hero atmospheric glow
+      500:  "#3B3B92"   # secondary atmospheric accent
       700:  "#1E1E60"
-      900:  "#0F0F33"
+      900:  "#0F0F33"   # deep-field hero glow / background depth
 
-    # Slate — cool-neutral utility. Body chrome, table borders, secondary
-    # text, neutral chart fills. NOT a brand color — utility only.
+    # Slate — cool-neutral utility. NOT a brand color.
     slate:
       50:   "#F2F2F7"
       100:  "#E0E0E8"
-      300:  "#9999B0"   # body_chrome_on_dark — 6.21:1 on background
+      300:  "#9999B0"   # body_chrome_on_dark
       500:  "#5C5C70"
-      700:  "#2E2E40"   # border_dark
+      700:  "#2E2E40"
       900:  "#15151F"
 
-    # Status — semantic-locked. Each hue has narrow role bindings.
+    # Status — semantic-locked. Narrow role bindings.
     red:
-      500:  "#FF003C"   # ★ ANCHOR — error / destructive only
-      600:  "#CC0030"   # error_on_dark deeper variant
-      700:  "#B0142D"   # error_on_light — AA 5.43:1 on off-white
+      500:  "#FF003C"   # ★ ANCHOR — error / destructive / true risk only
+      600:  "#CC0030"
+      700:  "#B0142D"   # error_on_light — AA 5.43:1
 
     amber:
-      500:  "#FFB800"   # ★ ANCHOR — warn only
+      500:  "#FFB800"   # ★ ANCHOR — warn / CFO attention / watch state
       600:  "#CC9300"
-      700:  "#8C6500"   # warn_on_light — AA 6.84:1 on off-white
+      700:  "#8C6500"   # warn_on_light — AA 6.84:1
+
+    # ★ NEW v0.2 — FINANCE DIRECTIONALITY family.
+    # Semantic-distinct from agent state. Used ONLY for variance, delta,
+    # financial health indicators. Locked invariant
+    # `finance_directionality_locked` enforces narrow role.
+    finance:
+      gain:      "#4ADE80"   # Positive variance / favorable delta / under budget / on target
+      loss:      "#F87171"   # Negative variance / unfavorable delta / over budget / miss
+      watch:     "#FBBF24"   # Forecast uncertainty / approaching threshold / stale data
+      info_blue: "#60A5FA"   # Neutral info accent — does NOT compete with cyan (trace)
+                             # Use for: model version, environment metadata, calm informational
+                             # NEVER as link or drill-through (that's cyan).
 
   spacing: [0, 2, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192]
   radii:   [0, 2, 4, 6, 8, 12, 999]
-  cuts:    [0, 4, 8, 12, 16]   # Diagonal corner cut sizes (alt to radii on hero/feature surfaces)
+  cuts:    [0, 4, 8, 12, 16]
 
 # ────────────────────────────────────────────────────────────────────
 # ROLES — Two-tier token model
-# Every role token references EXACTLY ONE primitive. ek-craft (when
-# shipped) lints any .tsx/.css where a hex literal is used for a
-# role-mapped purpose without referencing the role token.
+# Every role token references EXACTLY ONE primitive.
+# v0.2 adds agent.*, finance.*, data.*, trace.* role groups.
 # ────────────────────────────────────────────────────────────────────
 roles:
 
-  # ─── Action verbs (CTA monopoly enforced) ───
-  cta:                       "{magenta.500}"      # Primary CTA fill — monopoly invariant
+  # ─── Action verbs (CTA + agentic command monopoly enforced) ───
+  cta:                       "{magenta.500}"
   cta_hover:                 "{magenta.600}"
   cta_active:                "{magenta.700}"
-  cta_text:                  "{neutral.0}"        # White text on magenta CTA fill — 4.97:1 AA pass
+  cta_text:                  "{neutral.0}"
 
   # ─── Secondary action / info / link ───
-  secondary_action:          "{cyan.500}"         # Secondary buttons, ghost CTAs
+  secondary_action:          "{cyan.500}"
   secondary_action_hover:    "{cyan.400}"
-  link_on_dark:              "{cyan.500}"         # 10.41:1 on background — AAA pass
-  link_on_light:             "{cyan.700}"         # 4.51:1 on off-white — AA pass
+  link_on_dark:              "{cyan.500}"
+  link_on_light:             "{cyan.700}"
   info_on_dark:              "{cyan.500}"
   info_on_light:             "{cyan.700}"
 
-  # ─── Magenta-as-type bindings (mode-aware — AA-safe) ───
-  accent_type_on_dark:       "{magenta.500}"      # 5.18:1 on background — AA pass
-  accent_type_on_light:      "{magenta.800}"      # 8.27:1 on off-white — AAA pass. NEVER magenta.500 on light (3.21:1 fails normal text)
+  # ─── Magenta-as-type (mode-aware AA) ───
+  accent_type_on_dark:       "{magenta.500}"   # 5.18:1 on background — AA
+  accent_type_on_light:      "{magenta.800}"   # 8.27:1 on off-white — AAA
 
-  # ─── Lime — alive/success dual binding (locked) ───
-  status_success_on_dark:    "{lime.500}"         # 13.92:1 on background — AAA
-  status_success_on_light:   "{lime.800}"         # 5.81:1 on off-white — AA
-  agent_status_active:       "{lime.500}"         # The "running / processing" indicator
-  agent_status_complete:     "{lime.500}"         # Completion checkmarks
-  agent_status_idle:         "{slate.500}"        # Inactive — neutral
+  # ─── Status — semantic-locked ───
+  status_error_on_dark:      "{red.500}"
+  status_error_on_light:     "{red.700}"
+  status_warn_on_dark:       "{amber.500}"
+  status_warn_on_light:      "{amber.700}"
+  status_success_on_dark:    "{lime.500}"
+  status_success_on_light:   "{lime.800}"
+  destructive_action:        "{red.500}"
 
-  # ─── Status (semantic-locked) ───
-  status_error_on_dark:      "{red.500}"          # 5.18:1 on background — AA
-  status_error_on_light:     "{red.700}"          # 5.43:1 on off-white — AA
-  status_warn_on_dark:       "{amber.500}"        # 11.43:1 on background — AAA
-  status_warn_on_light:      "{amber.700}"        # 6.84:1 on off-white — AAA
-  destructive_action:        "{red.500}"          # Delete / archive / cancel buttons
+  # ─── ★ v0.2 AGENT — tightened semantic roles for the operator layer ───
+  # Magenta = command (the agent is acting). Cyan = trace (the agent is
+  # showing its work). Amber = attention (the agent needs your input).
+  # Lime = complete (the agent finished). Red = risk (the agent failed
+  # in a way that matters). Slate = idle.
+  agent_command:             "{magenta.500}"        # "Run forecast" / "Approve" / executing
+  agent_command_active:      "{magenta.500}"        # actively running (paired with neon-glow)
+  agent_trace:               "{cyan.500}"           # showing source / drill-through / lineage
+  agent_thinking:            "{cyan.500}"           # model generating (paired with pulse)
+  agent_tool_use:            "{steel_violet.300}"   # tool call in progress (inactive-machine)
+  agent_attention:           "{amber.500}"          # awaiting input / approval / decision
+  agent_blocked:             "{amber.500}"          # blocked on user
+  agent_complete:            "{lime.500}"           # finished successfully
+  agent_success:             "{lime.500}"
+  agent_risk:                "{red.500}"            # failed / destructive / material risk
+  agent_error:               "{red.500}"
+  agent_status_active:       "{lime.500}"           # alive indicator (always-on agents)
+  agent_status_idle:         "{slate.500}"          # inactive / off / paused
 
-  # ─── Atmospheric secondaries — steel-violet ───
-  ambient_glow:              "{steel_violet.500}" # Hero atmospheric glow (box-shadow color)
-  ambient_deep:              "{steel_violet.700}" # Deep field on marketing hero
-  ambient_subtle:            "{steel_violet.900}" # Subtle panel tint on dark
+  # ─── ★ v0.2 FINANCE DIRECTIONALITY — locked semantic matrix ───
+  # Use ONLY for variance, delta, financial health. NEVER decorative.
+  finance_gain:              "{finance.gain}"       # positive variance / favorable
+  finance_loss:              "{finance.loss}"       # negative variance / unfavorable
+  finance_watch:             "{finance.watch}"      # approaching threshold / uncertain
+  finance_neutral:           "{neutral.300}"        # no change / inline-flat
+  finance_info:              "{finance.info_blue}"  # calm informational (model ver, env, etc.)
+
+  # ─── ★ v0.2 FINANCE SEMANTIC MATRIX — cockpit role bindings ───
+  # Domain-meaning role tokens that reference base roles. Lets cockpit
+  # components reach for "the cash color" rather than "the lime color"
+  # so future palette evolution can re-bind without component changes.
+  finance_cash:              "{lime.500}"           # healthy cash position
+  finance_runway:            "{amber.500}"          # runway = watch by default
+  finance_burn:              "{finance.loss}"       # burn = negative directionality
+  finance_arr:               "{lime.500}"           # ARR growth healthy
+  finance_gross_margin:      "{cyan.500}"           # GM is an inspectability metric (trace)
+  finance_forecast_variance: "{finance.watch}"      # variance = watch by default
+  finance_budget_variance:   "{finance.watch}"
+  finance_headcount_plan:    "{steel_violet.300}"   # headcount = atmospheric-machine
+  finance_aws_ai_cogs:       "{steel_violet.300}"   # infra/AI COGS = atmospheric-machine
+  finance_approval_required: "{magenta.500}"        # approval-required = command-needed
+
+  # ─── ★ v0.2 DATA FRESHNESS — sync state semantics ───
+  data_live:                 "{lime.500}"           # live / sub-minute fresh
+  data_synced:               "{cyan.500}"           # recently synced (within sync interval)
+  data_stale:                "{amber.500}"          # past freshness threshold
+  data_failed:               "{red.500}"            # last sync failed
+  data_manual_override:      "{magenta.500}"        # human override active
+
+  # ─── ★ v0.2 TRACE — cyan inspectability monopoly ───
+  trace_rail:                "{cyan.500}"           # the cyan micro-line itself
+  trace_source:              "{cyan.500}"           # source-system label
+  trace_breadcrumb:          "{cyan.300}"           # softer cyan for crumb chain
+  trace_drill_through:       "{cyan.500}"           # clickable drill-through affordance
+  trace_lineage:             "{cyan.500}"
 
   # ─── Cool-neutral utility — slate ───
-  body_chrome_on_dark:       "{slate.300}"        # 6.21:1 on background
+  body_chrome_on_dark:       "{slate.300}"
   body_chrome_on_light:      "{slate.500}"
-  border_neutral_dark:       "{slate.700}"        # Default border on dark surfaces
+  border_neutral_dark:       "{slate.700}"
   border_neutral_light:      "{slate.100}"
 
   # ─── Surface tokens — keyed to surfaces.* mode bindings ───
-  surface_app:               "{neutral.950}"      # #0A0A14 — app background
-  surface_panel:             "{neutral.850}"      # #15151F — layered panel
-  surface_panel_alt:         "{neutral.800}"      # #1F1F2A — nested panel
-  surface_marketing:         "{neutral.950}"      # same as app
-  surface_light:             "{neutral.50}"       # #F0F0F5 — opt-in light mode
-  surface_terminal:          "{neutral.1000}"     # #000000 — terminal_inset
+  surface_app:               "{neutral.950}"        # #070711
+  surface_cockpit:           "{neutral.950}"        # same as app
+  surface_panel:             "{neutral.850}"        # #171727 — finance panel (default chrome)
+  surface_panel_alt:         "{neutral.800}"        # #23233A — surface_3 / nested / selected
+  surface_panel_subtle:      "{neutral.900}"        # #10101A — surface_1 / topbar
+  surface_marketing:         "{neutral.950}"
+  surface_light:             "{neutral.50}"
+  surface_terminal:          "{neutral.1000}"
   surface_terminal_border:   "{cyan.700}"
+  surface_board_safe:        "{neutral.950}"
 
   # ─── Text tokens — split by mode ───
-  text_dark_primary:         "{neutral.0}"        # White on dark
-  text_dark_secondary:       "{neutral.300}"      # 7.18:1 on background
-  text_dark_tertiary:        "{neutral.500}"      # 4.04:1 — large text only
-  text_light_primary:        "{neutral.950}"      # #0A0A14 on off-white
+  text_dark_primary:         "{neutral.0}"
+  text_dark_secondary:       "{neutral.300}"
+  text_dark_tertiary:        "{neutral.500}"
+  text_light_primary:        "{neutral.950}"
   text_light_secondary:      "{neutral.700}"
   text_light_tertiary:       "{neutral.500}"
-  text_mono_default:         "{neutral.0}"        # Default mono color on dark
-  text_mono_accent:          "{cyan.500}"         # Accented mono (e.g., syntax highlight)
+  text_mono_default:         "{neutral.0}"
+  text_mono_accent:          "{cyan.500}"
+  text_mono_dim:             "{neutral.300}"          # ★ v0.2 — for finance numerics secondary
 
   # ─── Borders ───
-  border_dark:               "{slate.700}"
+  border_dark:               "{neutral.700}"          # ★ v0.2 — #2C2A45 (steel-violet tinted)
+  border_soft:               "{neutral.800}"          # ★ v0.2 — subtle structural boundary
   border_light:              "{slate.100}"
-  border_focus:              "{magenta.500}"      # Focus ring — magenta (CTA family)
-  border_focus_secondary:    "{cyan.500}"         # Secondary focus (input fields)
-
-  # ─── Agent-state semantic bindings (cepsra primary use) ───
-  agent_thinking:            "{cyan.500}"         # Pulsing cyan = "model is generating"
-  agent_tool_use:            "{steel_violet.500}" # Tool call in progress
-  agent_error:               "{red.500}"
-  agent_blocked:             "{amber.500}"        # Waiting on user input
+  border_active:             "{magenta.500}"          # ★ v0.2 — selected/active panel edge
+  border_focus:              "{magenta.500}"
+  border_focus_secondary:    "{cyan.500}"
 
   # ─── Chart series — pre-built per-mode recipes ───
-  chart_1_dark: "{magenta.500}"       # Hero series
-  chart_2_dark: "{cyan.500}"          # Cool complement
-  chart_3_dark: "{lime.500}"          # Acid accent
-  chart_4_dark: "{steel_violet.300}"  # Atmospheric mid
-  chart_5_dark: "{amber.500}"         # Warm accent
+  # ★ v0.2 — chart_1 is NOT magenta by default; magenta is reserved for
+  # agentic/automation series. Default hero chart series is cyan (trace).
+  chart_1_dark: "{cyan.500}"          # Hero series — trace / primary metric
+  chart_2_dark: "{lime.500}"          # Health / completion
+  chart_3_dark: "{amber.500}"         # Watch / attention
+  chart_4_dark: "{steel_violet.300}"  # Atmospheric mid (machine state)
+  chart_5_dark: "{finance.info_blue}" # Calm informational
   chart_6_dark: "{slate.300}"         # Neutral
+  chart_agentic_dark: "{magenta.500}" # ★ v0.2 — ONLY for agentic/automation series
 
-  chart_1_light: "{magenta.700}"      # Deeper magenta — AA on off-white
-  chart_2_light: "{cyan.700}"
-  chart_3_light: "{lime.800}"
+  chart_1_light: "{cyan.700}"
+  chart_2_light: "{lime.800}"
+  chart_3_light: "{amber.700}"
   chart_4_light: "{steel_violet.700}"
-  chart_5_light: "{amber.700}"
+  chart_5_light: "{finance.info_blue}"
   chart_6_light: "{slate.500}"
+  chart_agentic_light: "{magenta.700}"
 
 # ────────────────────────────────────────────────────────────────────
 # SEMANTIC TOKENS
@@ -331,11 +517,12 @@ roles:
 tokens:
   colors:
     dark:
-      background:    "{neutral.950}"
-      surface_1:     "{neutral.850}"
-      surface_2:     "{neutral.800}"
-      surface_3:     "{neutral.900}"
-      border:        "{slate.700}"
+      background:    "{neutral.950}"     # #070711
+      surface_1:     "{neutral.900}"     # #10101A — topbar / rail
+      surface_2:     "{neutral.850}"     # #171727 — default panel
+      surface_3:     "{neutral.800}"     # #23233A — selected / nested
+      border:        "{neutral.700}"     # #2C2A45 — default border
+      border_soft:   "{neutral.800}"
       text_1:        "{neutral.0}"
       text_2:        "{neutral.300}"
       text_3:        "{neutral.500}"
@@ -359,12 +546,36 @@ tokens:
     warning: "{amber.500}"
     error:   "{red.500}"
     info:    "{cyan.500}"
+    # ★ v0.2 — finance directionality at the semantic token tier
+    gain:    "{finance.gain}"
+    loss:    "{finance.loss}"
+    watch:   "{finance.watch}"
 
   typography:
     families:
-      display: "Chakra Petch"          # Headers, eyebrows, hero — angled cyber-coded cuts
-      body:    "Inter"                  # UI body, labels, prose
-      mono:    "JetBrains Mono"         # Code, IDs, timestamps, model names, file paths — REQUIRED
+      display: "Chakra Petch"
+      body:    "Inter"
+      mono:    "JetBrains Mono"
+    # ★ v0.2 — Documented typography MODES. Families stay locked.
+    # Cockpit mode flips the density default (more mono, less prose).
+    # Optional cockpit alternative families listed for consumers that
+    # prefer Geist / Geist Mono — does not change the canonical lock.
+    modes:
+      brand_portal:
+        description: "Marketing site, brand portal, onboarding, prose-heavy surfaces"
+        display: "Chakra Petch"
+        body:    "Inter"
+        mono:    "JetBrains Mono"
+        density: "comfortable"
+      cockpit:
+        description: "FinanceOS dashboards, FP&A tables, agent consoles, KPI strips, dense data"
+        display: "Chakra Petch"        # same family; smaller scale in cockpit
+        body:    "Inter"
+        mono:    "JetBrains Mono"      # canonical
+        mono_alt: "Geist Mono"         # opt-in alternative
+        body_alt: "Geist"              # opt-in alternative
+        density: "dense"
+        tabular_numerals_required: true
     google_fonts_url: "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
     weights_used: [400, 500, 600, 700]
     display:  { family: "Chakra Petch", weight: 700, size_clamp: "clamp(2.5rem, 6vw, 5.5rem)", line_height: 1.00, letter_spacing: "-0.020em" }
@@ -375,9 +586,15 @@ tokens:
     body_lg:  { family: "Inter",        weight: 400, size_clamp: "clamp(1rem, 1.6vw, 1.125rem)", line_height: 1.55, letter_spacing: "0" }
     small:    { family: "Inter",        weight: 500, size_clamp: "clamp(0.75rem, 1vw, 0.875rem)", line_height: 1.45, letter_spacing: "0.003em" }
     eyebrow:  { family: "Chakra Petch", weight: 600, size_clamp: "clamp(0.7rem, 0.9vw, 0.85rem)", line_height: 1.20, letter_spacing: "0.180em", transform: "uppercase" }
-    mono:     { family: "JetBrains Mono", weight: 400, size_clamp: "clamp(0.8125rem, 1.1vw, 0.9375rem)", line_height: 1.50, letter_spacing: "0" }
-    mono_sm:  { family: "JetBrains Mono", weight: 400, size_clamp: "clamp(0.6875rem, 0.85vw, 0.8125rem)", line_height: 1.45, letter_spacing: "0" }
+    mono:     { family: "JetBrains Mono", weight: 400, size_clamp: "clamp(0.8125rem, 1.1vw, 0.9375rem)", line_height: 1.50, letter_spacing: "0",     font_feature_settings: '"tnum"' }
+    mono_sm:  { family: "JetBrains Mono", weight: 400, size_clamp: "clamp(0.6875rem, 0.85vw, 0.8125rem)", line_height: 1.45, letter_spacing: "0",  font_feature_settings: '"tnum"' }
     code:     { family: "JetBrains Mono", weight: 400, size_clamp: "clamp(0.8125rem, 1.1vw, 0.9375rem)", line_height: 1.55, letter_spacing: "0" }
+    # ★ v0.2 — finance numeric type roles (tabular numerals required)
+    kpi_value:    { family: "JetBrains Mono", weight: 700, size_clamp: "clamp(1.5rem, 3vw, 2.25rem)", line_height: 1.05, letter_spacing: "-0.010em", font_feature_settings: '"tnum"' }
+    kpi_label:    { family: "Chakra Petch", weight: 600, size_clamp: "clamp(0.7rem, 0.9vw, 0.8rem)", line_height: 1.20, letter_spacing: "0.140em", transform: "uppercase" }
+    table_numeric: { family: "JetBrains Mono", weight: 400, size_clamp: "clamp(0.8125rem, 1vw, 0.875rem)", line_height: 1.40, letter_spacing: "0", font_feature_settings: '"tnum"' }
+    delta:        { family: "JetBrains Mono", weight: 600, size_clamp: "clamp(0.75rem, 0.9vw, 0.8125rem)", line_height: 1.20, letter_spacing: "0", font_feature_settings: '"tnum"' }
+    timestamp:    { family: "JetBrains Mono", weight: 400, size_clamp: "clamp(0.6875rem, 0.85vw, 0.75rem)", line_height: 1.30, letter_spacing: "0.02em", font_feature_settings: '"tnum"' }
 
   spacing:
     xs:    4
@@ -392,53 +609,70 @@ tokens:
 
   radii:
     element:   2
-    control:   4    # buttons, inputs, badges
-    component: 6    # cards, panels (tighter than parspec's 8 — angular cyberpunk register)
-    container: 8    # modals, sheets
+    control:   4
+    component: 6
+    container: 8
     pill:      999
 
   cuts:
-    sm: 8           # subtle hero corner cut
-    md: 12          # default hero / feature corner cut
-    lg: 16          # large hero corner cut
+    sm: 8
+    md: 12
+    lg: 16
 
   motion:
-    personality: "kinetic"           # vs parspec "mechanical" — quicker, sharper
+    personality: "kinetic"
     easing: "cubic-bezier(0.2, 0.8, 0.2, 1)"
-    duration_fast:   "100ms"          # button press, focus
-    duration_normal: "200ms"          # panel transitions
-    duration_slow:   "400ms"          # hero entrance
-    reduced_motion_required: true     # @media (prefers-reduced-motion: reduce) — always
+    duration_fast:   "100ms"
+    duration_normal: "200ms"
+    duration_slow:   "400ms"
+    reduced_motion_required: true
 
   iconography:
     family: "Lucide"
     weight: "regular"
-    stroke_width: "1.75px"            # slightly thicker than default — reads better on dark
+    stroke_width: "1.75px"
     sizes:
       inline: "16px"
       button: "18px"
       nav:    "20px"
       hero:   "32px"
-    color_default: "{neutral.300}"    # body_chrome_on_dark
-    color_active:  "{magenta.500}"    # active nav / selected state
-    color_alive:   "{lime.500}"       # agent-status-active glyphs
+      kpi:    "14px"   # ★ v0.2 — inline next to KPI labels
+    color_default: "{neutral.300}"
+    color_active:  "{magenta.500}"
+    color_alive:   "{lime.500}"
+    color_trace:   "{cyan.500}"     # ★ v0.2 — drill-through / source-trace glyphs
 
   effects:
-    # Cyberpunk-specific decorative effects. Use sparingly — each binding
-    # has a narrow role; ek-craft (when shipped) will warn on decorative
-    # overuse.
+    # Cyberpunk neon glows — narrow role bindings. Decorative use violates
+    # `magenta_cta_monopoly`, `cyan_for_trace_only`, etc.
     neon_glow_magenta: "0 0 8px {magenta.500}, 0 0 16px {magenta.500}40"
     neon_glow_cyan:    "0 0 8px {cyan.500}, 0 0 16px {cyan.500}40"
     neon_glow_lime:    "0 0 6px {lime.500}, 0 0 12px {lime.500}40"
     focus_ring_magenta: "0 0 0 2px {neutral.950}, 0 0 0 4px {magenta.500}"
     focus_ring_cyan:    "0 0 0 2px {neutral.950}, 0 0 0 4px {cyan.500}"
-    panel_lift:         "0 1px 0 0 {slate.700}, 0 8px 24px -8px #00000080"
+    panel_lift:         "0 1px 0 0 {neutral.700}, 0 8px 24px -8px #00000080"
     scanline_overlay:   "repeating-linear-gradient(0deg, transparent 0, transparent 2px, {neutral.0}06 2px, {neutral.0}06 3px)"
+
+    # ★ v0.2 — finance-specific subtle glows. Confidence halos, trace
+    # rail emphasis. Lower intensity than action glows.
+    confidence_halo_amber: "inset 0 0 0 1px {amber.500}80"
+    confidence_halo_red:   "inset 0 0 0 1px {red.500}80"
+    trace_rail_glow_cyan:  "0 0 4px {cyan.500}80"
+    operator_layer_glow:   "0 0 12px {magenta.500}60, 0 0 24px {magenta.500}30"
+
+    # ★ v0.2 — board-safe variants. Apply via `.board-safe` body class.
+    # All neon glows collapse to subtle borders for export contexts.
+    board_safe_neon_glow_magenta: "inset 0 0 0 1px {magenta.500}"
+    board_safe_neon_glow_cyan:    "inset 0 0 0 1px {cyan.500}"
+    board_safe_neon_glow_lime:    "inset 0 0 0 1px {lime.500}"
+    board_safe_focus_ring:        "0 0 0 2px {magenta.500}"   # focus stays visible
 
 # ────────────────────────────────────────────────────────────────────
 # COMPONENTS — Specs read by ek-web (when shipped) for token export
+# v0.2 adds 10 finance cockpit components.
 # ────────────────────────────────────────────────────────────────────
 components:
+  # ─── v0.1 components (preserved) ───
   button_primary:
     background:  "{magenta.500}"
     color:       "{neutral.0}"
@@ -469,12 +703,12 @@ components:
   card:
     background: "{neutral.850}"
     color:      "{neutral.0}"
-    border:     "1px solid {slate.700}"
+    border:     "1px solid {neutral.700}"
     radius:     "{radii.component}"
     padding:    "{spacing.lg}"
 
   terminal_block:
-    background:  "{neutral.1000}"       # pure black
+    background:  "{neutral.1000}"
     color:       "{cyan.500}"
     border:      "1px solid {cyan.700}"
     radius:      "{radii.element}"
@@ -483,7 +717,68 @@ components:
     font_size:   "0.8125rem"
     line_height: 1.50
 
+  code_block:
+    background: "{neutral.900}"
+    color:      "{neutral.0}"
+    border:     "1px solid {neutral.700}"
+    radius:     "{radii.component}"
+    padding:    "{spacing.md}"
+    font_family: "JetBrains Mono"
+    syntax_accent: "{cyan.500}"
+
+  input_field:
+    background: "{neutral.850}"
+    color:      "{neutral.0}"
+    border:     "1px solid {neutral.700}"
+    radius:     "{radii.control}"
+    padding:    "10px 12px"
+    font_family: "Inter"
+    placeholder_color: "{neutral.500}"
+    focus:      { border_color: "{cyan.500}", box_shadow: "{effects.focus_ring_cyan}" }
+
+  # ─── ★ v0.2 finance cockpit components ───
+
+  kpi_card:
+    purpose: "Hero metric tile — label + value + delta + state + optional sparkline"
+    background: "{neutral.850}"
+    border:     "1px solid {neutral.700}"
+    radius:     "{radii.component}"
+    padding:    "{spacing.md}"
+    label:      { type: "kpi_label" }
+    value:      { type: "kpi_value" }
+    delta:      { type: "delta", color_gain: "{finance.gain}", color_loss: "{finance.loss}", color_neutral: "{neutral.500}" }
+    state:      { healthy: "{lime.500}", watch: "{amber.500}", breach: "{red.500}", agent_active: "{magenta.500}" }
+    sparkline_height: "32px"
+    tabular_numerals: true
+
+  finance_panel:
+    purpose: "Default chrome for FinanceOS panels (P&L, runway, revenue bridge, Opex, headcount, COGS, variance)"
+    background: "{neutral.850}"
+    border:     "1px solid {neutral.800}"      # softer than card — dark-ledger sober
+    radius:     "{radii.component}"
+    padding:    "{spacing.md}"
+    header:
+      title:     { type: "h3" }
+      period:    { type: "timestamp" }
+      source_freshness: { type: "timestamp", color: "{cyan.500}" }
+      drill_through: { type: "small", color: "{cyan.500}" }
+    glow_default: "none"                       # sober by default
+    glow_active:  "{effects.operator_layer_glow}"  # ONLY when agent is acting on this panel
+
+  agent_command_bar:
+    purpose: "Natural language finance command input + agent status + tool chips"
+    background: "{neutral.900}"
+    border:     "1px solid {neutral.700}"
+    radius:     "{radii.container}"
+    padding:    "{spacing.md}"
+    input_field: { background: "transparent", color: "{neutral.0}", font_family: "Inter" }
+    placeholder_color: "{neutral.500}"
+    primary_action: { background: "{magenta.500}", color: "{neutral.0}" }
+    tool_chip: { background: "{neutral.850}", border: "1px solid {cyan.700}", color: "{cyan.500}", font_family: "JetBrains Mono", font_size: "0.6875rem", radius: "{radii.pill}" }
+    agent_status: { color: "{magenta.500}", font_family: "JetBrains Mono", font_size: "0.6875rem" }
+
   agent_status_badge:
+    purpose: "Inline agent state indicator — runs everywhere agents render"
     base:
       display: "inline-flex"
       align: "center"
@@ -497,46 +792,119 @@ components:
       text_transform: "uppercase"
       letter_spacing: "0.060em"
     variants:
-      active:    { color: "{lime.500}",  box_shadow: "{effects.neon_glow_lime}" }
-      thinking:  { color: "{cyan.500}",  animation: "pulse 1.5s ease-in-out infinite" }
-      tool_use:  { color: "{steel_violet.300}" }
-      complete:  { color: "{lime.500}" }
-      blocked:   { color: "{amber.500}" }
-      error:     { color: "{red.500}" }
-      idle:      { color: "{slate.500}" }
+      idle:              { color: "{slate.500}" }
+      thinking:          { color: "{cyan.500}", animation: "pulse 1.5s ease-in-out infinite" }
+      tool:              { color: "{steel_violet.300}" }
+      command_active:    { color: "{magenta.500}", box_shadow: "{effects.neon_glow_magenta}" }
+      blocked:           { color: "{amber.500}" }
+      approval_required: { color: "{amber.500}", border: "1px dashed currentColor" }
+      complete:          { color: "{lime.500}" }
+      active:            { color: "{lime.500}", box_shadow: "{effects.neon_glow_lime}" }
+      error:             { color: "{red.500}" }
 
-  code_block:
-    background: "{neutral.900}"
-    color:      "{neutral.0}"
-    border:     "1px solid {slate.700}"
+  data_freshness_badge:
+    purpose: "Per-source sync state indicator"
+    base:
+      display: "inline-flex"
+      align: "center"
+      gap: "4px"
+      padding: "1px 6px"
+      border: "1px solid currentColor"
+      radius: "{radii.pill}"
+      font_family: "JetBrains Mono"
+      font_size: "0.625rem"
+      text_transform: "uppercase"
+      letter_spacing: "0.060em"
+    variants:
+      live:              { color: "{lime.500}" }
+      synced:            { color: "{cyan.500}" }
+      stale:             { color: "{amber.500}" }
+      failed:            { color: "{red.500}" }
+      manual_override:   { color: "{magenta.500}" }
+
+  source_trace_row:
+    purpose: "One row per source — system / table / last sync / owner / confidence / drill-through"
+    background: "transparent"
+    border_bottom: "1px solid {neutral.800}"
+    padding: "{spacing.sm} 0"
+    columns:
+      source_system: { font_family: "JetBrains Mono", color: "{cyan.500}", font_size: "0.8125rem" }
+      object:        { font_family: "JetBrains Mono", color: "{neutral.300}", font_size: "0.8125rem" }
+      last_sync:     { type: "timestamp" }
+      owner:         { type: "small" }
+      confidence:    { type: "delta" }
+      drill_through: { color: "{cyan.500}", icon: "external-link" }
+
+  variance_row:
+    purpose: "Actual / Budget / Forecast / Variance$ / Variance% / Materiality / Agent recommendation"
+    background: "transparent"
+    border_bottom: "1px solid {neutral.800}"
+    padding: "{spacing.sm} 0"
+    font_family: "JetBrains Mono"
+    tabular_numerals: true
+    columns:
+      label:        { type: "small" }
+      actual:       { type: "table_numeric" }
+      budget:       { type: "table_numeric", color: "{neutral.500}" }
+      forecast:     { type: "table_numeric", color: "{neutral.300}" }
+      variance_dollar: { type: "table_numeric", color_gain: "{finance.gain}", color_loss: "{finance.loss}" }
+      variance_pct: { type: "delta", color_gain: "{finance.gain}", color_loss: "{finance.loss}" }
+      materiality:  { type: "agent_status_badge" }
+      agent_recommendation: { font_family: "Inter", color: "{magenta.500}", icon: "sparkle" }
+
+  approval_card:
+    purpose: "Agent-proposed model change: evidence / impact / approve / reject / inspect"
+    background: "{neutral.850}"
+    border:     "1px dashed {amber.500}"           # dashed signals "pending decision"
     radius:     "{radii.component}"
     padding:    "{spacing.md}"
-    font_family: "JetBrains Mono"
-    syntax_accent: "{cyan.500}"
+    header:     { color: "{amber.500}", font_family: "Chakra Petch", font_weight: 600, text_transform: "uppercase", letter_spacing: "0.080em", font_size: "0.7rem" }
+    evidence:   { background: "{neutral.900}", border: "1px solid {cyan.700}", color: "{cyan.500}", font_family: "JetBrains Mono" }
+    impact:     { font_family: "JetBrains Mono", color_gain: "{finance.gain}", color_loss: "{finance.loss}" }
+    actions:
+      approve:  { background: "{magenta.500}", color: "{neutral.0}" }
+      reject:   { background: "transparent", color: "{red.500}", border: "1px solid {red.500}" }
+      inspect:  { background: "transparent", color: "{cyan.500}", border: "1px solid {cyan.500}" }
 
-  input_field:
-    background: "{neutral.850}"
-    color:      "{neutral.0}"
-    border:     "1px solid {slate.700}"
-    radius:     "{radii.control}"
-    padding:    "10px 12px"
-    font_family: "Inter"
-    placeholder_color: "{neutral.500}"
-    focus:      { border_color: "{cyan.500}", box_shadow: "{effects.focus_ring_cyan}" }
+  agent_log:
+    purpose: "Timestamped feed of tool calls / sync events / approvals — terminal-inset styling"
+    inherits: "terminal_block"
+    timestamp_color: "{neutral.500}"
+    event_types:
+      tool_use:          { color: "{steel_violet.300}", icon: "wrench" }
+      sync:              { color: "{cyan.500}", icon: "refresh-cw" }
+      approval_request:  { color: "{amber.500}", icon: "alert-circle" }
+      approval_granted:  { color: "{lime.500}", icon: "check" }
+      command:           { color: "{magenta.500}", icon: "play" }
+      error:             { color: "{red.500}", icon: "x-circle" }
+
+  board_export_preview:
+    purpose: "Reduced-neon preview of how a dashboard exports to board-safe PDF"
+    background: "{neutral.950}"
+    body_class: "board-safe"           # activates board-safe effect overrides
+    panel: "{components.finance_panel}"
+    overrides:
+      glow: "none"
+      scanline: "none"
+      animation: "none"
+      focus_ring: "{effects.board_safe_focus_ring}"
 
 # ────────────────────────────────────────────────────────────────────
 # VOICE
 # ────────────────────────────────────────────────────────────────────
 voice:
-  register: "agentic, operator-respecting, terminal-native"
+  register: "agentic, operator-respecting, terminal-native, finance-literate"
   do:
     - "Treat the user as the operator — surface state plainly (model, agent ID, latency, token count, cost)"
-    - "Use mono for any identifier (file paths, IDs, timestamps, model names, hashes)"
-    - "Prefer concrete metrics over hype ('212ms', '4.2k tokens' beats 'fast')"
-    - "Terminal-style timestamps where appropriate (HH:MM:SS.mmm or ISO-8601)"
-    - "Direct verbs in CTAs ('Run', 'Send', 'Apply', 'Cancel' — not 'Get Started', not 'Begin Your Journey')"
+    - "Use mono for any identifier (file paths, IDs, timestamps, model names, hashes, period codes)"
+    - "Use tabular numerals for any finance number (KPIs, variance, tables, charts)"
+    - "Prefer concrete metrics over hype ('212ms', '4.2k tokens', '$1.2M ARR' beats 'fast' / 'growing')"
+    - "Surface source freshness explicitly: 'synced 12s ago' / 'stale (last sync 4d ago)'"
+    - "Terminal-style timestamps where appropriate (ISO-8601 or HH:MM:SS.mmm)"
+    - "Direct verbs in commands ('Run forecast', 'Approve', 'Investigate variance', 'Reconcile source', 'Generate board memo' — not 'Get Started', not 'Begin Your Journey')"
     - "Density is fine — the operator wants information, not whitespace"
   avoid:
+    - "Em-dashes (use colon, parens, comma, or n-dash)"   # ★ v0.2
     - "Consumer-SaaS verbs ('delight', 'magic', 'effortless', 'unlock', 'empower')"
     - "AI-hype clichés ('powered by AI', 'AI-first', 'intelligent', 'smart')"
     - "Generic startup grandiosity ('transform', 'revolutionize', 'reimagine')"
@@ -546,14 +914,14 @@ voice:
     - "Cyberpunk cosplay vocabulary ('jacked in', 'the matrix', 'neural') — the brand is visually cyberpunk; the copy stays grounded"
 
 # ────────────────────────────────────────────────────────────────────
-# AVOID — Data-driven rules consumed by ek-craft (when shipped)
-# Each entry: { color | color_family | font_family | pattern }, reason, severity
+# AVOID — Data-driven rules consumed by ek-craft
+# v0.2 expansions appended.
 # ────────────────────────────────────────────────────────────────────
 avoid:
-  # Consumer-AI-default colors — the single biggest brand-collision risk
+  # Consumer-AI-default colors
   - color: "#6366F1"
     name: "Tailwind Indigo 500"
-    reason: "Generic AI-default palette — every Tailwind starter app uses this. The single most-overused color in 2024-2026 AI products. ek-design's steel_violet ramp is the differentiated atmospheric purple-blue."
+    reason: "Generic AI-default palette — every Tailwind starter app uses this. The single most-overused color in 2024-2026 AI products. ek's steel_violet ramp is the differentiated atmospheric purple-blue."
     severity: "error"
   - color: "#8B5CF6"
     name: "Tailwind Violet 500"
@@ -569,13 +937,12 @@ avoid:
     severity: "error"
   - color_family: "pastel-tints"
     description: "Any color with saturation < 30% AND lightness > 75%."
-    reason: "Pastels are off-register for cyberpunk. ek-design uses saturated neons on near-black; pastels collapse the whole aesthetic."
+    reason: "Pastels are off-register for cyberpunk. ek uses saturated neons on near-black."
     severity: "warning"
 
-  # Cyberpunk-cliché color we deliberately avoid
   - color: "#00FFFF"
     name: "Pure Cyan (#00FFFF)"
-    reason: "Sci-fi-cliché cyan. ek-design uses #00D1FF (cyan.500) — biased slightly toward blue for a more refined, less Tron-cosplay register."
+    reason: "Sci-fi-cliché cyan. ek uses #00D1FF (cyan.500) — biased slightly toward blue for a more refined, less Tron-cosplay register."
     severity: "warning"
 
   # Forbidden fonts
@@ -606,16 +973,16 @@ avoid:
     reason: "Cyberpunk elevation = neon edge glow (box-shadow with brand color), not gray drop shadow. See effects.neon_glow_*."
     severity: "warning"
   - pattern: "glassmorphism-heavy-blur"
-    reason: "Heavy backdrop-blur reads as 2020-Apple, not cyberpunk. If you need a frosted surface, use a 4-8px blur max plus subtle border-glow."
+    reason: "Heavy backdrop-blur reads as 2020-Apple, not cyberpunk. If you need a frosted surface, use 4-8px blur max plus subtle border-glow."
     severity: "warning"
   - pattern: "gradient-mesh-background"
-    reason: "Iridescent / mesh-gradient backgrounds read as 2022 design template, not cyberpunk. ek-design hero atmosphere = flat dark + neon edge accents + optional scanline overlay."
+    reason: "Iridescent / mesh-gradient backgrounds read as 2022 design template, not cyberpunk."
     severity: "warning"
   - pattern: "emoji-as-icon"
     reason: "Lucide SVG icons only. Emojis in UI chrome read as casual / consumer."
     severity: "error"
   - pattern: "lorem-ipsum"
-    reason: "Use real content or honest placeholders ('Task title here', 'Agent output appears below')."
+    reason: "Use real content or honest placeholders."
     severity: "warning"
   - pattern: "rounded-card-with-colored-left-border"
     reason: "Overused B2B SaaS trope."
@@ -624,43 +991,106 @@ avoid:
     reason: "Neon edge glow is reserved for focus, hover, and the agent_status_active badge. Decorative glow everywhere = cyberpunk costume, not brand."
     severity: "warning"
 
+  # ★ NEW v0.2 — finance/cockpit-specific avoidance
+  - pattern: "decorative-glow-on-every-card"
+    reason: "v0.2 Dark Ledger thesis: static finance panels stay sober (no glow by default). Only agentic elements (commands, active automation) emit neon-operator-layer glow. Glow on every card collapses the operator-vs-truth distinction."
+    severity: "warning"
+  - pattern: "full-screen-purple-pink-gradient"
+    reason: "Synthwave / generic-AI tell. ek backgrounds are flat near-black with optional steel-violet atmospheric tint."
+    severity: "error"
+  - pattern: "chromatic-aberration"
+    reason: "Cyberpunk-cosplay decoration. Reduces legibility; not production-appropriate for finance surfaces."
+    severity: "warning"
+  - pattern: "rain-effect-overlay"
+    reason: "Blade Runner cosplay decoration. Not a brand motif."
+    severity: "warning"
+  - pattern: "cityscape-imagery"
+    reason: "Cyberpunk-cosplay decoration. ek brand is the operator's console, not a Neo-Tokyo backdrop."
+    severity: "warning"
+  - pattern: "magenta-as-decorative-chart-series"
+    reason: "Magenta = agentic command / automation only. Default chart hero is cyan.500 (trace). Magenta as chart fill suggests 'this series is being driven by an agent' — use chart_agentic_dark binding."
+    severity: "warning"
+  - pattern: "amber-as-decoration"
+    reason: "Amber = warn / CFO attention / forecast uncertainty. Decorative amber dilutes the watch signal."
+    severity: "warning"
+  - pattern: "diagonal-cut-overuse"
+    reason: "Diagonal-cut corners are an alt-to-rounded motif for hero/feature surfaces. Using them on every panel reads as Cyberpunk 2077 menu cosplay."
+    severity: "warning"
+  - pattern: "em-dash-in-copy"
+    reason: "v0.2 voice rule. Use colon, parens, comma, or n-dash. Em-dashes read as 2024-LLM-output."
+    severity: "info"
+
 # ────────────────────────────────────────────────────────────────────
-# INVARIANTS — Hard structural rules. ek-craft (when shipped) enforces.
+# INVARIANTS — Hard structural rules. ek-craft enforces.
+# v0.2 adds 6 new finance/cockpit invariants.
 # ────────────────────────────────────────────────────────────────────
 invariants:
+  # ─── v0.1 invariants (preserved) ───
   magenta_cta_monopoly:
     rule: "Magenta #FF2A6D (magenta.500) is the only primary-CTA color. No secondary may be used as a primary CTA fill."
-    rationale: "Preserves the action signal across every ek surface. If cyan becomes a CTA too, the user can't pre-attentively spot the action."
+    rationale: "Preserves the action signal across every ek surface. If cyan becomes a CTA too, the operator can't pre-attentively spot the action."
     severity: "error"
   cyan_secondary_and_info:
-    rule: "Cyan #00D1FF (cyan.500) is restricted to secondary action, info, link, terminal_inset text, and AA-bound chart series. NEVER a primary CTA fill."
-    rationale: "Cyan competes hard with magenta for attention; reserving it for navigation (links) and information (info badges) keeps the magenta CTA monopoly readable."
+    rule: "Cyan #00D1FF (cyan.500) is restricted to secondary action, info, link, trace, terminal_inset text, and AA-bound chart series. NEVER a primary CTA fill."
+    rationale: "Cyan competes hard with magenta for attention; reserving it for navigation (links), information (info badges), and lineage (trace) keeps the magenta CTA monopoly readable."
     severity: "error"
   lime_alive_and_success_only:
-    rule: "Lime #A6FF00 (lime.500) appears ONLY in status_success_*, agent_status_active, agent_status_complete roles. Never decorative, never in chart series without success semantics."
-    rationale: "Lime carries dual semantic load (success + alive). If it leaks into decoration, the operator can no longer trust 'green = working'."
+    rule: "Lime #A6FF00 (lime.500) appears ONLY in status_success_*, agent_status_active, agent_complete, finance_cash, finance_arr, data_live, gain roles. Never decorative."
+    rationale: "Lime carries multi-bound semantic load (success + alive + health + gain). If it leaks into decoration, the operator can no longer trust 'green = working / healthy / favorable.'"
     severity: "error"
   red_error_only:
-    rule: "Red #FF003C (red.500) appears ONLY in status_error_*, destructive_action, agent_error roles. Never decorative, never in chart series."
-    rationale: "Same construction as magenta CTA monopoly — semantic-locked statuses are non-negotiable."
+    rule: "Red #FF003C (red.500) appears ONLY in status_error_*, destructive_action, agent_error, agent_risk, data_failed, finance loss/breach roles. Never decorative, never in chart series."
+    rationale: "Semantic-locked statuses are non-negotiable. Red on this brand means 'something materially broke or is at material risk.'"
     severity: "error"
   amber_warn_only:
-    rule: "Amber #FFB800 (amber.500) appears ONLY in status_warn_*, agent_blocked roles."
-    rationale: "Locks the warn semantic; prevents amber-as-decorative drift."
+    rule: "Amber #FFB800 (amber.500) appears ONLY in status_warn_*, agent_blocked, agent_attention, agent_approval_required, data_stale, finance_runway / forecast_variance roles."
+    rationale: "Amber = CFO attention / watch state. Decorative amber dilutes the watch signal and trains the operator to ignore real attention prompts."
     severity: "error"
   mono_for_identifiers:
-    rule: "JetBrains Mono is required for code, file paths, IDs, timestamps, model names, hashes, token counts, and any other machine-generated identifier. Inter/Chakra Petch must NOT be used for these."
-    rationale: "Agentic UI is operator-facing; the operator scans identifiers constantly. Mono preserves alignment, prevents I/l/1 confusion, and visually separates 'machine output' from 'product chrome'. Single biggest UX win in operator interfaces."
+    rule: "JetBrains Mono is required for code, file paths, IDs, timestamps, model names, hashes, token counts, period codes, source-system names, and any other machine-generated identifier."
+    rationale: "Agentic + finance UI is operator-facing; the operator scans identifiers constantly. Mono preserves alignment, prevents I/l/1 confusion, and visually separates 'machine output' from 'product chrome.' Single biggest UX win in operator interfaces."
     severity: "error"
   no_consumer_indigo_purple:
-    rule: "Tailwind-indigo #6366F1 and consumer-violet #8B5CF6 / #A78BFA are forbidden. ek-design's atmospheric purple-blue is steel_violet.500 #3B3B92 (darker, more blue-violet)."
+    rule: "Tailwind-indigo #6366F1 and consumer-violet #8B5CF6 / #A78BFA are forbidden. ek's atmospheric purple-blue is steel_violet.500 #3B3B92 (darker, more blue-violet)."
     rationale: "Indigo-500 is the single most-overused color in 2024-2026 AI products. Defaulting to it instantly reads as 'AI-template starter' rather than brand."
     severity: "error"
   dark_primary_register:
-    rule: "Surfaces app + marketing default to dark mode (background #0A0A14). Light mode is opt-in only (print, accessibility override)."
-    rationale: "The neon palette reads correctly on near-black; on light it's anemic. Dark-default is also the agentic-UI norm (Claude desktop, Cursor, Linear dark, Vercel dark)."
+    rule: "Surfaces app + cockpit + marketing default to dark mode (background #070711). Light mode is opt-in only (print, accessibility override)."
+    rationale: "The neon palette reads correctly on near-black; on light it's anemic. Dark-default is also the agentic-UI norm and the finance-cockpit norm (Bloomberg-style)."
     severity: "warning"
   reduced_motion_required:
     rule: "Any animation (transitions, pulses, scanline overlay) must include an @media (prefers-reduced-motion: reduce) override that disables or substantially reduces motion."
-    rationale: "Accessibility baseline. Scanline overlay especially can trigger vestibular issues — must be disable-able."
+    rationale: "Accessibility baseline. Scanline overlay especially can trigger vestibular issues."
     severity: "error"
+
+  # ─── ★ v0.2 NEW INVARIANTS — Dark Ledger / Neon Operator locks ───
+
+  finance_directionality_locked:
+    rule: "The finance.* primitives (gain #4ADE80, loss #F87171, watch #FBBF24, info_blue #60A5FA) appear ONLY in variance, delta, financial directionality, and data freshness contexts. Never as brand accent, never as decorative chart color, never as a button background."
+    rationale: "Dark Ledger thesis: finance directionality is a semantic load-bearing signal. Operator scanning a P&L must trust that green = favorable, red = unfavorable, amber = watch — without ambiguity from decorative reuse. Adopted from Bloomberg's variance-color discipline."
+    severity: "error"
+
+  agent_command_magenta_only:
+    rule: "Magenta is the agentic command / action / automation color. Used in CTAs, agent_command_active state, executive command bars, approval-required affordances, manual-override indicators. NEVER as nightclub-decorative neon, NEVER on a chart series that isn't agentic, NEVER as a brand-accent pink."
+    rationale: "Reframes v0.1's CTA monopoly with a sharper semantic: magenta = 'an agent is doing something or you are commanding one.' If magenta means anything else (chart fill, decoration, hover-glow-on-passive-card), the operator can't trust the command signal."
+    severity: "error"
+
+  cyan_for_trace_only:
+    rule: "Cyan is the inspectability / trace / lineage / drill-through color. Used for source labels, trace rails, drill-through arrows, info, link, terminal output. NEVER as a primary CTA, NEVER as a decorative accent, NEVER as a brand-accent neon."
+    rationale: "Dark Ledger thesis: cyan answers 'where did this number come from?' If cyan also means CTA or accent, the operator can't trust the inspectability signal. Cyan is the 'show your work' color."
+    severity: "error"
+
+  tabular_numerals_for_finance:
+    rule: "All finance numerics (KPI values, table cells, variance %, delta, currency amounts, percentages) must use JetBrains Mono with `font-feature-settings: \"tnum\"` (or equivalent OpenType `tnum` flag). Proportional numerals are forbidden in finance contexts."
+    rationale: "Finance data is scanned in columns. Proportional numerals misalign across rows and across rows-with-different-magnitudes, which makes variance scanning slower and bug-prone. Tabular numerals lock column alignment. Bloomberg, FactSet, every serious finance UI uses tabular."
+    severity: "error"
+
+  no_em_dashes_in_copy:
+    rule: "Em-dashes (— U+2014) are forbidden in brand copy, UI copy, and component labels. Use colon, parentheses, comma, or n-dash (–) where appropriate."
+    rationale: "Em-dashes are a 2024-LLM-output tell. ek voice is operator-respecting and terse; em-dashes signal generated prose. n-dashes for numeric ranges remain fine."
+    severity: "info"
+
+  board_safe_export_mode:
+    rule: "When the body has class `board-safe` (PDF export, board screenshot, investor-deck asset), all effects.neon_glow_* must collapse to effects.board_safe_neon_glow_* (inset 1px border, no outer glow), all scanline overlays must be removed, and all animations must be paused. Focus-ring stays visible for accessibility."
+    rationale: "Board materials should let the data lead. Neon glow that's a feature in the live cockpit becomes noise in a PDF screenshot embedded in an IC memo. Board-safe mode is the export-pressure-valve so the cyberpunk register doesn't need to be diluted for live ops."
+    severity: "warning"

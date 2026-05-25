@@ -4,8 +4,8 @@
 <!--
     AUTO-GENERATED FROM design-model.yaml — DO NOT EDIT MANUALLY
     Regenerate: python3 scripts/generate-brand-portal.py
-    Generated: 2026-05-25 05:44 UTC
-    design-model.yaml version: 0.1.0 · brand_version: ek-2026-Q3-v1
+    Generated: 2026-05-25 06:39 UTC
+    design-model.yaml version: 0.2.0 · brand_version: ek-2026-Q4-v1
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,9 +15,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0A0A14;
-  --bg-2: #15151F;
-  --bg-3: #1F1F2A;
+  /* v0.2 — Dark Ledger / Neon Operator palette */
+  --bg: #070711;
+  --bg-1: #10101A;
+  --bg-2: #171727;
+  --bg-3: #23233A;
   --bg-deep: #000000;
   --fg: #FFFFFF;
   --fg-muted: rgba(255,255,255,0.68);
@@ -28,6 +30,10 @@
   --amber: #FFB800;
   --red: #FF003C;
   --steel-violet: #3B3B92;
+  --gain: #4ADE80;
+  --loss: #F87171;
+  --watch: #FBBF24;
+  --info-blue: #60A5FA;
   --border: rgba(255,255,255,0.10);
   --border-soft: rgba(255,255,255,0.06);
   --gap-sm: clamp(0.5rem, 1vw, 1rem);
@@ -228,9 +234,152 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
 .scanline-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,0.06) 2px, rgba(255,255,255,0.06) 3px); }
 
-.diagonal-cut { background: var(--bg-2); border: 1px solid #2E2E40;
+.diagonal-cut { background: var(--bg-2); border: 1px solid #2C2A45;
   padding: 24px 28px; color: var(--fg); font-family: 'Chakra Petch', sans-serif;
   font-weight: 600; clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
+
+/* ★ v0.2 finance cockpit components ─────────────────────────────────── */
+
+.kpi-card { background: var(--bg-2); border: 1px solid #2C2A45; border-radius: 6px;
+  padding: 16px; min-width: 180px; }
+.kpi-card .kpi-label { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--fg-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.kpi-card .kpi-label .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.kpi-card .kpi-value { font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: 1.875rem; line-height: 1.0; letter-spacing: -0.010em; color: var(--fg);
+  font-feature-settings: "tnum"; }
+.kpi-card .kpi-delta { font-family: 'JetBrains Mono', monospace; font-weight: 600;
+  font-size: 0.78125rem; margin-top: 6px; font-feature-settings: "tnum"; }
+.kpi-card .kpi-delta.gain { color: var(--gain); }
+.kpi-card .kpi-delta.loss { color: var(--loss); }
+.kpi-card.state-watch { border-color: var(--watch); }
+.kpi-card.state-breach { border-color: var(--red); }
+.kpi-card.state-agent { border-color: var(--magenta);
+  box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+
+.finance-panel { background: var(--bg-2); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: 16px; margin-bottom: var(--gap-sm); }
+.finance-panel.active { box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+.finance-panel .fp-header { display: flex; justify-content: space-between;
+  align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 12px; }
+.finance-panel .fp-title { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 1rem; }
+.finance-panel .fp-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem;
+  color: var(--fg-muted); display: flex; gap: 12px; }
+.finance-panel .fp-meta .trace-link { color: var(--cyan); cursor: pointer; }
+
+.variance-row { display: grid;
+  grid-template-columns: 1.5fr repeat(5, 1fr); gap: 12px; padding: 8px 0;
+  border-bottom: 1px solid var(--border-soft); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8125rem; align-items: center; font-feature-settings: "tnum"; }
+.variance-row.header { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.7rem; letter-spacing: 0.10em; text-transform: uppercase; color: var(--fg-muted); }
+.variance-row .label { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--fg); }
+.variance-row .num { text-align: right; }
+.variance-row .num.budget { color: var(--fg-muted); }
+.variance-row .num.forecast { color: var(--fg-muted); }
+.variance-row .num.gain { color: var(--gain); }
+.variance-row .num.loss { color: var(--loss); }
+
+.data-badge { display: inline-flex; align-items: center; gap: 4px; padding: 1px 6px;
+  border: 1px solid currentColor; border-radius: 999px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.060em; }
+.data-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.data-badge.live { color: var(--lime); }
+.data-badge.synced { color: var(--cyan); }
+.data-badge.stale { color: var(--amber); }
+.data-badge.failed { color: var(--red); }
+.data-badge.manual { color: var(--magenta); }
+
+.trace-rail { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: var(--cyan); }
+.trace-rail .crumb { padding: 1px 6px; border: 1px solid rgba(0,209,255,0.3);
+  border-radius: 3px; }
+.trace-rail .arrow { color: rgba(0,209,255,0.5); }
+
+.command-bar { background: var(--bg-1); border: 1px solid #2C2A45;
+  border-radius: 8px; padding: 16px; display: flex; gap: 12px; align-items: center;
+  max-width: 720px; }
+.command-bar .agent-status { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem;
+  color: var(--magenta); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+.command-bar input { flex: 1; background: transparent; border: 0; color: var(--fg);
+  font-family: 'Inter', sans-serif; font-size: 0.9375rem; outline: none; }
+.command-bar input::placeholder { color: var(--fg-muted); }
+.command-bar .tool-chip { display: inline-flex; gap: 4px; padding: 2px 8px;
+  background: var(--bg-2); border: 1px solid rgba(0,209,255,0.4); color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.625rem;
+  border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+.command-bar button { background: var(--magenta); color: var(--fg); border: 0;
+  padding: 8px 16px; border-radius: 4px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.02em; cursor: pointer; }
+
+.approval-card { background: var(--bg-2); border: 1px dashed var(--amber);
+  border-radius: 6px; padding: 16px; max-width: 480px; }
+.approval-card .ac-header { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.7rem; letter-spacing: 0.080em; text-transform: uppercase; color: var(--amber);
+  margin-bottom: 8px; }
+.approval-card h4 { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 1rem; margin: 0 0 8px 0; }
+.approval-card .ac-evidence { background: #000000; border: 1px solid #0090B8;
+  border-radius: 2px; padding: 8px 12px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: var(--cyan); margin: 8px 0; }
+.approval-card .ac-impact { font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem;
+  margin: 8px 0; font-feature-settings: "tnum"; }
+.approval-card .ac-impact .gain { color: var(--gain); }
+.approval-card .ac-impact .loss { color: var(--loss); }
+.approval-card .ac-actions { display: flex; gap: 8px; margin-top: 12px; }
+.approval-card .ac-actions .approve { background: var(--magenta); color: var(--fg); border: 0; padding: 6px 12px; border-radius: 4px;
+  font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 0.78125rem; cursor: pointer; }
+.approval-card .ac-actions .reject { background: transparent; color: var(--red);
+  border: 1px solid var(--red); padding: 6px 12px; border-radius: 4px;
+  font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 0.78125rem; cursor: pointer; }
+.approval-card .ac-actions .inspect { background: transparent; color: var(--cyan);
+  border: 1px solid var(--cyan); padding: 6px 12px; border-radius: 4px;
+  font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 0.78125rem; cursor: pointer; }
+
+/* Forecast confidence halo */
+.confidence-halo-amber { box-shadow: inset 0 0 0 1px rgba(255,184,0,0.5); }
+.confidence-halo-red { box-shadow: inset 0 0 0 1px rgba(255,0,60,0.5); }
+
+/* Sample cockpit layout */
+.cockpit-frame { background: var(--bg); border: 1px solid #2C2A45; border-radius: 8px;
+  overflow: hidden; }
+.cockpit-topbar { background: var(--bg-1); border-bottom: 1px solid var(--border-soft);
+  padding: 10px 16px; display: flex; gap: 24px; align-items: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; }
+.cockpit-topbar .brand { font-family: 'Chakra Petch', sans-serif; font-weight: 700;
+  font-size: 0.85rem; letter-spacing: 0.08em; color: var(--magenta);
+  text-shadow: 0 0 6px rgba(255,42,109,0.3); }
+.cockpit-topbar .topbar-meta { display: flex; gap: 16px; margin-left: auto; color: var(--fg-muted); }
+.cockpit-topbar .topbar-meta .live { color: var(--lime); }
+.cockpit-body { display: grid; grid-template-columns: 200px 1fr 280px; min-height: 460px; }
+.cockpit-rail { background: var(--bg-1); border-right: 1px solid var(--border-soft);
+  padding: 16px 8px; display: flex; flex-direction: column; gap: 4px; }
+.cockpit-rail .rail-item { padding: 6px 12px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 500; font-size: 0.78125rem; color: var(--fg-muted); border-radius: 4px;
+  border-left: 2px solid transparent; }
+.cockpit-rail .rail-item.active { color: var(--fg); border-left-color: var(--magenta);
+  background: rgba(255,42,109,0.08); }
+.cockpit-main { padding: 16px; overflow: auto; }
+.cockpit-kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px; margin-bottom: 16px; }
+.cockpit-kpi-strip .kpi-card { padding: 10px 12px; min-width: 0; }
+.cockpit-kpi-strip .kpi-value { font-size: 1.25rem; }
+.cockpit-feed { background: var(--bg-1); border-left: 1px solid var(--border-soft);
+  padding: 16px; overflow: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; }
+.cockpit-feed .feed-title { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--fg-muted); margin-bottom: 12px; }
+.cockpit-feed .feed-event { padding: 6px 0; border-bottom: 1px solid var(--border-soft);
+  line-height: 1.5; }
+.cockpit-feed .feed-event .ts { color: var(--fg-dim); }
+.cockpit-feed .feed-event.command { color: var(--magenta); }
+.cockpit-feed .feed-event.sync { color: var(--cyan); }
+.cockpit-feed .feed-event.approval { color: var(--amber); }
+.cockpit-feed .feed-event.complete { color: var(--lime); }
+.cockpit-feed .feed-event.error { color: var(--red); }
 
 .portal-footer { max-width: 1240px; margin: var(--gap-lg) auto 0;
   padding: var(--gap-md); border-top: 1px solid var(--border);
@@ -252,9 +401,9 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
   <div class="portal-header-inner">
     <div class="portal-mark">
       <strong>EK·DESIGN</strong>
-      <span class="portal-meta">Brand Portal · v0.1.0 · ek-2026-Q3-v1</span>
+      <span class="portal-meta">Brand Portal · v0.2.0 · ek-2026-Q4-v1</span>
     </div>
-    <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item active" href="motifs.html">Motifs</a><a class="portal-nav-item" href="components.html">Components</a></nav>
+    <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item active" href="motifs.html">Motifs</a><a class="portal-nav-item" href="components.html">Components</a><a class="portal-nav-item" href="cockpit.html">Cockpit</a></nav>
   </div>
 </header>
 
@@ -278,7 +427,32 @@ letter-spacing: 0.02em;
   12px 0, 100% 0,
   100% calc(100% - 12px), calc(100% - 12px) 100%,
   0 100%, 0 12px
-);</pre></div>
+);</pre></div><div class="motif-card"><h3 class="motif-title">Dark Ledger Panel <code style="font-size:0.7rem;margin-left:0.5rem;">dark-ledger-panel</code></h3><p class="motif-rationale">The default chrome for FinanceOS surfaces. Sober finance panel: <code>surface_2</code> background, soft border, minimal glow, dense metric hierarchy. Used for P&amp;L, runway, revenue bridge, Opex, headcount, COGS, forecast variance. <strong>When to use:</strong> static finance truth display. <strong>When NOT to use:</strong> agent-active panels — those upgrade to neon-operator-layer.</p><div class="motif-stage"><div class="finance-panel" style="width:100%;max-width:480px;"><div class="fp-header"><div class="fp-title">Runway · forecast</div><div class="fp-meta"><span>FY26 Q2</span><span style="color:var(--cyan);">synced 12s ago</span><span class="trace-link">drill →</span></div></div><div style="font-family:'JetBrains Mono',monospace;font-feature-settings:'tnum';font-size:0.875rem;line-height:1.7;"><div>cash on hand:    $12,847,392</div><div>monthly burn:    <span style="color:var(--loss);">$847,212</span></div><div>runway:          <span style="color:var(--amber);">15.2 months</span></div></div></div></div><pre class="spec-pre">background: var(--surface-2, #171727);
+border: 1px solid var(--border-soft);
+radius: 6px;
+padding: 16px;
+/* glow_default: none — sober by default */</pre></div><div class="motif-card"><h3 class="motif-title">Neon Operator Layer <code style="font-size:0.7rem;margin-left:0.5rem;">neon-operator-layer</code></h3><p class="motif-rationale">Thin luminous overlay applied ONLY when an agent is actively acting on a surface, a command is executing, or an approval is pending. Magenta = command, cyan = trace, lime = complete. <strong>When NOT to use:</strong> as decoration on every card — violates <code>agent_command_magenta_only</code> invariant.</p><div class="motif-stage"><div class="finance-panel active" style="width:100%;max-width:480px;"><div class="fp-header"><div class="fp-title" style="color:var(--magenta);">Revenue bridge · running forecast</div><div class="fp-meta"><span class="data-badge manual"><span class="dot"></span>agent · acting</span></div></div><div style="font-family:'JetBrains Mono',monospace;color:var(--fg-muted);font-size:0.78rem;">claude-opus-4-7 running forecast() · 4.2k tokens · 1.8s elapsed</div></div></div><pre class="spec-pre">box-shadow: 0 0 12px rgba(255,42,109,0.4),
+            0 0 24px rgba(255,42,109,0.2);
+/* operator_layer_glow effect — used only on active surfaces */</pre></div><div class="motif-card"><h3 class="motif-title">Trace Rail <code style="font-size:0.7rem;margin-left:0.5rem;">trace-rail</code></h3><p class="motif-rationale">Cyan micro-line breadcrumb showing source lineage / drill-through path. Answers "where did this number come from?" Bound to <code>cyan_for_trace_only</code> invariant. <strong>When to use:</strong> any computed financial metric. <strong>When NOT to use:</strong> as decorative accent.</p><div class="motif-stage"><div class="trace-rail"><span class="crumb">QuickBooks</span><span class="arrow">→</span><span class="crumb">P&amp;L · operating expenses</span><span class="arrow">→</span><span class="crumb">payroll</span><span class="arrow">→</span><span class="crumb">eng headcount</span></div></div><pre class="spec-pre">color: var(--cyan, #00D1FF);
+font-family: "JetBrains Mono", monospace;
+/* crumb: border 1px solid rgba(0,209,255,0.3) */</pre></div><div class="motif-card"><h3 class="motif-title">Agent Event Feed <code style="font-size:0.7rem;margin-left:0.5rem;">agent-event-feed</code></h3><p class="motif-rationale">Timestamped feed of tool calls, sync events, approvals, blocked tasks. Terminal-inset styling sparingly. Each event-type maps to a semantic color (command → magenta, sync → cyan, approval → amber, complete → lime, error → red).</p><div class="motif-stage"><div class="terminal-demo" style="width:100%;max-width:520px;"><div><span class="term-meta">[22:35:54]</span> <span style="color:var(--cyan);">→ sync</span>: QuickBooks · invoices · <span class="term-prompt">204 records</span></div><div><span class="term-meta">[22:35:58]</span> <span style="color:var(--magenta);">→ command</span>: run forecast() · revenue · FY26</div><div><span class="term-meta">[22:36:12]</span> <span style="color:var(--amber);">→ approval-required</span>: model update · runway recalc</div><div><span class="term-meta">[22:36:24]</span> <span class="term-prompt">→ complete</span>: forecast accepted</div></div></div><pre class="spec-pre">inherits: terminal_block
+event_types:
+  command:           color: magenta
+  sync:              color: cyan
+  approval_request:  color: amber
+  approval_granted:  color: lime
+  error:             color: red</pre></div><div class="motif-card"><h3 class="motif-title">Forecast Confidence Halo <code style="font-size:0.7rem;margin-left:0.5rem;">forecast-confidence-halo</code></h3><p class="motif-rationale">Subtle inset border indicating forecast confidence state. Amber halo = degraded confidence (uncertainty). Red halo = materially broken / breach threshold. <strong>When NOT to use:</strong> for any non-confidence signal — dilutes the watch semantic.</p><div class="motif-stage"><div style="display:flex;gap:12px;flex-wrap:wrap;"><div class="kpi-card confidence-halo-amber" style="min-width:160px;"><div class="kpi-label" style="color:var(--amber);"><span class="dot"></span>Forecast · Q3 ARR</div><div class="kpi-value">$14.2M</div><div class="kpi-delta gain">+8.2% · confidence: 64%</div></div><div class="kpi-card confidence-halo-red" style="min-width:160px;"><div class="kpi-label" style="color:var(--red);"><span class="dot"></span>Runway · breach</div><div class="kpi-value">9.1mo</div><div class="kpi-delta loss">-6.1mo from plan</div></div></div></div><pre class="spec-pre">confidence_halo_amber: inset 0 0 0 1px rgba(255,184,0,0.5)
+confidence_halo_red:   inset 0 0 0 1px rgba(255,0,60,0.5)</pre></div><div class="motif-card"><h3 class="motif-title">Board-Safe Mode <code style="font-size:0.7rem;margin-left:0.5rem;">board-safe-mode</code></h3><p class="motif-rationale">Same dark system with reduced neon for PDF exports / board screenshots / IC memo embeds. All <code>neon_glow_*</code> tokens collapse to inset 1px borders; scanlines removed; animations paused. Focus ring stays visible for accessibility. Activated via <code>.board-safe</code> body class. Bound to <code>board_safe_export_mode</code> invariant.</p><div class="motif-stage"><div style="display:flex;gap:12px;flex-wrap:wrap;"><div><div style="font-size:0.7rem;color:var(--fg-muted);font-family:'JetBrains Mono',monospace;margin-bottom:6px;">live cockpit</div><button class="btn-primary">Run forecast</button></div><div><div style="font-size:0.7rem;color:var(--fg-muted);font-family:'JetBrains Mono',monospace;margin-bottom:6px;">board-safe export</div><button style="background:transparent;color:var(--magenta);border:1px solid var(--magenta);padding:10px 20px;border-radius:4px;font-family:'Chakra Petch',sans-serif;font-weight:600;font-size:0.9375rem;letter-spacing:0.020em;">Run forecast</button></div></div></div><pre class="spec-pre">body.board-safe {
+  /* all effects.neon_glow_* override to inset 1px border */
+  --neon-glow-magenta: inset 0 0 0 1px var(--magenta);
+  --scanline-overlay: none;
+  --animation: none;
+}</pre></div><div class="motif-card"><h3 class="motif-title">Executive Command State <code style="font-size:0.7rem;margin-left:0.5rem;">executive-command-state</code></h3><p class="motif-rationale">Magenta command button or command bar for high-leverage agentic actions: "Run forecast", "Investigate variance", "Generate board memo", "Approve model update", "Reconcile source". This is where the operator delegates to an agent. Bound to <code>agent_command_magenta_only</code>.</p><div class="motif-stage"><div class="command-bar"><span class="agent-status">agent · ready</span><input placeholder="Run forecast for FY26 Q3 ARR including new SDR hires" /><span class="tool-chip">qb</span><span class="tool-chip">forecast</span><button>Run</button></div></div><pre class="spec-pre">background: var(--bg-1);
+border: 1px solid #2C2A45;
+radius: 8px;
+primary_action: background magenta · color white</pre></div><div class="motif-card"><h3 class="motif-title">Machine Identifier Strip <code style="font-size:0.7rem;margin-left:0.5rem;">machine-identifier-strip</code></h3><p class="motif-rationale">Compact monospace strip displaying agent IDs / model version / source freshness / period close status / environment metadata. Usually sits in topbar or page header. Mono-for-identifiers invariant locks the typography.</p><div class="motif-stage"><div style="background:var(--bg-1);border:1px solid #2C2A45;border-radius:6px;padding:10px 16px;display:flex;gap:20px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:0.72rem;"><span style="color:var(--fg-muted);">env:</span><span>prod</span><span style="color:var(--fg-muted);">model:</span><span style="color:var(--magenta);">claude-opus-4-7</span><span style="color:var(--fg-muted);">period:</span><span>FY26·Q2·CLOSED</span><span style="color:var(--fg-muted);">last sync:</span><span style="color:var(--lime);">12s ago</span><span style="color:var(--fg-muted);">agent:</span><span style="color:var(--cyan);">エ·0042</span></div></div><pre class="spec-pre">font-family: "JetBrains Mono", monospace;
+font-size: 0.72rem;
+/* identifiers in magenta (model) / lime (live) / cyan (agent) / fg (literal) */</pre></div>
 
 </main>
 

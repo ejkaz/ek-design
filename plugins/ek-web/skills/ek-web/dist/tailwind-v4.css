@@ -1,7 +1,7 @@
 /*
   AUTO-GENERATED FROM ek-design design-model.yaml — DO NOT EDIT MANUALLY
-  Source: ek-design v0.1.0 · brand_version: ek-2026-Q3-v1
-  Generated: 2026-05-25T05:59:31Z
+  Source: ek-design v0.2.0 · brand_version: ek-2026-Q4-v1
+  Generated: 2026-05-25T06:40:03Z
   Regenerate: python3 plugins/ek-web/skills/ek-web/scripts/export-tailwind-v4.py
 */
 
@@ -24,10 +24,10 @@
 
 @theme inline {
   /* ─── Semantic surfaces (bg-*, text-*) ─────────── */
-  --color-background: #0A0A14;
+  --color-background: #070711;
   --color-foreground: #FFFFFF;
-  --color-bg: #0A0A14;
-  --color-panel: #15151F;
+  --color-bg: #070711;
+  --color-panel: #171727;
   --color-off-white: #F0F0F5;
   --color-terminal-bg: #000000;
 
@@ -40,11 +40,11 @@
   --color-neutral-400: #7A7A92;
   --color-neutral-500: #5C5C70;
   --color-neutral-600: #3F3F50;
-  --color-neutral-700: #2E2E40;
-  --color-neutral-800: #1F1F2A;
-  --color-neutral-850: #15151F;
-  --color-neutral-900: #0F0F18;
-  --color-neutral-950: #0A0A14;
+  --color-neutral-700: #2C2A45;
+  --color-neutral-800: #23233A;
+  --color-neutral-850: #171727;
+  --color-neutral-900: #10101A;
+  --color-neutral-950: #070711;
   --color-neutral-1000: #000000;
 
   /* magenta */
@@ -107,6 +107,12 @@
   --color-amber-600: #CC9300;
   --color-amber-700: #8C6500;
 
+  /* finance */
+  --color-finance-gain: #4ADE80;
+  --color-finance-loss: #F87171;
+  --color-finance-watch: #FBBF24;
+  --color-finance-info_blue: #60A5FA;
+
   /* ─── Role tokens — common reach-for shortcuts ─── */
   --color-cta: #FF2A6D;
   --color-cta-hover: #E11D5F;
@@ -123,7 +129,7 @@
   --color-agent-blocked: #FFB800;
   --color-agent-error: #FF003C;
   --color-agent-idle: #5C5C70;
-  --color-border: #2E2E40;
+  --color-border: #2C2A45;
   --color-border-focus: #FF2A6D;
 
   /* ─── Typography ───────────────────────────────── */
@@ -166,9 +172,15 @@
   --shadow-neon-glow-magenta: 0 0 8px #FF2A6D, 0 0 16px #FF2A6D40;
   --shadow-neon-glow-cyan: 0 0 8px #00D1FF, 0 0 16px #00D1FF40;
   --shadow-neon-glow-lime: 0 0 6px #A6FF00, 0 0 12px #A6FF0040;
-  --shadow-focus-ring-magenta: 0 0 0 2px #0A0A14, 0 0 0 4px #FF2A6D;
-  --shadow-focus-ring-cyan: 0 0 0 2px #0A0A14, 0 0 0 4px #00D1FF;
-  --shadow-panel-lift: 0 1px 0 0 #2E2E40, 0 8px 24px -8px #00000080;
+  --shadow-focus-ring-magenta: 0 0 0 2px #070711, 0 0 0 4px #FF2A6D;
+  --shadow-focus-ring-cyan: 0 0 0 2px #070711, 0 0 0 4px #00D1FF;
+  --shadow-panel-lift: 0 1px 0 0 #2C2A45, 0 8px 24px -8px #00000080;
+  --shadow-trace-rail-glow-cyan: 0 0 4px #00D1FF80;
+  --shadow-operator-layer-glow: 0 0 12px #FF2A6D60, 0 0 24px #FF2A6D30;
+  --shadow-board-safe-neon-glow-magenta: inset 0 0 0 1px #FF2A6D;
+  --shadow-board-safe-neon-glow-cyan: inset 0 0 0 1px #00D1FF;
+  --shadow-board-safe-neon-glow-lime: inset 0 0 0 1px #A6FF00;
+  --shadow-board-safe-focus-ring: 0 0 0 2px #FF2A6D;
 
   /* ─── Motion ───────────────────────────────────── */
   --ease-ek: cubic-bezier(0.2, 0.8, 0.2, 1);

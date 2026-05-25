@@ -61,14 +61,20 @@ def render(model: dict) -> str:
         f"  --status-error: {R(roles['status_error_on_dark'])};",
         f"  --status-info: {R(roles['info_on_dark'])};",
     ])
+    # v0.2: role names tightened — agent_complete replaces agent_status_complete
     agent_lines = "\n".join([
         f"  --agent-active: {R(roles['agent_status_active'])};",
         f"  --agent-thinking: {R(roles['agent_thinking'])};",
         f"  --agent-tool-use: {R(roles['agent_tool_use'])};",
-        f"  --agent-complete: {R(roles['agent_status_complete'])};",
+        f"  --agent-complete: {R(roles.get('agent_complete', roles.get('agent_status_complete', '#A6FF00')))};",
         f"  --agent-blocked: {R(roles['agent_blocked'])};",
         f"  --agent-error: {R(roles['agent_error'])};",
-        f"  --agent-idle: {R(roles['agent_status_idle'])};",
+        f"  --agent-idle: {R(roles.get('agent_status_idle', '#5C5C70'))};",
+        # v0.2 additions
+        f"  --agent-command: {R(roles.get('agent_command', '#FF2A6D'))};",
+        f"  --agent-trace: {R(roles.get('agent_trace', '#00D1FF'))};",
+        f"  --agent-attention: {R(roles.get('agent_attention', '#FFB800'))};",
+        f"  --agent-risk: {R(roles.get('agent_risk', '#FF003C'))};",
     ])
 
     # ─── ek-primitive aliases (so consumers can reach beyond shadcn's set) ─

@@ -86,6 +86,7 @@ NAV_ITEMS = [
     ("typography.html", "Typography"),
     ("motifs.html", "Motifs"),
     ("components.html", "Components"),
+    ("cockpit.html", "Cockpit"),
 ]
 
 
@@ -101,9 +102,11 @@ def nav_html(current: str) -> str:
 def base_styles() -> str:
     return """<style>
 :root {
-  --bg: #0A0A14;
-  --bg-2: #15151F;
-  --bg-3: #1F1F2A;
+  /* v0.2 — Dark Ledger / Neon Operator palette */
+  --bg: #070711;
+  --bg-1: #10101A;
+  --bg-2: #171727;
+  --bg-3: #23233A;
   --bg-deep: #000000;
   --fg: #FFFFFF;
   --fg-muted: rgba(255,255,255,0.68);
@@ -114,6 +117,10 @@ def base_styles() -> str:
   --amber: #FFB800;
   --red: #FF003C;
   --steel-violet: #3B3B92;
+  --gain: #4ADE80;
+  --loss: #F87171;
+  --watch: #FBBF24;
+  --info-blue: #60A5FA;
   --border: rgba(255,255,255,0.10);
   --border-soft: rgba(255,255,255,0.06);
   --gap-sm: clamp(0.5rem, 1vw, 1rem);
@@ -314,9 +321,152 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
 .scanline-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,0.06) 2px, rgba(255,255,255,0.06) 3px); }
 
-.diagonal-cut { background: var(--bg-2); border: 1px solid #2E2E40;
+.diagonal-cut { background: var(--bg-2); border: 1px solid #2C2A45;
   padding: 24px 28px; color: var(--fg); font-family: 'Chakra Petch', sans-serif;
   font-weight: 600; clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
+
+/* ★ v0.2 finance cockpit components ─────────────────────────────────── */
+
+.kpi-card { background: var(--bg-2); border: 1px solid #2C2A45; border-radius: 6px;
+  padding: 16px; min-width: 180px; }
+.kpi-card .kpi-label { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--fg-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.kpi-card .kpi-label .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.kpi-card .kpi-value { font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: 1.875rem; line-height: 1.0; letter-spacing: -0.010em; color: var(--fg);
+  font-feature-settings: "tnum"; }
+.kpi-card .kpi-delta { font-family: 'JetBrains Mono', monospace; font-weight: 600;
+  font-size: 0.78125rem; margin-top: 6px; font-feature-settings: "tnum"; }
+.kpi-card .kpi-delta.gain { color: var(--gain); }
+.kpi-card .kpi-delta.loss { color: var(--loss); }
+.kpi-card.state-watch { border-color: var(--watch); }
+.kpi-card.state-breach { border-color: var(--red); }
+.kpi-card.state-agent { border-color: var(--magenta);
+  box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+
+.finance-panel { background: var(--bg-2); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: 16px; margin-bottom: var(--gap-sm); }
+.finance-panel.active { box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+.finance-panel .fp-header { display: flex; justify-content: space-between;
+  align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 12px; }
+.finance-panel .fp-title { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 1rem; }
+.finance-panel .fp-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem;
+  color: var(--fg-muted); display: flex; gap: 12px; }
+.finance-panel .fp-meta .trace-link { color: var(--cyan); cursor: pointer; }
+
+.variance-row { display: grid;
+  grid-template-columns: 1.5fr repeat(5, 1fr); gap: 12px; padding: 8px 0;
+  border-bottom: 1px solid var(--border-soft); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8125rem; align-items: center; font-feature-settings: "tnum"; }
+.variance-row.header { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.7rem; letter-spacing: 0.10em; text-transform: uppercase; color: var(--fg-muted); }
+.variance-row .label { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--fg); }
+.variance-row .num { text-align: right; }
+.variance-row .num.budget { color: var(--fg-muted); }
+.variance-row .num.forecast { color: var(--fg-muted); }
+.variance-row .num.gain { color: var(--gain); }
+.variance-row .num.loss { color: var(--loss); }
+
+.data-badge { display: inline-flex; align-items: center; gap: 4px; padding: 1px 6px;
+  border: 1px solid currentColor; border-radius: 999px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.060em; }
+.data-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.data-badge.live { color: var(--lime); }
+.data-badge.synced { color: var(--cyan); }
+.data-badge.stale { color: var(--amber); }
+.data-badge.failed { color: var(--red); }
+.data-badge.manual { color: var(--magenta); }
+
+.trace-rail { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: var(--cyan); }
+.trace-rail .crumb { padding: 1px 6px; border: 1px solid rgba(0,209,255,0.3);
+  border-radius: 3px; }
+.trace-rail .arrow { color: rgba(0,209,255,0.5); }
+
+.command-bar { background: var(--bg-1); border: 1px solid #2C2A45;
+  border-radius: 8px; padding: 16px; display: flex; gap: 12px; align-items: center;
+  max-width: 720px; }
+.command-bar .agent-status { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem;
+  color: var(--magenta); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+.command-bar input { flex: 1; background: transparent; border: 0; color: var(--fg);
+  font-family: 'Inter', sans-serif; font-size: 0.9375rem; outline: none; }
+.command-bar input::placeholder { color: var(--fg-muted); }
+.command-bar .tool-chip { display: inline-flex; gap: 4px; padding: 2px 8px;
+  background: var(--bg-2); border: 1px solid rgba(0,209,255,0.4); color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.625rem;
+  border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+.command-bar button { background: var(--magenta); color: var(--fg); border: 0;
+  padding: 8px 16px; border-radius: 4px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.02em; cursor: pointer; }
+
+.approval-card { background: var(--bg-2); border: 1px dashed var(--amber);
+  border-radius: 6px; padding: 16px; max-width: 480px; }
+.approval-card .ac-header { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.7rem; letter-spacing: 0.080em; text-transform: uppercase; color: var(--amber);
+  margin-bottom: 8px; }
+.approval-card h4 { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 1rem; margin: 0 0 8px 0; }
+.approval-card .ac-evidence { background: #000000; border: 1px solid #0090B8;
+  border-radius: 2px; padding: 8px 12px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: var(--cyan); margin: 8px 0; }
+.approval-card .ac-impact { font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem;
+  margin: 8px 0; font-feature-settings: "tnum"; }
+.approval-card .ac-impact .gain { color: var(--gain); }
+.approval-card .ac-impact .loss { color: var(--loss); }
+.approval-card .ac-actions { display: flex; gap: 8px; margin-top: 12px; }
+.approval-card .ac-actions .approve { background: var(--magenta); color: var(--fg); border: 0; padding: 6px 12px; border-radius: 4px;
+  font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 0.78125rem; cursor: pointer; }
+.approval-card .ac-actions .reject { background: transparent; color: var(--red);
+  border: 1px solid var(--red); padding: 6px 12px; border-radius: 4px;
+  font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 0.78125rem; cursor: pointer; }
+.approval-card .ac-actions .inspect { background: transparent; color: var(--cyan);
+  border: 1px solid var(--cyan); padding: 6px 12px; border-radius: 4px;
+  font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 0.78125rem; cursor: pointer; }
+
+/* Forecast confidence halo */
+.confidence-halo-amber { box-shadow: inset 0 0 0 1px rgba(255,184,0,0.5); }
+.confidence-halo-red { box-shadow: inset 0 0 0 1px rgba(255,0,60,0.5); }
+
+/* Sample cockpit layout */
+.cockpit-frame { background: var(--bg); border: 1px solid #2C2A45; border-radius: 8px;
+  overflow: hidden; }
+.cockpit-topbar { background: var(--bg-1); border-bottom: 1px solid var(--border-soft);
+  padding: 10px 16px; display: flex; gap: 24px; align-items: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; }
+.cockpit-topbar .brand { font-family: 'Chakra Petch', sans-serif; font-weight: 700;
+  font-size: 0.85rem; letter-spacing: 0.08em; color: var(--magenta);
+  text-shadow: 0 0 6px rgba(255,42,109,0.3); }
+.cockpit-topbar .topbar-meta { display: flex; gap: 16px; margin-left: auto; color: var(--fg-muted); }
+.cockpit-topbar .topbar-meta .live { color: var(--lime); }
+.cockpit-body { display: grid; grid-template-columns: 200px 1fr 280px; min-height: 460px; }
+.cockpit-rail { background: var(--bg-1); border-right: 1px solid var(--border-soft);
+  padding: 16px 8px; display: flex; flex-direction: column; gap: 4px; }
+.cockpit-rail .rail-item { padding: 6px 12px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 500; font-size: 0.78125rem; color: var(--fg-muted); border-radius: 4px;
+  border-left: 2px solid transparent; }
+.cockpit-rail .rail-item.active { color: var(--fg); border-left-color: var(--magenta);
+  background: rgba(255,42,109,0.08); }
+.cockpit-main { padding: 16px; overflow: auto; }
+.cockpit-kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px; margin-bottom: 16px; }
+.cockpit-kpi-strip .kpi-card { padding: 10px 12px; min-width: 0; }
+.cockpit-kpi-strip .kpi-value { font-size: 1.25rem; }
+.cockpit-feed { background: var(--bg-1); border-left: 1px solid var(--border-soft);
+  padding: 16px; overflow: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; }
+.cockpit-feed .feed-title { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--fg-muted); margin-bottom: 12px; }
+.cockpit-feed .feed-event { padding: 6px 0; border-bottom: 1px solid var(--border-soft);
+  line-height: 1.5; }
+.cockpit-feed .feed-event .ts { color: var(--fg-dim); }
+.cockpit-feed .feed-event.command { color: var(--magenta); }
+.cockpit-feed .feed-event.sync { color: var(--cyan); }
+.cockpit-feed .feed-event.approval { color: var(--amber); }
+.cockpit-feed .feed-event.complete { color: var(--lime); }
+.cockpit-feed .feed-event.error { color: var(--red); }
 
 .portal-footer { max-width: 1240px; margin: var(--gap-lg) auto 0;
   padding: var(--gap-md); border-top: 1px solid var(--border);
@@ -383,14 +533,27 @@ def page_chrome(model: dict, page_title: str, body: str, current: str) -> str:
 def body_index(m: dict) -> str:
     meta = m["meta"]
     notes_html = (meta.get("notes") or "").replace("<", "&lt;").replace(">", "&gt;")
+    thesis = m.get("thesis", "")
+    thesis_one_line = m.get("thesis_one_line", "")
     cards = ""
     for href, title, desc in [
-        ("color.html", "Color", "Primary axis, surfaces, primitive ramps, role tokens, invariants, avoid list."),
-        ("typography.html", "Typography", "Chakra Petch display + Inter body + JetBrains Mono ladder with live samples."),
-        ("motifs.html", "Motifs", "Neon edge glow, terminal block inset, scanline overlay, diagonal cut corners, katakana-numeric agent IDs."),
-        ("components.html", "Components", "Buttons (primary/secondary/destructive), card, terminal block, agent-status badges, code block, input field — all live-rendered."),
+        ("color.html", "Color", "Primary axis, 6 surfaces, 9 primitive ramps (incl. new finance directionality), 100 role tokens, 15 invariants, 29 avoid entries."),
+        ("typography.html", "Typography", "Chakra Petch / Inter / JetBrains Mono. Brand portal vs cockpit modes documented. 5 new finance type roles with tabular numerals."),
+        ("motifs.html", "Motifs", "13 motifs: 5 v0.1 (neon edge glow, terminal block, katakana-numeric ID, scanline, diagonal cut) + 8 v0.2 finance (dark-ledger-panel, neon-operator-layer, trace-rail, agent-event-feed, forecast-confidence-halo, board-safe-mode, executive-command-state, machine-identifier-strip)."),
+        ("components.html", "Components", "16 components: 6 v0.1 + 10 v0.2 finance cockpit (kpi_card, finance_panel, agent_command_bar, agent_status_badge expanded, data_freshness_badge, source_trace_row, variance_row, approval_card, agent_log, board_export_preview) — all live."),
+        ("cockpit.html", "Cockpit", "Sample FinanceOS layout demonstrating the Dark Ledger / Neon Operator thesis applied to a finance cockpit. Brand reference only — actual cepsra implementation lives in a separate thread."),
     ]:
         cards += f'<a href="{href}" style="text-decoration:none;color:inherit;"><div class="surface-card"><h3>{title}</h3><p class="surface-rationale">{desc}</p></div></a>'
+
+    # Product metaphors + what-this-is-not
+    metaphor_items = "".join(
+        f'<li style="font-family:\'JetBrains Mono\',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.4rem;">{x}</li>'
+        for x in m.get("product_metaphor", [])
+    )
+    not_items = "".join(
+        f'<li style="font-family:\'Inter\',sans-serif;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.4rem;">{x}</li>'
+        for x in m.get("what_this_is_not", [])
+    )
 
     return f"""
 <p class="page-lead">ek-design brand SSoT, rendered live from <code>design-model.yaml</code>. Every swatch, token, type sample, motif demo, and component preview on this site is auto-generated. To iterate, edit the YAML and run <code>python3 scripts/generate-brand-portal.py</code>.</p>
@@ -399,6 +562,21 @@ def body_index(m: dict) -> str:
   <div class="eyebrow">Active version</div>
   <p style="margin:0;">Schema <strong>{meta['version']}</strong> · Brand version <strong>{meta['brand_version']}</strong> · Status <strong>{meta.get('status','—')}</strong> · Updated <strong>{meta.get('updated','—')}</strong> by <strong>{meta.get('updated_by','—')}</strong>.</p>
 </div>
+
+<h2 class="section">Thesis · {thesis}</h2>
+<p style="font-family:'Chakra Petch',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-0.010em;color:var(--magenta);text-shadow:0 0 12px rgba(255,42,109,0.3);max-width:60ch;margin-bottom:var(--gap-md);">{thesis_one_line}</p>
+<div class="callout cyan" style="margin-bottom:var(--gap-md);">
+<p style="margin:0;font-size:0.95rem;line-height:1.65;">
+<strong style="color:var(--cyan);">Layer separation:</strong>
+the static finance truth layer is dark and sober · the data lineage layer is <span style="color:var(--cyan);">cyan</span> · the agentic execution layer is <span style="color:var(--magenta);">magenta</span> · CFO attention is <span style="color:var(--amber);">amber</span> · health and completion are <span style="color:var(--lime);">lime</span> · true risk is <span style="color:var(--red);">red</span> · atmosphere is steel-violet (rarely text).
+</p>
+</div>
+
+<h2 class="section">Product metaphor</h2>
+<ul style="list-style:none;padding:0;margin:0 0 var(--gap-md) 0;">{metaphor_items}</ul>
+
+<h2 class="section">What this is not</h2>
+<ul style="list-style:none;padding:0;margin:0 0 var(--gap-md) 0;">{not_items}</ul>
 
 <h2 class="section">Identity</h2>
 <p class="page-lead" style="margin-bottom:var(--gap-md);">{m.get('philosophy','').strip()}</p>
@@ -415,15 +593,16 @@ def body_color(m: dict) -> str:
     primitives = m["primitives"]["colors"]
     axis = m["primary_axis_preserved"]
 
-    # Primary axis swatches — manually pick the labelled ones from the axis dict
+    # Primary axis swatches — manually pick the labelled ones from the axis dict.
+    # v0.2 key names: magenta_command, cyan_trace, lime_health (renamed from v0.1).
     axis_pairs = [
-        ("Background", axis["background"], "Default app + marketing surface"),
-        ("Panel", axis["panel"], "Layered surface"),
+        ("Background", axis["background"], "Default app + cockpit + marketing surface (deep violet-black)"),
+        ("Panel", axis["panel"], "Layered finance panel (surface_2)"),
         ("Off-white", axis["off_white"], "Inverted (light-mode opt-in)"),
         ("White", axis["white"], "Text on dark"),
-        ("Magenta CTA", axis["magenta_cta"], "Primary CTA monopoly"),
-        ("Cyan Secondary", axis["cyan_secondary"], "Secondary action / info / link"),
-        ("Lime Alive", axis["lime_alive"], "Success + agent active indicator"),
+        ("Magenta Command", axis.get("magenta_command", axis.get("magenta_cta", "")), "Primary CTA + agentic command monopoly"),
+        ("Cyan Trace", axis.get("cyan_trace", axis.get("cyan_secondary", "")), "Trace / lineage / inspectability / secondary"),
+        ("Lime Health", axis.get("lime_health", axis.get("lime_alive", "")), "Success + completion + agent active"),
     ]
     axis_html = ""
     for name, hex_v, role in axis_pairs:
@@ -526,6 +705,24 @@ def body_color(m: dict) -> str:
 <p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">These do not change. Any palette evolution may modify atmospheric tints / motifs — never these.</p>
 <div class="swatch-grid">{axis_html}</div>
 
+<h2 class="section">Finance directionality (★ v0.2)</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">Semantic colors for variance / delta / financial directionality. <strong>Distinct from agent state.</strong> Locked invariant <code>finance_directionality_locked</code> enforces these appear ONLY in variance, delta, or financial-health contexts — never as brand accent, never as decorative chart color, never as a button background.</p>
+<div class="swatch-grid">
+  <div class="swatch" style="background:#4ADE80;color:#0A0A14;"><div><div class="swatch-name">Gain</div><span class="swatch-hex">#4ADE80</span></div><div class="swatch-role">Positive variance · favorable · under budget · on target</div></div>
+  <div class="swatch" style="background:#F87171;color:#0A0A14;"><div><div class="swatch-name">Loss</div><span class="swatch-hex">#F87171</span></div><div class="swatch-role">Negative variance · unfavorable · over budget · miss</div></div>
+  <div class="swatch" style="background:#FBBF24;color:#0A0A14;"><div><div class="swatch-name">Watch</div><span class="swatch-hex">#FBBF24</span></div><div class="swatch-role">Approaching threshold · forecast uncertainty · stale data</div></div>
+  <div class="swatch" style="background:#60A5FA;color:#0A0A14;"><div><div class="swatch-name">Info Blue</div><span class="swatch-hex">#60A5FA</span></div><div class="swatch-role">Calm informational · model version · environment · NEVER as link (that's cyan)</div></div>
+</div>
+
+<h2 class="section">Surface architecture (★ v0.2)</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">Four layered dark surfaces, all violet-undertone, used as a depth stack. Default border <code>#2C2A45</code> (steel-violet-tinted).</p>
+<div class="swatch-grid">
+  <div class="swatch" style="background:#070711;color:#F0F0F5;"><div><div class="swatch-name">bg (neutral.950)</div><span class="swatch-hex">#070711</span></div><div class="swatch-role">App / cockpit / marketing default</div></div>
+  <div class="swatch" style="background:#10101A;color:#F0F0F5;"><div><div class="swatch-name">surface_1 (neutral.900)</div><span class="swatch-hex">#10101A</span></div><div class="swatch-role">Topbar / rail / subtle chrome</div></div>
+  <div class="swatch" style="background:#171727;color:#F0F0F5;"><div><div class="swatch-name">surface_2 (neutral.850)</div><span class="swatch-hex">#171727</span></div><div class="swatch-role">Default panel chrome (finance_panel default)</div></div>
+  <div class="swatch" style="background:#23233A;color:#F0F0F5;"><div><div class="swatch-name">surface_3 (neutral.800)</div><span class="swatch-hex">#23233A</span></div><div class="swatch-role">Selected / nested panel</div></div>
+</div>
+
 <h2 class="section">Surfaces — mode per surface</h2>
 {surf_html}
 
@@ -563,20 +760,26 @@ def body_typography(m: dict) -> str:
         )
 
     # Scale ladder — render each named step at its scale
-    scale_keys = ["display", "h1", "h2", "h3", "body_lg", "body", "small", "eyebrow", "mono", "mono_sm", "code"]
+    scale_keys = ["display", "h1", "h2", "h3", "body_lg", "body", "small", "eyebrow", "mono", "mono_sm", "code", "kpi_value", "kpi_label", "table_numeric", "delta", "timestamp"]
     scale_html = ""
     sample_by_key = {
         "display": "Boot the agent",
         "h1": "Operator console",
         "h2": "Section header",
         "h3": "Subsection",
-        "body_lg": "Lead paragraph — the operator wants information, not whitespace.",
+        "body_lg": "Lead paragraph: the operator wants information, not whitespace.",
         "body": "Body copy. ek-design treats the user as the operator; surface state plainly (model, agent ID, latency, token count).",
         "small": "Small print, metadata, label text",
         "eyebrow": "Eyebrow / Section Label",
         "mono": "model: claude-opus-4-7 · 2,847 tokens · 212ms",
         "mono_sm": "agent_id_0042 · 2026-05-24T22:35:54.013Z",
         "code": "const result = await agent.run({ task, model });",
+        # ★ v0.2 finance type roles
+        "kpi_value": "$12,847,392",
+        "kpi_label": "ARR · annual recurring",
+        "table_numeric": "1,847,392.50    2,140,000.00    -292,607.50",
+        "delta": "+18.4%   -2.1%   +312bps",
+        "timestamp": "2026-05-24T22:35:54.013Z · synced 12s ago",
     }
     for key in scale_keys:
         if key not in typ:
@@ -604,14 +807,33 @@ def body_typography(m: dict) -> str:
             f'</div>'
         )
 
+    # ★ v0.2 — typography modes
+    modes_html = ""
+    modes = typ.get("modes", {})
+    for mode_name, mode_def in modes.items():
+        body_alt = f' · <em>body_alt:</em> {mode_def.get("body_alt")}' if mode_def.get("body_alt") else ""
+        mono_alt = f' · <em>mono_alt:</em> {mode_def.get("mono_alt")}' if mode_def.get("mono_alt") else ""
+        tnum = " · <strong>tabular numerals required</strong>" if mode_def.get("tabular_numerals_required") else ""
+        modes_html += (
+            f'<div class="surface-card">'
+            f'<h3>{mode_name.replace("_", " ").title()}</h3>'
+            f'<div class="surface-meta">display: <strong>{mode_def["display"]}</strong> · body: <strong>{mode_def["body"]}</strong> · mono: <strong>{mode_def["mono"]}</strong> · density: <strong>{mode_def["density"]}</strong>{tnum}</div>'
+            f'<p class="surface-rationale">{mode_def["description"]}{body_alt}{mono_alt}</p>'
+            f'</div>'
+        )
+
     return f"""
-<p class="page-lead">Three families. <strong>Chakra Petch</strong> for display + headers + eyebrows + UI chrome (cyber-coded angled cuts, highly legible). <strong>Inter</strong> for body + labels (neutral workhorse). <strong>JetBrains Mono</strong> for every identifier — code, paths, IDs, timestamps, model names, hashes, token counts. Mono-for-identifiers is a locked invariant; see <a href="color.html#invariants">color → invariants</a>.</p>
+<p class="page-lead">Three families. <strong>Chakra Petch</strong> for display + headers + eyebrows + UI chrome (cyber-coded angled cuts, highly legible). <strong>Inter</strong> for body + labels (neutral workhorse). <strong>JetBrains Mono</strong> for every identifier and every finance numeric (with tabular numerals locked via <code>font-feature-settings: "tnum"</code>). Mono-for-identifiers and tabular-numerals-for-finance are locked invariants; see <a href="color.html#invariants">color → invariants</a>.</p>
+
+<h2 class="section">Modes (★ v0.2)</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">Same locked families, different density expectations.</p>
+{modes_html}
 
 <h2 class="section">Families</h2>
 {fam_html}
 
 <h2 class="section">Scale ladder</h2>
-<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">All sizes use <code>clamp(min, preferred, max)</code> for fluid scaling. Letter-spacing is explicit per step (Linear/Vercel pattern).</p>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">All sizes use <code>clamp(min, preferred, max)</code> for fluid scaling. Letter-spacing is explicit per step (Linear/Vercel pattern). v0.2 adds 5 finance type roles (<code>kpi_value</code>, <code>kpi_label</code>, <code>table_numeric</code>, <code>delta</code>, <code>timestamp</code>) all with tabular numerals.</p>
 {scale_html}
 
 <h2 class="section">Google Fonts URL</h2>
@@ -652,6 +874,55 @@ def body_motifs(m: dict) -> str:
             "rationale": "Replaces <code>border-radius</code> on hero / feature surfaces for an angular cyber register. Use sparingly — overuse reads as costume. Render via <code>clip-path</code>.",
             "stage": '<div class="diagonal-cut">CYBERPUNK PANEL</div>',
             "code": 'clip-path: polygon(\n  12px 0, 100% 0,\n  100% calc(100% - 12px), calc(100% - 12px) 100%,\n  0 100%, 0 12px\n);',
+        },
+        # ★ v0.2 finance motifs
+        "dark-ledger-panel": {
+            "title": "Dark Ledger Panel",
+            "rationale": "The default chrome for FinanceOS surfaces. Sober finance panel: <code>surface_2</code> background, soft border, minimal glow, dense metric hierarchy. Used for P&amp;L, runway, revenue bridge, Opex, headcount, COGS, forecast variance. <strong>When to use:</strong> static finance truth display. <strong>When NOT to use:</strong> agent-active panels — those upgrade to neon-operator-layer.",
+            "stage": '<div class="finance-panel" style="width:100%;max-width:480px;"><div class="fp-header"><div class="fp-title">Runway · forecast</div><div class="fp-meta"><span>FY26 Q2</span><span style="color:var(--cyan);">synced 12s ago</span><span class="trace-link">drill →</span></div></div><div style="font-family:\'JetBrains Mono\',monospace;font-feature-settings:\'tnum\';font-size:0.875rem;line-height:1.7;"><div>cash on hand:    $12,847,392</div><div>monthly burn:    <span style="color:var(--loss);">$847,212</span></div><div>runway:          <span style="color:var(--amber);">15.2 months</span></div></div></div>',
+            "code": 'background: var(--surface-2, #171727);\nborder: 1px solid var(--border-soft);\nradius: 6px;\npadding: 16px;\n/* glow_default: none — sober by default */',
+        },
+        "neon-operator-layer": {
+            "title": "Neon Operator Layer",
+            "rationale": "Thin luminous overlay applied ONLY when an agent is actively acting on a surface, a command is executing, or an approval is pending. Magenta = command, cyan = trace, lime = complete. <strong>When NOT to use:</strong> as decoration on every card — violates <code>agent_command_magenta_only</code> invariant.",
+            "stage": '<div class="finance-panel active" style="width:100%;max-width:480px;"><div class="fp-header"><div class="fp-title" style="color:var(--magenta);">Revenue bridge · running forecast</div><div class="fp-meta"><span class="data-badge manual"><span class="dot"></span>agent · acting</span></div></div><div style="font-family:\'JetBrains Mono\',monospace;color:var(--fg-muted);font-size:0.78rem;">claude-opus-4-7 running forecast() · 4.2k tokens · 1.8s elapsed</div></div>',
+            "code": 'box-shadow: 0 0 12px rgba(255,42,109,0.4),\n            0 0 24px rgba(255,42,109,0.2);\n/* operator_layer_glow effect — used only on active surfaces */',
+        },
+        "trace-rail": {
+            "title": "Trace Rail",
+            "rationale": "Cyan micro-line breadcrumb showing source lineage / drill-through path. Answers \"where did this number come from?\" Bound to <code>cyan_for_trace_only</code> invariant. <strong>When to use:</strong> any computed financial metric. <strong>When NOT to use:</strong> as decorative accent.",
+            "stage": '<div class="trace-rail"><span class="crumb">QuickBooks</span><span class="arrow">→</span><span class="crumb">P&amp;L · operating expenses</span><span class="arrow">→</span><span class="crumb">payroll</span><span class="arrow">→</span><span class="crumb">eng headcount</span></div>',
+            "code": 'color: var(--cyan, #00D1FF);\nfont-family: "JetBrains Mono", monospace;\n/* crumb: border 1px solid rgba(0,209,255,0.3) */',
+        },
+        "agent-event-feed": {
+            "title": "Agent Event Feed",
+            "rationale": "Timestamped feed of tool calls, sync events, approvals, blocked tasks. Terminal-inset styling sparingly. Each event-type maps to a semantic color (command → magenta, sync → cyan, approval → amber, complete → lime, error → red).",
+            "stage": '<div class="terminal-demo" style="width:100%;max-width:520px;"><div><span class="term-meta">[22:35:54]</span> <span style="color:var(--cyan);">→ sync</span>: QuickBooks · invoices · <span class="term-prompt">204 records</span></div><div><span class="term-meta">[22:35:58]</span> <span style="color:var(--magenta);">→ command</span>: run forecast() · revenue · FY26</div><div><span class="term-meta">[22:36:12]</span> <span style="color:var(--amber);">→ approval-required</span>: model update · runway recalc</div><div><span class="term-meta">[22:36:24]</span> <span class="term-prompt">→ complete</span>: forecast accepted</div></div>',
+            "code": 'inherits: terminal_block\nevent_types:\n  command:           color: magenta\n  sync:              color: cyan\n  approval_request:  color: amber\n  approval_granted:  color: lime\n  error:             color: red',
+        },
+        "forecast-confidence-halo": {
+            "title": "Forecast Confidence Halo",
+            "rationale": "Subtle inset border indicating forecast confidence state. Amber halo = degraded confidence (uncertainty). Red halo = materially broken / breach threshold. <strong>When NOT to use:</strong> for any non-confidence signal — dilutes the watch semantic.",
+            "stage": '<div style="display:flex;gap:12px;flex-wrap:wrap;"><div class="kpi-card confidence-halo-amber" style="min-width:160px;"><div class="kpi-label" style="color:var(--amber);"><span class="dot"></span>Forecast · Q3 ARR</div><div class="kpi-value">$14.2M</div><div class="kpi-delta gain">+8.2% · confidence: 64%</div></div><div class="kpi-card confidence-halo-red" style="min-width:160px;"><div class="kpi-label" style="color:var(--red);"><span class="dot"></span>Runway · breach</div><div class="kpi-value">9.1mo</div><div class="kpi-delta loss">-6.1mo from plan</div></div></div>',
+            "code": 'confidence_halo_amber: inset 0 0 0 1px rgba(255,184,0,0.5)\nconfidence_halo_red:   inset 0 0 0 1px rgba(255,0,60,0.5)',
+        },
+        "board-safe-mode": {
+            "title": "Board-Safe Mode",
+            "rationale": "Same dark system with reduced neon for PDF exports / board screenshots / IC memo embeds. All <code>neon_glow_*</code> tokens collapse to inset 1px borders; scanlines removed; animations paused. Focus ring stays visible for accessibility. Activated via <code>.board-safe</code> body class. Bound to <code>board_safe_export_mode</code> invariant.",
+            "stage": '<div style="display:flex;gap:12px;flex-wrap:wrap;"><div><div style="font-size:0.7rem;color:var(--fg-muted);font-family:\'JetBrains Mono\',monospace;margin-bottom:6px;">live cockpit</div><button class="btn-primary">Run forecast</button></div><div><div style="font-size:0.7rem;color:var(--fg-muted);font-family:\'JetBrains Mono\',monospace;margin-bottom:6px;">board-safe export</div><button style="background:transparent;color:var(--magenta);border:1px solid var(--magenta);padding:10px 20px;border-radius:4px;font-family:\'Chakra Petch\',sans-serif;font-weight:600;font-size:0.9375rem;letter-spacing:0.020em;">Run forecast</button></div></div>',
+            "code": 'body.board-safe {\n  /* all effects.neon_glow_* override to inset 1px border */\n  --neon-glow-magenta: inset 0 0 0 1px var(--magenta);\n  --scanline-overlay: none;\n  --animation: none;\n}',
+        },
+        "executive-command-state": {
+            "title": "Executive Command State",
+            "rationale": "Magenta command button or command bar for high-leverage agentic actions: \"Run forecast\", \"Investigate variance\", \"Generate board memo\", \"Approve model update\", \"Reconcile source\". This is where the operator delegates to an agent. Bound to <code>agent_command_magenta_only</code>.",
+            "stage": '<div class="command-bar"><span class="agent-status">agent · ready</span><input placeholder="Run forecast for FY26 Q3 ARR including new SDR hires" /><span class="tool-chip">qb</span><span class="tool-chip">forecast</span><button>Run</button></div>',
+            "code": 'background: var(--bg-1);\nborder: 1px solid #2C2A45;\nradius: 8px;\nprimary_action: background magenta · color white',
+        },
+        "machine-identifier-strip": {
+            "title": "Machine Identifier Strip",
+            "rationale": "Compact monospace strip displaying agent IDs / model version / source freshness / period close status / environment metadata. Usually sits in topbar or page header. Mono-for-identifiers invariant locks the typography.",
+            "stage": '<div style="background:var(--bg-1);border:1px solid #2C2A45;border-radius:6px;padding:10px 16px;display:flex;gap:20px;flex-wrap:wrap;font-family:\'JetBrains Mono\',monospace;font-size:0.72rem;"><span style="color:var(--fg-muted);">env:</span><span>prod</span><span style="color:var(--fg-muted);">model:</span><span style="color:var(--magenta);">claude-opus-4-7</span><span style="color:var(--fg-muted);">period:</span><span>FY26·Q2·CLOSED</span><span style="color:var(--fg-muted);">last sync:</span><span style="color:var(--lime);">12s ago</span><span style="color:var(--fg-muted);">agent:</span><span style="color:var(--cyan);">エ·0042</span></div>',
+            "code": 'font-family: "JetBrains Mono", monospace;\nfont-size: 0.72rem;\n/* identifiers in magenta (model) / lime (live) / cyan (agent) / fg (literal) */',
         },
     }
 
@@ -756,11 +1027,436 @@ focus: border cyan.500 + focus-ring cyan</pre>
   <span class="spec-key">return</span> result;
 {"}"}</pre>
 </div>
-<pre class="spec-pre">background: neutral.900 (#0F0F18)
+<pre class="spec-pre">background: neutral.900 (#10101A)
 color: neutral.0 (#FFFFFF)
-border: 1px solid slate.700
+border: 1px solid neutral.700 (#2C2A45)
 syntax accent: cyan.500
 font-family: JetBrains Mono</pre>
+
+<!-- ★ v0.2 finance cockpit components ───────────────────────────────── -->
+
+<h2 class="section">KPI card (★ v0.2)</h2>
+<div class="component-stage">
+  <div class="kpi-card">
+    <div class="kpi-label"><span class="dot" style="color:var(--lime);"></span>Cash · on hand</div>
+    <div class="kpi-value">$12.8M</div>
+    <div class="kpi-delta gain">+8.4% MoM</div>
+  </div>
+  <div class="kpi-card state-watch">
+    <div class="kpi-label" style="color:var(--amber);"><span class="dot"></span>Runway · forecast</div>
+    <div class="kpi-value">15.2mo</div>
+    <div class="kpi-delta loss">-1.8mo vs plan</div>
+  </div>
+  <div class="kpi-card state-breach">
+    <div class="kpi-label" style="color:var(--red);"><span class="dot"></span>Covenant · breach</div>
+    <div class="kpi-value">62%</div>
+    <div class="kpi-delta loss">7pp over threshold</div>
+  </div>
+  <div class="kpi-card state-agent">
+    <div class="kpi-label" style="color:var(--magenta);"><span class="dot"></span>Agent · recomputing ARR</div>
+    <div class="kpi-value">$14.2M</div>
+    <div class="kpi-delta gain">+8.2% confidence: 64%</div>
+  </div>
+</div>
+<pre class="spec-pre">label:   kpi_label (Chakra Petch 600 · 0.72rem · letter-spacing 0.14em · uppercase)
+value:   kpi_value (JetBrains Mono 700 · 1.875rem · tnum)
+delta:   delta (JetBrains Mono 600 · tnum · color_gain finance.gain / color_loss finance.loss)
+state:   healthy (lime) · watch (amber border) · breach (red border) · agent_active (magenta border + neon-glow)</pre>
+
+<h2 class="section">Finance panel (★ v0.2)</h2>
+<div class="component-stage">
+  <div class="finance-panel" style="width:100%;max-width:520px;">
+    <div class="fp-header">
+      <div class="fp-title">Operating expense · FY26 Q2</div>
+      <div class="fp-meta">
+        <span class="data-badge synced"><span class="dot"></span>synced 12s ago</span>
+        <span class="trace-link">drill →</span>
+      </div>
+    </div>
+    <div class="variance-row header">
+      <div>Line</div><div class="num">Actual</div><div class="num">Budget</div><div class="num">Forecast</div><div class="num">Var $</div><div class="num">Var %</div>
+    </div>
+    <div class="variance-row">
+      <div class="label">Payroll · Engineering</div>
+      <div class="num">847,212</div>
+      <div class="num budget">820,000</div>
+      <div class="num forecast">840,000</div>
+      <div class="num loss">-27,212</div>
+      <div class="num loss">-3.3%</div>
+    </div>
+    <div class="variance-row">
+      <div class="label">AWS · compute</div>
+      <div class="num">142,847</div>
+      <div class="num budget">160,000</div>
+      <div class="num forecast">150,000</div>
+      <div class="num gain">+17,153</div>
+      <div class="num gain">+10.7%</div>
+    </div>
+    <div class="variance-row">
+      <div class="label">AI · model spend</div>
+      <div class="num">28,471</div>
+      <div class="num budget">22,000</div>
+      <div class="num forecast">26,000</div>
+      <div class="num loss">-6,471</div>
+      <div class="num loss">-29.4%</div>
+    </div>
+  </div>
+</div>
+<pre class="spec-pre">background:    surface_2 (neutral.850, #171727)
+border:        1px solid border_soft (neutral.800, #23233A)
+radius:        component (6px)
+glow_default:  none  /* sober — Dark Ledger thesis */
+glow_active:   operator_layer_glow  /* ONLY when agent is acting */
+header:        title (Chakra Petch h3) + period (timestamp) + source_freshness (cyan) + drill_through (cyan)</pre>
+
+<h2 class="section">Agent command bar (★ v0.2)</h2>
+<div class="component-stage">
+  <div class="command-bar">
+    <span class="agent-status">agent · ready</span>
+    <input placeholder="Run forecast for FY26 Q3 ARR including new SDR hires" />
+    <span class="tool-chip">qb</span>
+    <span class="tool-chip">forecast</span>
+    <span class="tool-chip">hubspot</span>
+    <button>Run</button>
+  </div>
+</div>
+<pre class="spec-pre">background:     surface_1 (neutral.900, #10101A)
+border:         1px solid border (neutral.700, #2C2A45)
+primary_action: magenta — agentic command monopoly (locked invariant)
+tool_chip:      cyan border + cyan text — trace lineage register
+agent_status:   magenta mono</pre>
+
+<h2 class="section">Agent-status badges (★ expanded v0.2)</h2>
+<div class="component-stage">
+  <span class="badge active"><span class="dot"></span>active</span>
+  <span class="badge thinking"><span class="dot"></span>thinking</span>
+  <span class="badge tool"><span class="dot"></span>tool_use</span>
+  <span class="badge active" style="color:var(--magenta);box-shadow:0 0 8px var(--magenta);"><span class="dot"></span>command_active</span>
+  <span class="badge complete"><span class="dot"></span>complete</span>
+  <span class="badge blocked"><span class="dot"></span>blocked</span>
+  <span class="badge blocked" style="border-style:dashed;"><span class="dot"></span>approval_required</span>
+  <span class="badge error"><span class="dot"></span>error</span>
+  <span class="badge idle"><span class="dot"></span>idle</span>
+</div>
+<pre class="spec-pre">active            · lime  + neon-glow-lime         (always-on agent alive indicator)
+thinking          · cyan  + pulse animation         (model generating)
+tool_use          · steel_violet.300               (tool call in progress)
+command_active    · magenta + neon-glow-magenta    (★ v0.2 — agent executing a command)
+complete          · lime
+blocked           · amber                          (awaiting user)
+approval_required · amber dashed border             (★ v0.2 — needs decision)
+error             · red
+idle              · slate</pre>
+
+<h2 class="section">Data freshness badge (★ v0.2)</h2>
+<div class="component-stage">
+  <span class="data-badge live"><span class="dot"></span>live</span>
+  <span class="data-badge synced"><span class="dot"></span>synced</span>
+  <span class="data-badge stale"><span class="dot"></span>stale</span>
+  <span class="data-badge failed"><span class="dot"></span>failed</span>
+  <span class="data-badge manual"><span class="dot"></span>manual override</span>
+</div>
+<pre class="spec-pre">live             · lime    (sub-minute fresh)
+synced           · cyan    (within sync interval)
+stale            · amber   (past freshness threshold)
+failed           · red     (last sync failed)
+manual_override  · magenta (human override active)</pre>
+
+<h2 class="section">Source trace row (★ v0.2)</h2>
+<div class="component-stage" style="flex-direction:column;align-items:stretch;gap:0;max-width:720px;">
+  <div style="display:grid;grid-template-columns:1.3fr 1fr 0.9fr 0.7fr 0.5fr 0.5fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-soft);font-family:'Chakra Petch',sans-serif;font-size:0.7rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--fg-muted);">
+    <div>Source</div><div>Object</div><div>Last sync</div><div>Owner</div><div style="text-align:right;">Conf</div><div style="text-align:right;">Drill</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.3fr 1fr 0.9fr 0.7fr 0.5fr 0.5fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-soft);font-family:'JetBrains Mono',monospace;font-size:0.8125rem;align-items:center;">
+    <div style="color:var(--cyan);">QuickBooks</div>
+    <div style="color:var(--fg-muted);">invoices</div>
+    <div style="color:var(--fg-muted);">12s ago</div>
+    <div style="font-family:'Inter',sans-serif;">eric</div>
+    <div style="text-align:right;color:var(--gain);">99%</div>
+    <div style="text-align:right;color:var(--cyan);">↗</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.3fr 1fr 0.9fr 0.7fr 0.5fr 0.5fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-soft);font-family:'JetBrains Mono',monospace;font-size:0.8125rem;align-items:center;">
+    <div style="color:var(--cyan);">HubSpot</div>
+    <div style="color:var(--fg-muted);">deals</div>
+    <div style="color:var(--amber);">4h ago</div>
+    <div style="font-family:'Inter',sans-serif;">jay</div>
+    <div style="text-align:right;color:var(--amber);">82%</div>
+    <div style="text-align:right;color:var(--cyan);">↗</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.3fr 1fr 0.9fr 0.7fr 0.5fr 0.5fr;gap:12px;padding:8px 0;font-family:'JetBrains Mono',monospace;font-size:0.8125rem;align-items:center;">
+    <div style="color:var(--cyan);">AWS · Cost Explorer</div>
+    <div style="color:var(--fg-muted);">monthly_spend</div>
+    <div style="color:var(--red);">failed</div>
+    <div style="font-family:'Inter',sans-serif;">eric</div>
+    <div style="text-align:right;color:var(--red);">—</div>
+    <div style="text-align:right;color:var(--cyan);">↗</div>
+  </div>
+</div>
+<pre class="spec-pre">columns: source_system (cyan mono) · object (mono dim) · last_sync (timestamp · freshness-colored)
+         · owner (Inter) · confidence (delta · gain/loss/amber) · drill_through (cyan arrow)
+border:  1px solid neutral.800 between rows</pre>
+
+<h2 class="section">Variance row — embedded in finance_panel above</h2>
+<p style="color:var(--fg-muted);font-size:0.9rem;margin-bottom:var(--gap-md);">See the Finance panel demo above — each row is a <code>variance_row</code> component instance. Columns: label · actual · budget · forecast · variance$ · variance% · materiality · agent_recommendation. All numerics use JetBrains Mono + <code>font-feature-settings: "tnum"</code>.</p>
+
+<h2 class="section">Approval card (★ v0.2)</h2>
+<div class="component-stage">
+  <div class="approval-card">
+    <div class="ac-header">Approval required · agent proposal</div>
+    <h4>Update revenue forecast model</h4>
+    <p style="color:var(--fg-muted);font-size:0.85rem;margin:0 0 12px 0;">Agent has detected a structural shift in close rates and proposes updating the FY26 forecast multiplier from 0.84 → 0.91.</p>
+    <div class="ac-evidence">
+      → 8 weeks of close-rate data (HubSpot)<br>
+      → χ² = 17.4, p &lt; 0.001<br>
+      → confidence: 94%
+    </div>
+    <div class="ac-impact">
+      Impact on Q3 ARR forecast: <span class="gain">+$1.2M (+8.4%)</span><br>
+      Impact on runway: <span class="gain">+2.1 months</span>
+    </div>
+    <div class="ac-actions">
+      <button class="approve">Approve</button>
+      <button class="reject">Reject</button>
+      <button class="inspect">Inspect</button>
+    </div>
+  </div>
+</div>
+<pre class="spec-pre">background:  neutral.850
+border:      1px DASHED amber  /* dashed signals "pending decision" */
+header:      amber Chakra Petch 600 uppercase
+evidence:    terminal-block-inset (black + cyan border + JetBrains Mono)
+impact:      mono + tnum · gain/loss colors
+actions:     approve (magenta) · reject (red ghost) · inspect (cyan ghost)</pre>
+
+<h2 class="section">Agent log (★ v0.2)</h2>
+<div class="component-stage">
+  <div class="terminal-demo" style="width:100%;max-width:560px;">
+    <div><span class="term-meta">[22:35:54.013]</span> <span style="color:var(--cyan);">→ sync</span>: QuickBooks · invoices · <span class="term-prompt">204 records · 142ms</span></div>
+    <div><span class="term-meta">[22:35:58.847]</span> <span style="color:var(--magenta);">→ command</span>: run forecast() · revenue · FY26 · Q3</div>
+    <div><span class="term-meta">[22:36:01.022]</span> <span style="color:#6B6BC4;">→ tool_use</span>: bash · python compute_forecast.py</div>
+    <div><span class="term-meta">[22:36:12.541]</span> <span style="color:var(--amber);">→ approval-required</span>: model update · runway recalc</div>
+    <div><span class="term-meta">[22:36:24.890]</span> <span class="term-prompt">→ complete</span>: forecast accepted · runway 15.2mo → 17.3mo</div>
+    <div><span class="term-meta">[22:36:47.301]</span> <span style="color:var(--red);">→ error</span>: AWS Cost Explorer sync failed (HTTP 503)</div>
+  </div>
+</div>
+<pre class="spec-pre">inherits:        terminal_block (pure black + cyan border + JetBrains Mono)
+timestamp_color: neutral.500
+event_types:
+  command:           magenta  /* agentic action */
+  sync:              cyan     /* data lineage */
+  tool_use:          steel_violet.300
+  approval_request:  amber
+  approval_granted:  lime
+  complete:          lime
+  error:             red</pre>
+
+<h2 class="section">Board export preview (★ v0.2)</h2>
+<p style="color:var(--fg-muted);font-size:0.9rem;margin-bottom:var(--gap-md);">Same dashboard, reduced neon. Live cockpit on the left; board-safe export on the right. Glow collapses to inset 1px border; animations pause; focus rings stay visible for accessibility. Activated via <code>body.board-safe</code>.</p>
+<div class="component-stage" style="align-items:flex-start;">
+  <div style="flex:1;min-width:240px;">
+    <div style="font-size:0.7rem;color:var(--fg-muted);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">live cockpit</div>
+    <div class="kpi-card state-agent">
+      <div class="kpi-label" style="color:var(--magenta);"><span class="dot"></span>Agent · recomputing ARR</div>
+      <div class="kpi-value">$14.2M</div>
+      <div class="kpi-delta gain">+8.2% confidence: 64%</div>
+    </div>
+  </div>
+  <div style="flex:1;min-width:240px;">
+    <div style="font-size:0.7rem;color:var(--fg-muted);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">board-safe export</div>
+    <div class="kpi-card" style="border:1px solid var(--magenta);box-shadow:none;">
+      <div class="kpi-label" style="color:var(--magenta);"><span class="dot"></span>Agent · recomputing ARR</div>
+      <div class="kpi-value">$14.2M</div>
+      <div class="kpi-delta gain">+8.2% confidence: 64%</div>
+    </div>
+  </div>
+</div>
+<pre class="spec-pre">body.board-safe overrides:
+  --neon-glow-*    → inset 0 0 0 1px {color}
+  --scanline-*     → none
+  --animation-*    → none (paused)
+  --focus-ring-*   → 0 0 0 2px {color}  /* stays visible — a11y */</pre>
+"""
+
+
+# ─── ★ v0.2 — Cockpit reference page (brand portal only, not cepsra impl) ─
+
+def body_cockpit(m: dict) -> str:
+    return """
+<p class="page-lead">Sample FinanceOS layout demonstrating the <strong>Dark Ledger / Neon Operator</strong> thesis applied to a finance cockpit. <strong>This is a brand-portal reference page only</strong> — the actual cepsra cockpit implementation lives in a separate thread. Static finance panels are sober; the agentic execution layer (event feed, command bar, agent-active panels) is where neon emits.</p>
+
+<h2 class="section">Thesis applied</h2>
+<p style="color:var(--fg-muted);max-width:65ch;margin-bottom:var(--gap-md);">Topbar carries <code>machine-identifier-strip</code> motif (env, model, period, source freshness, agent ID). Left rail names the FinanceOS surfaces. Main column shows a KPI strip + a <code>finance_panel</code> (Operating expense variance, sober) + an active <code>finance_panel</code> (Revenue bridge, with <code>neon-operator-layer</code> glow because agent is actively recomputing). Right column carries <code>agent-event-feed</code>.</p>
+
+<div class="cockpit-frame">
+  <!-- Topbar / machine-identifier-strip -->
+  <div class="cockpit-topbar">
+    <span class="brand">PARSPEC · FINANCEOS</span>
+    <span><span style="color:var(--fg-muted);">env:</span> prod</span>
+    <span><span style="color:var(--fg-muted);">model:</span> <span style="color:var(--magenta);">claude-opus-4-7</span></span>
+    <span><span style="color:var(--fg-muted);">period:</span> FY26·Q2·CLOSED</span>
+    <div class="topbar-meta">
+      <span><span style="color:var(--fg-muted);">last sync:</span> <span class="live">12s ago</span></span>
+      <span><span style="color:var(--fg-muted);">agent:</span> <span style="color:var(--cyan);">エ·0042</span></span>
+    </div>
+  </div>
+
+  <div class="cockpit-body">
+    <!-- Left rail -->
+    <nav class="cockpit-rail">
+      <div class="rail-item">Runway</div>
+      <div class="rail-item">Revenue</div>
+      <div class="rail-item active">Opex</div>
+      <div class="rail-item">Headcount</div>
+      <div class="rail-item">Infra / AI COGS</div>
+      <div class="rail-item">Forecast</div>
+      <div class="rail-item">Board Pack</div>
+      <div class="rail-item">Agent Logs</div>
+    </nav>
+
+    <!-- Main column -->
+    <main class="cockpit-main">
+      <!-- KPI strip -->
+      <div class="cockpit-kpi-strip">
+        <div class="kpi-card">
+          <div class="kpi-label"><span class="dot" style="color:var(--lime);"></span>Cash</div>
+          <div class="kpi-value">$12.8M</div>
+          <div class="kpi-delta gain">+8.4% MoM</div>
+        </div>
+        <div class="kpi-card state-watch">
+          <div class="kpi-label" style="color:var(--amber);"><span class="dot"></span>Runway</div>
+          <div class="kpi-value">15.2mo</div>
+          <div class="kpi-delta loss">-1.8mo vs plan</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span class="dot" style="color:var(--loss);"></span>Burn</div>
+          <div class="kpi-value">$847K</div>
+          <div class="kpi-delta loss">+3.3% MoM</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span class="dot" style="color:var(--lime);"></span>ARR</div>
+          <div class="kpi-value">$14.2M</div>
+          <div class="kpi-delta gain">+18.4% YoY</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span class="dot" style="color:var(--cyan);"></span>Gross Margin</div>
+          <div class="kpi-value">74%</div>
+          <div class="kpi-delta gain">+220bps</div>
+        </div>
+      </div>
+
+      <!-- Sober finance panel (no glow — Dark Ledger thesis) -->
+      <div class="finance-panel">
+        <div class="fp-header">
+          <div class="fp-title">Operating expense · FY26 Q2</div>
+          <div class="fp-meta">
+            <span class="data-badge synced"><span class="dot"></span>synced 12s ago</span>
+            <span class="trace-link">drill →</span>
+          </div>
+        </div>
+        <div class="variance-row header">
+          <div>Line</div><div class="num">Actual</div><div class="num">Budget</div><div class="num">Forecast</div><div class="num">Var $</div><div class="num">Var %</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">Payroll · Engineering</div>
+          <div class="num">847,212</div>
+          <div class="num budget">820,000</div>
+          <div class="num forecast">840,000</div>
+          <div class="num loss">-27,212</div>
+          <div class="num loss">-3.3%</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">Payroll · Sales</div>
+          <div class="num">412,890</div>
+          <div class="num budget">410,000</div>
+          <div class="num forecast">408,000</div>
+          <div class="num loss">-2,890</div>
+          <div class="num loss">-0.7%</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">AWS · compute</div>
+          <div class="num">142,847</div>
+          <div class="num budget">160,000</div>
+          <div class="num forecast">150,000</div>
+          <div class="num gain">+17,153</div>
+          <div class="num gain">+10.7%</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">AI · model spend</div>
+          <div class="num">28,471</div>
+          <div class="num budget">22,000</div>
+          <div class="num forecast">26,000</div>
+          <div class="num loss">-6,471</div>
+          <div class="num loss">-29.4%</div>
+        </div>
+      </div>
+
+      <!-- Agent-active finance panel (neon-operator-layer glow) -->
+      <div class="finance-panel active" style="margin-top:16px;">
+        <div class="fp-header">
+          <div class="fp-title" style="color:var(--magenta);">Revenue bridge · agent recomputing</div>
+          <div class="fp-meta">
+            <span class="data-badge manual"><span class="dot"></span>agent · acting</span>
+          </div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;color:var(--fg-muted);font-size:0.78rem;line-height:1.7;">
+          <div>→ claude-opus-4-7 · forecast() · 4.2k tokens · 1.8s elapsed</div>
+          <div>→ trace: HubSpot · deals · close_rate · 8w window</div>
+          <div>→ proposing model update · confidence 94%</div>
+          <div>→ <span style="color:var(--amber);">approval required</span></div>
+        </div>
+      </div>
+
+      <!-- Approval card -->
+      <div style="margin-top:16px;">
+        <div class="approval-card">
+          <div class="ac-header">Approval required · agent proposal</div>
+          <h4>Update revenue forecast multiplier 0.84 → 0.91</h4>
+          <div class="ac-evidence">
+            → 8 weeks of close-rate data (HubSpot)<br>
+            → χ² = 17.4, p &lt; 0.001 · confidence 94%
+          </div>
+          <div class="ac-impact">
+            Q3 ARR forecast: <span class="gain">+$1.2M (+8.4%)</span> · Runway: <span class="gain">+2.1 months</span>
+          </div>
+          <div class="ac-actions">
+            <button class="approve">Approve</button>
+            <button class="reject">Reject</button>
+            <button class="inspect">Inspect</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right column — agent event feed -->
+    <aside class="cockpit-feed">
+      <div class="feed-title">Agent · event feed</div>
+      <div class="feed-event sync"><span class="ts">[22:35:54]</span> → sync: QuickBooks · invoices · 204 records · 142ms</div>
+      <div class="feed-event command"><span class="ts">[22:35:58]</span> → command: run forecast() · revenue · FY26 Q3</div>
+      <div class="feed-event"><span class="ts">[22:36:01]</span> → tool_use: bash · python compute_forecast.py</div>
+      <div class="feed-event approval"><span class="ts">[22:36:12]</span> → approval-required: model update · runway recalc</div>
+      <div class="feed-event complete"><span class="ts">[22:36:24]</span> → complete: forecast accepted · runway 15.2mo → 17.3mo</div>
+      <div class="feed-event error"><span class="ts">[22:36:47]</span> → error: AWS Cost Explorer sync failed (HTTP 503)</div>
+      <div class="feed-event sync"><span class="ts">[22:37:02]</span> → sync: HubSpot · deals · 47 records · 218ms</div>
+      <div class="feed-event"><span class="ts">[22:37:18]</span> → tool_use: web_search · "covenant threshold reporting"</div>
+      <div class="feed-event command"><span class="ts">[22:37:31]</span> → command: generate board memo · Q2 close</div>
+      <div class="feed-event complete"><span class="ts">[22:37:54]</span> → complete: board memo drafted · 3.2k words</div>
+    </aside>
+  </div>
+</div>
+
+<h2 class="section">What this demonstrates</h2>
+<ul style="font-family:'Inter',sans-serif;line-height:1.7;color:var(--fg-muted);">
+  <li><strong style="color:var(--fg);">Dark sober finance truth:</strong> the Opex variance panel has no glow. Numerics are mono with tabular numerals. Gain/loss columns use finance directionality colors (not status colors).</li>
+  <li><strong style="color:var(--fg);">Luminous agent layer:</strong> the Revenue bridge panel and the agent_command_active state on the KPI strip carry the neon-operator-layer glow because an agent is actually acting on them.</li>
+  <li><strong style="color:var(--fg);">Cyan = trace:</strong> source freshness, drill-through links, source_trace_row source names — all cyan. The operator's "where did this come from?" signal.</li>
+  <li><strong style="color:var(--fg);">Amber = attention:</strong> Runway is amber-bordered (watch state). Approval-required event is amber. Stale data badge is amber.</li>
+  <li><strong style="color:var(--fg);">Red = real risk:</strong> covenant breach KPI border. Failed AWS sync. Material loss values. Operator scans red and knows to look.</li>
+  <li><strong style="color:var(--fg);">Magenta = command:</strong> CTAs (Approve, Run, Investigate). Active agent indicators. Command bar primary. Manual override badges. Never decorative.</li>
+  <li><strong style="color:var(--fg);">Mono everywhere identifiers live:</strong> topbar metadata, KPI values, table numerics, deltas, timestamps, agent IDs, model names — all JetBrains Mono.</li>
+</ul>
+
+<h2 class="section">Not for cepsra implementation reference</h2>
+<p style="color:var(--fg-muted);max-width:65ch;">This page is a <em>brand portal artifact</em> — a reference showing the thesis applied. The actual cepsra cockpit (component composition, routing, data plumbing) lives in a separate workstream. When implementing, consume the same <code>design-model.yaml</code> tokens via <code>ek-web</code> and pair them with cepsra's own component architecture.</p>
 """
 
 
@@ -781,6 +1477,7 @@ def main() -> int:
         ("typography.html", "Typography", body_typography(model)),
         ("motifs.html", "Motifs", body_motifs(model)),
         ("components.html", "Components", body_components(model)),
+        ("cockpit.html", "Cockpit", body_cockpit(model)),
     ]
 
     for filename, title, body in pages:
