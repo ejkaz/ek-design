@@ -342,12 +342,17 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
 .kpi-card .kpi-delta.loss { color: var(--loss); }
 .kpi-card.state-watch { border-color: var(--watch); }
 .kpi-card.state-breach { border-color: var(--red); }
-.kpi-card.state-agent { border-color: var(--magenta);
-  box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+/* ★ v0.2.1 — agent-active glow reduced ~50% (was 12px+24px @ 40%/20%).
+   Now hairline magenta border + tight halo. Reads as "agent is here"
+   without becoming a light source. */
+.kpi-card.state-agent { border-color: rgba(255, 42, 109, 0.78);
+  box-shadow: 0 0 0 1px rgba(255, 42, 109, 0.25), 0 0 10px rgba(255, 42, 109, 0.20); }
 
-.finance-panel { background: var(--bg-2); border: 1px solid var(--border-soft);
+.finance-panel { background: var(--bg-2); border: 1px solid #2C2A45;
   border-radius: 6px; padding: 16px; margin-bottom: var(--gap-sm); }
-.finance-panel.active { box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+/* ★ v0.2.1 — active panel glow reduced ~50%. Same logic as kpi state-agent. */
+.finance-panel.active { border-color: rgba(255, 42, 109, 0.78);
+  box-shadow: 0 0 0 1px rgba(255, 42, 109, 0.25), 0 0 10px rgba(255, 42, 109, 0.20); }
 .finance-panel .fp-header { display: flex; justify-content: space-between;
   align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
   margin-bottom: 12px; }
@@ -535,6 +540,9 @@ def body_index(m: dict) -> str:
     notes_html = (meta.get("notes") or "").replace("<", "&lt;").replace(">", "&gt;")
     thesis = m.get("thesis", "")
     thesis_one_line = m.get("thesis_one_line", "")
+    principle = m.get("principle", "")
+    principle_expanded = (m.get("principle_expanded") or "").strip()
+    polarity = m.get("brand_polarity", {})
     cards = ""
     for href, title, desc in [
         ("color.html", "Color", "Primary axis, 6 surfaces, 9 primitive ramps (incl. new finance directionality), 100 role tokens, 15 invariants, 29 avoid entries."),
@@ -555,6 +563,35 @@ def body_index(m: dict) -> str:
         for x in m.get("what_this_is_not", [])
     )
 
+    # ★ v0.2.1 — Brand polarity (two-column tension)
+    polarity_html = ""
+    if polarity:
+        def render_pole(side):
+            label = side.get("label", "")
+            traits_html = "".join(
+                f'<li style="font-family:\'JetBrains Mono\',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">{t}</li>'
+                for t in side.get("traits", [])
+            )
+            return f'<div class="surface-card" style="margin-bottom:0;"><h3 style="margin:0 0 0.6rem 0;">{label}</h3><ul style="list-style:none;padding:0;margin:0;">{traits_html}</ul></div>'
+        polarity_html = (
+            '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-md);margin-bottom:var(--gap-md);">'
+            f'{render_pole(polarity.get("cfo_grade", {}))}'
+            f'{render_pole(polarity.get("agentic_neo_tokyo", {}))}'
+            '</div>'
+            f'<p style="font-family:\'Chakra Petch\',sans-serif;font-size:1.0625rem;color:var(--fg);max-width:65ch;font-weight:500;">{polarity.get("conclusion","")}</p>'
+        )
+
+    # ★ v0.2.1 — principle block
+    principle_html = ""
+    if principle:
+        principle_html = (
+            '<div class="callout cyan" style="margin-bottom:var(--gap-md);background:rgba(0,209,255,0.04);">'
+            f'<div class="eyebrow" style="color:var(--cyan);">Principle · v0.2.1</div>'
+            f'<p style="margin:0 0 0.6rem 0;font-family:\'Chakra Petch\',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-0.010em;color:var(--fg);">{principle}</p>'
+            f'<pre style="margin:0;white-space:pre-wrap;font-family:\'Inter\',sans-serif;font-size:0.92rem;line-height:1.65;color:var(--fg-muted);background:transparent;border:0;padding:0;">{principle_expanded}</pre>'
+            '</div>'
+        )
+
     return f"""
 <p class="page-lead">ek-design brand SSoT, rendered live from <code>design-model.yaml</code>. Every swatch, token, type sample, motif demo, and component preview on this site is auto-generated. To iterate, edit the YAML and run <code>python3 scripts/generate-brand-portal.py</code>.</p>
 
@@ -564,13 +601,20 @@ def body_index(m: dict) -> str:
 </div>
 
 <h2 class="section">Thesis · {thesis}</h2>
-<p style="font-family:'Chakra Petch',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-0.010em;color:var(--magenta);text-shadow:0 0 12px rgba(255,42,109,0.3);max-width:60ch;margin-bottom:var(--gap-md);">{thesis_one_line}</p>
+<p style="font-family:'Chakra Petch',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-0.010em;color:var(--magenta);text-shadow:0 0 6px rgba(255,42,109,0.25);max-width:60ch;margin-bottom:var(--gap-md);">{thesis_one_line}</p>
+
+{principle_html}
+
 <div class="callout cyan" style="margin-bottom:var(--gap-md);">
 <p style="margin:0;font-size:0.95rem;line-height:1.65;">
 <strong style="color:var(--cyan);">Layer separation:</strong>
-the static finance truth layer is dark and sober · the data lineage layer is <span style="color:var(--cyan);">cyan</span> · the agentic execution layer is <span style="color:var(--magenta);">magenta</span> · CFO attention is <span style="color:var(--amber);">amber</span> · health and completion are <span style="color:var(--lime);">lime</span> · true risk is <span style="color:var(--red);">red</span> · atmosphere is steel-violet (rarely text).
+the ledger layer is dark, sober, and numerically precise · the architecture layer is <span style="color:var(--steel-violet);">steel-violet</span> · the command layer is <span style="color:var(--magenta);">magenta</span> · the proof layer is <span style="color:var(--cyan);">cyan</span> · the attention layer is <span style="color:var(--amber);">amber</span> · the health layer is <span style="color:var(--lime);">lime</span> · the risk layer is <span style="color:var(--red);">red</span>.
 </p>
 </div>
+
+<h2 class="section">Brand polarity (★ v0.2.1)</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">{polarity.get("description","")}</p>
+{polarity_html}
 
 <h2 class="section">Product metaphor</h2>
 <ul style="list-style:none;padding:0;margin:0 0 var(--gap-md) 0;">{metaphor_items}</ul>
@@ -593,16 +637,15 @@ def body_color(m: dict) -> str:
     primitives = m["primitives"]["colors"]
     axis = m["primary_axis_preserved"]
 
-    # Primary axis swatches — manually pick the labelled ones from the axis dict.
-    # v0.2 key names: magenta_command, cyan_trace, lime_health (renamed from v0.1).
+    # ★ v0.2.1 — Foundation + Operator Signal are the only "axis" sections now.
+    # Lime moved out (semantic, not brand pillar).
     axis_pairs = [
         ("Background", axis["background"], "Default app + cockpit + marketing surface (deep violet-black)"),
         ("Panel", axis["panel"], "Layered finance panel (surface_2)"),
         ("Off-white", axis["off_white"], "Inverted (light-mode opt-in)"),
         ("White", axis["white"], "Text on dark"),
-        ("Magenta Command", axis.get("magenta_command", axis.get("magenta_cta", "")), "Primary CTA + agentic command monopoly"),
-        ("Cyan Trace", axis.get("cyan_trace", axis.get("cyan_secondary", "")), "Trace / lineage / inspectability / secondary"),
-        ("Lime Health", axis.get("lime_health", axis.get("lime_alive", "")), "Success + completion + agent active"),
+        ("Magenta Command", axis.get("magenta_command", axis.get("magenta_cta", "")), "OPERATOR SIGNAL · agentic command / action / approval"),
+        ("Cyan Trace", axis.get("cyan_trace", axis.get("cyan_secondary", "")), "OPERATOR SIGNAL · proof / lineage / inspectability"),
     ]
     axis_html = ""
     for name, hex_v, role in axis_pairs:
@@ -698,30 +741,72 @@ def body_color(m: dict) -> str:
                 f'<div class="av-reason">{reason}</div></div>'
             )
 
+    # ★ v0.2.1 — Render the explicit 4-tier color taxonomy
+    taxonomy = m.get("color_taxonomy", {})
+    def render_tier(tier_key, eyebrow_color="var(--magenta)"):
+        tier = taxonomy.get(tier_key, {})
+        if not tier:
+            return ""
+        swatches = ""
+        for t in tier.get("tokens", []):
+            name = t.get("name", "")
+            hex_v = t.get("hex", "")
+            role = t.get("role", "")
+            fg = fg_for_bg(hex_v) if hex_v.startswith("#") else "#FFFFFF"
+            swatches += f'<div class="swatch" style="background:{hex_v};color:{fg};"><div><div class="swatch-name">{name}</div><span class="swatch-hex">{hex_v}</span></div><div class="swatch-role">{role}</div></div>'
+        return (
+            f'<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">{tier.get("description","")}</p>'
+            f'<div class="swatch-grid">{swatches}</div>'
+        )
+
+    foundation_block = render_tier("foundation")
+    operator_signal_block = render_tier("operator_signal")
+    semantic_block = render_tier("semantic_states")
+    atmospheric_block = render_tier("atmospheric_architecture")
+    taxonomy_intro = taxonomy.get("description", "")
+
+    # Token role notes
+    notes = m.get("token_role_notes", [])
+    notes_html = "".join(
+        f'<li style="font-family:\'Inter\',sans-serif;font-size:0.9rem;color:var(--fg-muted);margin-bottom:0.45rem;line-height:1.55;">{n}</li>'
+        for n in notes
+    )
+
     return f"""
-<p class="page-lead">Two-tier token model: primitive ramps → role tokens. Every consumer references a role (e.g. <code>roles.cta</code>), never a raw hex. CTA monopoly, semantic-locked statuses, and the no-consumer-indigo rule are enforced by <code>ek-craft</code> (when shipped) reading the <code>invariants</code> block at the bottom of this page.</p>
+<p class="page-lead">Two-tier token model: primitive ramps → role tokens. Every consumer references a role (e.g. <code>roles.cta</code>), never a raw hex. The principle <strong style="color:var(--fg);">"Purple is the world. Magenta is the command. Cyan is the proof"</strong> organizes the entire palette into four tiers below.</p>
 
-<h2 class="section">Primary axis (locked)</h2>
-<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">These do not change. Any palette evolution may modify atmospheric tints / motifs — never these.</p>
+<div class="callout cyan" style="margin-bottom:var(--gap-md);">
+  <p style="margin:0;font-size:0.95rem;line-height:1.65;">
+    <strong style="color:var(--cyan);">v0.2.1 reorganization:</strong>
+    {taxonomy_intro}
+  </p>
+</div>
+
+<h2 class="section">1 · Foundation</h2>
+{foundation_block}
+
+<h2 class="section">2 · Operator Signal (★ the two brand pillars)</h2>
+{operator_signal_block}
+
+<h2 class="section">3 · Semantic States</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">
+  <strong style="color:var(--fg);">★ v0.2.1:</strong> Lime moved here from Primary Axis. Lime is health/completion/live, not a brand pillar. Locked invariant <code>lime_alive_and_success_only</code> + <code>finance_directionality_locked</code>.
+</p>
+{semantic_block}
+
+<h2 class="section">4 · Atmospheric Architecture</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">
+  Steel-violet is the inactive architecture color — borders, nested panels, dormant tool-use, gridlines, secondary chrome. Locked invariant <code>steel_violet_is_architecture</code>.
+</p>
+{atmospheric_block}
+
+<h2 class="section">Token role notes (★ v0.2.1)</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">Hard "do not" rules for token consumption. Read by <code>ek-craft</code> as advisory guidance.</p>
+<ul style="list-style:none;padding:0;margin:0 0 var(--gap-md) 0;">{notes_html}</ul>
+
+<h2 class="section">Primary axis snapshot</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">The immovable anchors: Foundation + Operator Signal. Lime is NOT in primary axis after v0.2.1 (semantic only).</p>
 <div class="swatch-grid">{axis_html}</div>
-
-<h2 class="section">Finance directionality (★ v0.2)</h2>
-<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">Semantic colors for variance / delta / financial directionality. <strong>Distinct from agent state.</strong> Locked invariant <code>finance_directionality_locked</code> enforces these appear ONLY in variance, delta, or financial-health contexts — never as brand accent, never as decorative chart color, never as a button background.</p>
-<div class="swatch-grid">
-  <div class="swatch" style="background:#4ADE80;color:#0A0A14;"><div><div class="swatch-name">Gain</div><span class="swatch-hex">#4ADE80</span></div><div class="swatch-role">Positive variance · favorable · under budget · on target</div></div>
-  <div class="swatch" style="background:#F87171;color:#0A0A14;"><div><div class="swatch-name">Loss</div><span class="swatch-hex">#F87171</span></div><div class="swatch-role">Negative variance · unfavorable · over budget · miss</div></div>
-  <div class="swatch" style="background:#FBBF24;color:#0A0A14;"><div><div class="swatch-name">Watch</div><span class="swatch-hex">#FBBF24</span></div><div class="swatch-role">Approaching threshold · forecast uncertainty · stale data</div></div>
-  <div class="swatch" style="background:#60A5FA;color:#0A0A14;"><div><div class="swatch-name">Info Blue</div><span class="swatch-hex">#60A5FA</span></div><div class="swatch-role">Calm informational · model version · environment · NEVER as link (that's cyan)</div></div>
-</div>
-
-<h2 class="section">Surface architecture (★ v0.2)</h2>
-<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">Four layered dark surfaces, all violet-undertone, used as a depth stack. Default border <code>#2C2A45</code> (steel-violet-tinted).</p>
-<div class="swatch-grid">
-  <div class="swatch" style="background:#070711;color:#F0F0F5;"><div><div class="swatch-name">bg (neutral.950)</div><span class="swatch-hex">#070711</span></div><div class="swatch-role">App / cockpit / marketing default</div></div>
-  <div class="swatch" style="background:#10101A;color:#F0F0F5;"><div><div class="swatch-name">surface_1 (neutral.900)</div><span class="swatch-hex">#10101A</span></div><div class="swatch-role">Topbar / rail / subtle chrome</div></div>
-  <div class="swatch" style="background:#171727;color:#F0F0F5;"><div><div class="swatch-name">surface_2 (neutral.850)</div><span class="swatch-hex">#171727</span></div><div class="swatch-role">Default panel chrome (finance_panel default)</div></div>
-  <div class="swatch" style="background:#23233A;color:#F0F0F5;"><div><div class="swatch-name">surface_3 (neutral.800)</div><span class="swatch-hex">#23233A</span></div><div class="swatch-role">Selected / nested panel</div></div>
-</div>
 
 <h2 class="section">Surfaces — mode per surface</h2>
 {surf_html}
@@ -889,10 +974,10 @@ def body_motifs(m: dict) -> str:
             "code": 'box-shadow: 0 0 12px rgba(255,42,109,0.4),\n            0 0 24px rgba(255,42,109,0.2);\n/* operator_layer_glow effect — used only on active surfaces */',
         },
         "trace-rail": {
-            "title": "Trace Rail",
-            "rationale": "Cyan micro-line breadcrumb showing source lineage / drill-through path. Answers \"where did this number come from?\" Bound to <code>cyan_for_trace_only</code> invariant. <strong>When to use:</strong> any computed financial metric. <strong>When NOT to use:</strong> as decorative accent.",
-            "stage": '<div class="trace-rail"><span class="crumb">QuickBooks</span><span class="arrow">→</span><span class="crumb">P&amp;L · operating expenses</span><span class="arrow">→</span><span class="crumb">payroll</span><span class="arrow">→</span><span class="crumb">eng headcount</span></div>',
-            "code": 'color: var(--cyan, #00D1FF);\nfont-family: "JetBrains Mono", monospace;\n/* crumb: border 1px solid rgba(0,209,255,0.3) */',
+            "title": "Trace Rail · Cyan Proof Rail (★ v0.2.1)",
+            "rationale": "Cyan micro-line breadcrumb showing source <strong>proof</strong>. Answers \"where did this number come from?\" — cyan is the <em>proof</em> channel, not just lineage. Bound to <code>cyan_for_trace_only</code> invariant. <strong>When to use:</strong> any computed financial metric, source attribution, drill-through. <strong>When NOT to use:</strong> as decorative accent.",
+            "stage": '<div style="display:flex;flex-direction:column;gap:8px;"><div class="trace-rail"><span class="crumb">QuickBooks</span><span class="arrow">→</span><span class="crumb">dbt model</span><span class="arrow">→</span><span class="crumb">FinanceOS KPI</span></div><div class="trace-rail"><span class="crumb">Gusto</span><span class="arrow">→</span><span class="crumb">headcount model</span><span class="arrow">→</span><span class="crumb">Opex forecast</span></div><div class="trace-rail"><span class="crumb">AWS CUR</span><span class="arrow">→</span><span class="crumb">AI COGS model</span><span class="arrow">→</span><span class="crumb">Gross margin bridge</span></div></div>',
+            "code": 'color: var(--cyan, #00D1FF);\nfont-family: "JetBrains Mono", monospace;\n/* crumb: border 1px solid rgba(0,209,255,0.3) */\n/* "cyan is the proof" — v0.2.1 principle */',
         },
         "agent-event-feed": {
             "title": "Agent Event Feed",
@@ -923,6 +1008,13 @@ def body_motifs(m: dict) -> str:
             "rationale": "Compact monospace strip displaying agent IDs / model version / source freshness / period close status / environment metadata. Usually sits in topbar or page header. Mono-for-identifiers invariant locks the typography.",
             "stage": '<div style="background:var(--bg-1);border:1px solid #2C2A45;border-radius:6px;padding:10px 16px;display:flex;gap:20px;flex-wrap:wrap;font-family:\'JetBrains Mono\',monospace;font-size:0.72rem;"><span style="color:var(--fg-muted);">env:</span><span>prod</span><span style="color:var(--fg-muted);">model:</span><span style="color:var(--magenta);">claude-opus-4-7</span><span style="color:var(--fg-muted);">period:</span><span>FY26·Q2·CLOSED</span><span style="color:var(--fg-muted);">last sync:</span><span style="color:var(--lime);">12s ago</span><span style="color:var(--fg-muted);">agent:</span><span style="color:var(--cyan);">エ·0042</span></div>',
             "code": 'font-family: "JetBrains Mono", monospace;\nfont-size: 0.72rem;\n/* identifiers in magenta (model) / lime (live) / cyan (agent) / fg (literal) */',
+        },
+        # ★ v0.2.1 motifs (new)
+        "steel-violet-architecture": {
+            "title": "Steel-Violet Architecture (★ v0.2.1)",
+            "rationale": "Inactive machine structure: borders, nested panels, dormant tool-use badges, rail boundaries, gridlines, secondary chrome, disabled machine chrome, forecast-confidence structure before it turns amber/red. <strong>Steel-violet is the color of the machine when it's quiet.</strong> Bound to <code>steel_violet_is_architecture</code> invariant. <strong>NEVER:</strong> primary CTA, error, success, links, finance gain/loss, agent command, decorative purple gradients.",
+            "stage": '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%;max-width:520px;"><div style="background:var(--bg-2);border:1px solid #3B3B92;border-radius:6px;padding:12px;"><div style="font-family:\'Chakra Petch\',sans-serif;font-size:0.7rem;letter-spacing:0.10em;text-transform:uppercase;color:#6B6BC4;margin-bottom:6px;">Inactive panel</div><div style="font-family:\'JetBrains Mono\',monospace;font-size:0.78rem;color:var(--fg-muted);">awaiting source...</div></div><div style="background:var(--bg-2);border:1px solid var(--border-soft);border-radius:6px;padding:12px;"><div style="font-family:\'Chakra Petch\',sans-serif;font-size:0.7rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:6px;">Nested · steel-violet outline</div><div style="background:var(--bg);border:1px solid #3B3B92;border-radius:4px;padding:8px;font-family:\'JetBrains Mono\',monospace;font-size:0.72rem;color:var(--fg-muted);">tool_use · python (idle)</div></div><div style="background:var(--bg-1);border:1px solid #2C2A45;border-radius:6px;padding:12px;"><div style="font-family:\'Chakra Petch\',sans-serif;font-size:0.7rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:6px;">Rail boundary</div><div style="height:60px;background:repeating-linear-gradient(0deg, transparent 0 11px, rgba(59,59,146,0.25) 11px 12px);"></div></div><div style="background:var(--bg-2);border:1px solid #2C2A45;border-radius:6px;padding:12px;"><div style="font-family:\'Chakra Petch\',sans-serif;font-size:0.7rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:6px;">Dormant badge</div><span style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border:1px solid #6B6BC4;border-radius:999px;font-family:\'JetBrains Mono\',monospace;font-weight:500;font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.060em;color:#6B6BC4;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>tool_use</span></div></div>',
+            "code": '--steel-violet: #3B3B92;\n--border-architecture: #2C2A45;\n\n/* Use for: borders, nested panels, dormant\n   tool-use, rail boundaries, gridlines */\n/* NEVER for: CTA, success, error, links,\n   gain/loss, agent command, decorative grad */',
         },
     }
 
@@ -1284,8 +1376,14 @@ def body_cockpit(m: dict) -> str:
     return """
 <p class="page-lead">Sample FinanceOS layout demonstrating the <strong>Dark Ledger / Neon Operator</strong> thesis applied to a finance cockpit. <strong>This is a brand-portal reference page only</strong> — the actual cepsra cockpit implementation lives in a separate thread. Static finance panels are sober; the agentic execution layer (event feed, command bar, agent-active panels) is where neon emits.</p>
 
+<div class="callout cyan" style="margin-bottom:var(--gap-md);background:rgba(0,209,255,0.04);">
+  <p style="margin:0;font-family:'Chakra Petch',sans-serif;font-size:1.25rem;font-weight:600;letter-spacing:-0.005em;color:var(--fg);">
+    Purple is the world. Magenta is the command. Cyan is the proof.
+  </p>
+</div>
+
 <h2 class="section">Thesis applied</h2>
-<p style="color:var(--fg-muted);max-width:65ch;margin-bottom:var(--gap-md);">Topbar carries <code>machine-identifier-strip</code> motif (env, model, period, source freshness, agent ID). Left rail names the FinanceOS surfaces. Main column shows a KPI strip + a <code>finance_panel</code> (Operating expense variance, sober) + an active <code>finance_panel</code> (Revenue bridge, with <code>neon-operator-layer</code> glow because agent is actively recomputing). Right column carries <code>agent-event-feed</code>.</p>
+<p style="color:var(--fg-muted);max-width:65ch;margin-bottom:var(--gap-md);">Topbar carries <code>machine-identifier-strip</code> motif (env, model, period, source freshness, agent ID). Left rail names the FinanceOS surfaces with steel-violet boundaries. Main column shows a KPI strip + a sober <code>finance_panel</code> (Opex variance) + an active <code>finance_panel</code> (Revenue bridge, with v0.2.1 <em>reduced</em> magenta glow because agent is actively recomputing). Right column carries <code>agent-event-feed</code> with an explicit steel-violet dormant tool-use entry.</p>
 
 <div class="cockpit-frame">
   <!-- Topbar / machine-identifier-strip -->
@@ -1432,12 +1530,12 @@ def body_cockpit(m: dict) -> str:
       <div class="feed-title">Agent · event feed</div>
       <div class="feed-event sync"><span class="ts">[22:35:54]</span> → sync: QuickBooks · invoices · 204 records · 142ms</div>
       <div class="feed-event command"><span class="ts">[22:35:58]</span> → command: run forecast() · revenue · FY26 Q3</div>
-      <div class="feed-event"><span class="ts">[22:36:01]</span> → tool_use: bash · python compute_forecast.py</div>
+      <div class="feed-event" style="color:#6B6BC4;"><span class="ts">[22:36:01]</span> → tool_use · steel-violet · bash · python compute_forecast.py (idle)</div>
       <div class="feed-event approval"><span class="ts">[22:36:12]</span> → approval-required: model update · runway recalc</div>
       <div class="feed-event complete"><span class="ts">[22:36:24]</span> → complete: forecast accepted · runway 15.2mo → 17.3mo</div>
       <div class="feed-event error"><span class="ts">[22:36:47]</span> → error: AWS Cost Explorer sync failed (HTTP 503)</div>
       <div class="feed-event sync"><span class="ts">[22:37:02]</span> → sync: HubSpot · deals · 47 records · 218ms</div>
-      <div class="feed-event"><span class="ts">[22:37:18]</span> → tool_use: web_search · "covenant threshold reporting"</div>
+      <div class="feed-event" style="color:#6B6BC4;"><span class="ts">[22:37:18]</span> → tool_use · steel-violet · web_search · "covenant threshold reporting" (queued)</div>
       <div class="feed-event command"><span class="ts">[22:37:31]</span> → command: generate board memo · Q2 close</div>
       <div class="feed-event complete"><span class="ts">[22:37:54]</span> → complete: board memo drafted · 3.2k words</div>
     </aside>
@@ -1453,6 +1551,106 @@ def body_cockpit(m: dict) -> str:
   <li><strong style="color:var(--fg);">Red = real risk:</strong> covenant breach KPI border. Failed AWS sync. Material loss values. Operator scans red and knows to look.</li>
   <li><strong style="color:var(--fg);">Magenta = command:</strong> CTAs (Approve, Run, Investigate). Active agent indicators. Command bar primary. Manual override badges. Never decorative.</li>
   <li><strong style="color:var(--fg);">Mono everywhere identifiers live:</strong> topbar metadata, KPI values, table numerics, deltas, timestamps, agent IDs, model names — all JetBrains Mono.</li>
+</ul>
+
+<h2 class="section">Board-safe preview (★ v0.2.1)</h2>
+<p style="color:var(--fg-muted);max-width:65ch;margin-bottom:var(--gap-md);">Same cockpit, exported for board materials / IC memos / investor decks. <code>body.board-safe</code> collapses all neon glow to inset 1px borders; scanlines and animations are removed. Focus rings stay visible for accessibility. The data leads; the cyberpunk register sits beneath.</p>
+
+<div class="cockpit-frame" style="opacity:0.96;">
+  <div class="cockpit-topbar">
+    <span class="brand" style="text-shadow:none;">PARSPEC · FINANCEOS</span>
+    <span><span style="color:var(--fg-muted);">env:</span> prod</span>
+    <span><span style="color:var(--fg-muted);">model:</span> <span style="color:var(--magenta);">claude-opus-4-7</span></span>
+    <span><span style="color:var(--fg-muted);">period:</span> FY26·Q2·CLOSED</span>
+    <div class="topbar-meta">
+      <span><span style="color:var(--fg-muted);">board export · </span>2026-05-25</span>
+    </div>
+  </div>
+  <div class="cockpit-body">
+    <nav class="cockpit-rail">
+      <div class="rail-item">Runway</div>
+      <div class="rail-item">Revenue</div>
+      <div class="rail-item" style="color:var(--fg);border-left-color:#3B3B92;background:transparent;">Opex</div>
+      <div class="rail-item">Headcount</div>
+      <div class="rail-item">Forecast</div>
+      <div class="rail-item">Board Pack</div>
+    </nav>
+    <main class="cockpit-main">
+      <div class="cockpit-kpi-strip">
+        <div class="kpi-card" style="border:1px solid #2C2A45;">
+          <div class="kpi-label"><span class="dot" style="color:var(--lime);"></span>Cash</div>
+          <div class="kpi-value">$12.8M</div>
+          <div class="kpi-delta gain">+8.4% MoM</div>
+        </div>
+        <div class="kpi-card" style="border:1px solid var(--amber);box-shadow:none;">
+          <div class="kpi-label" style="color:var(--amber);"><span class="dot"></span>Runway</div>
+          <div class="kpi-value">15.2mo</div>
+          <div class="kpi-delta loss">-1.8mo vs plan</div>
+        </div>
+        <div class="kpi-card" style="border:1px solid #2C2A45;">
+          <div class="kpi-label"><span class="dot" style="color:var(--loss);"></span>Burn</div>
+          <div class="kpi-value">$847K</div>
+          <div class="kpi-delta loss">+3.3% MoM</div>
+        </div>
+        <div class="kpi-card" style="border:1px solid var(--magenta);box-shadow:none;">
+          <div class="kpi-label" style="color:var(--magenta);"><span class="dot"></span>ARR · agent</div>
+          <div class="kpi-value">$14.2M</div>
+          <div class="kpi-delta gain">+18.4% YoY</div>
+        </div>
+        <div class="kpi-card" style="border:1px solid #2C2A45;">
+          <div class="kpi-label"><span class="dot" style="color:var(--cyan);"></span>Gross Margin</div>
+          <div class="kpi-value">74%</div>
+          <div class="kpi-delta gain">+220bps</div>
+        </div>
+      </div>
+      <div class="finance-panel" style="border:1px solid #2C2A45;box-shadow:none;">
+        <div class="fp-header">
+          <div class="fp-title">Operating expense · FY26 Q2 (board export)</div>
+          <div class="fp-meta">
+            <span style="color:var(--fg-muted);">closed · audit-ready</span>
+          </div>
+        </div>
+        <div class="variance-row header">
+          <div>Line</div><div class="num">Actual</div><div class="num">Budget</div><div class="num">Forecast</div><div class="num">Var $</div><div class="num">Var %</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">Payroll · Engineering</div>
+          <div class="num">847,212</div>
+          <div class="num budget">820,000</div>
+          <div class="num forecast">840,000</div>
+          <div class="num loss">-27,212</div>
+          <div class="num loss">-3.3%</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">AWS · compute</div>
+          <div class="num">142,847</div>
+          <div class="num budget">160,000</div>
+          <div class="num forecast">150,000</div>
+          <div class="num gain">+17,153</div>
+          <div class="num gain">+10.7%</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">AI · model spend</div>
+          <div class="num">28,471</div>
+          <div class="num budget">22,000</div>
+          <div class="num forecast">26,000</div>
+          <div class="num loss">-6,471</div>
+          <div class="num loss">-29.4%</div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<h2 class="section">Live vs board-safe — what changed</h2>
+<ul style="font-family:'Inter',sans-serif;line-height:1.7;color:var(--fg-muted);">
+  <li>Magenta agent-active glow → flat magenta border (no halo)</li>
+  <li>Right-side agent event feed → removed (boards don't need real-time machine output)</li>
+  <li>Approval card → removed (no pending decisions in audit-ready snapshot)</li>
+  <li>Active rail item glow → muted to steel-violet boundary only</li>
+  <li>KPI sparkline glow → removed</li>
+  <li>Brand mark text-shadow → none</li>
+  <li>All static finance panels carry steel-violet border for crisp PDF rendering</li>
 </ul>
 
 <h2 class="section">Not for cepsra implementation reference</h2>

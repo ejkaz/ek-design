@@ -4,8 +4,8 @@
 <!--
     AUTO-GENERATED FROM design-model.yaml — DO NOT EDIT MANUALLY
     Regenerate: python3 scripts/generate-brand-portal.py
-    Generated: 2026-05-25 06:39 UTC
-    design-model.yaml version: 0.2.0 · brand_version: ek-2026-Q4-v1
+    Generated: 2026-05-25 07:09 UTC
+    design-model.yaml version: 0.2.1 · brand_version: ek-2026-Q4-v1
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -255,12 +255,17 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
 .kpi-card .kpi-delta.loss { color: var(--loss); }
 .kpi-card.state-watch { border-color: var(--watch); }
 .kpi-card.state-breach { border-color: var(--red); }
-.kpi-card.state-agent { border-color: var(--magenta);
-  box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+/* ★ v0.2.1 — agent-active glow reduced ~50% (was 12px+24px @ 40%/20%).
+   Now hairline magenta border + tight halo. Reads as "agent is here"
+   without becoming a light source. */
+.kpi-card.state-agent { border-color: rgba(255, 42, 109, 0.78);
+  box-shadow: 0 0 0 1px rgba(255, 42, 109, 0.25), 0 0 10px rgba(255, 42, 109, 0.20); }
 
-.finance-panel { background: var(--bg-2); border: 1px solid var(--border-soft);
+.finance-panel { background: var(--bg-2); border: 1px solid #2C2A45;
   border-radius: 6px; padding: 16px; margin-bottom: var(--gap-sm); }
-.finance-panel.active { box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+/* ★ v0.2.1 — active panel glow reduced ~50%. Same logic as kpi state-agent. */
+.finance-panel.active { border-color: rgba(255, 42, 109, 0.78);
+  box-shadow: 0 0 0 1px rgba(255, 42, 109, 0.25), 0 0 10px rgba(255, 42, 109, 0.20); }
 .finance-panel .fp-header { display: flex; justify-content: space-between;
   align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
   margin-bottom: 12px; }
@@ -401,7 +406,7 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
   <div class="portal-header-inner">
     <div class="portal-mark">
       <strong>EK·DESIGN</strong>
-      <span class="portal-meta">Brand Portal · v0.2.0 · ek-2026-Q4-v1</span>
+      <span class="portal-meta">Brand Portal · v0.2.1 · ek-2026-Q4-v1</span>
     </div>
     <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item" href="motifs.html">Motifs</a><a class="portal-nav-item" href="components.html">Components</a><a class="portal-nav-item active" href="cockpit.html">Cockpit</a></nav>
   </div>
@@ -412,8 +417,14 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
   
 <p class="page-lead">Sample FinanceOS layout demonstrating the <strong>Dark Ledger / Neon Operator</strong> thesis applied to a finance cockpit. <strong>This is a brand-portal reference page only</strong> — the actual cepsra cockpit implementation lives in a separate thread. Static finance panels are sober; the agentic execution layer (event feed, command bar, agent-active panels) is where neon emits.</p>
 
+<div class="callout cyan" style="margin-bottom:var(--gap-md);background:rgba(0,209,255,0.04);">
+  <p style="margin:0;font-family:'Chakra Petch',sans-serif;font-size:1.25rem;font-weight:600;letter-spacing:-0.005em;color:var(--fg);">
+    Purple is the world. Magenta is the command. Cyan is the proof.
+  </p>
+</div>
+
 <h2 class="section">Thesis applied</h2>
-<p style="color:var(--fg-muted);max-width:65ch;margin-bottom:var(--gap-md);">Topbar carries <code>machine-identifier-strip</code> motif (env, model, period, source freshness, agent ID). Left rail names the FinanceOS surfaces. Main column shows a KPI strip + a <code>finance_panel</code> (Operating expense variance, sober) + an active <code>finance_panel</code> (Revenue bridge, with <code>neon-operator-layer</code> glow because agent is actively recomputing). Right column carries <code>agent-event-feed</code>.</p>
+<p style="color:var(--fg-muted);max-width:65ch;margin-bottom:var(--gap-md);">Topbar carries <code>machine-identifier-strip</code> motif (env, model, period, source freshness, agent ID). Left rail names the FinanceOS surfaces with steel-violet boundaries. Main column shows a KPI strip + a sober <code>finance_panel</code> (Opex variance) + an active <code>finance_panel</code> (Revenue bridge, with v0.2.1 <em>reduced</em> magenta glow because agent is actively recomputing). Right column carries <code>agent-event-feed</code> with an explicit steel-violet dormant tool-use entry.</p>
 
 <div class="cockpit-frame">
   <!-- Topbar / machine-identifier-strip -->
@@ -560,12 +571,12 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
       <div class="feed-title">Agent · event feed</div>
       <div class="feed-event sync"><span class="ts">[22:35:54]</span> → sync: QuickBooks · invoices · 204 records · 142ms</div>
       <div class="feed-event command"><span class="ts">[22:35:58]</span> → command: run forecast() · revenue · FY26 Q3</div>
-      <div class="feed-event"><span class="ts">[22:36:01]</span> → tool_use: bash · python compute_forecast.py</div>
+      <div class="feed-event" style="color:#6B6BC4;"><span class="ts">[22:36:01]</span> → tool_use · steel-violet · bash · python compute_forecast.py (idle)</div>
       <div class="feed-event approval"><span class="ts">[22:36:12]</span> → approval-required: model update · runway recalc</div>
       <div class="feed-event complete"><span class="ts">[22:36:24]</span> → complete: forecast accepted · runway 15.2mo → 17.3mo</div>
       <div class="feed-event error"><span class="ts">[22:36:47]</span> → error: AWS Cost Explorer sync failed (HTTP 503)</div>
       <div class="feed-event sync"><span class="ts">[22:37:02]</span> → sync: HubSpot · deals · 47 records · 218ms</div>
-      <div class="feed-event"><span class="ts">[22:37:18]</span> → tool_use: web_search · "covenant threshold reporting"</div>
+      <div class="feed-event" style="color:#6B6BC4;"><span class="ts">[22:37:18]</span> → tool_use · steel-violet · web_search · "covenant threshold reporting" (queued)</div>
       <div class="feed-event command"><span class="ts">[22:37:31]</span> → command: generate board memo · Q2 close</div>
       <div class="feed-event complete"><span class="ts">[22:37:54]</span> → complete: board memo drafted · 3.2k words</div>
     </aside>
@@ -581,6 +592,106 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
   <li><strong style="color:var(--fg);">Red = real risk:</strong> covenant breach KPI border. Failed AWS sync. Material loss values. Operator scans red and knows to look.</li>
   <li><strong style="color:var(--fg);">Magenta = command:</strong> CTAs (Approve, Run, Investigate). Active agent indicators. Command bar primary. Manual override badges. Never decorative.</li>
   <li><strong style="color:var(--fg);">Mono everywhere identifiers live:</strong> topbar metadata, KPI values, table numerics, deltas, timestamps, agent IDs, model names — all JetBrains Mono.</li>
+</ul>
+
+<h2 class="section">Board-safe preview (★ v0.2.1)</h2>
+<p style="color:var(--fg-muted);max-width:65ch;margin-bottom:var(--gap-md);">Same cockpit, exported for board materials / IC memos / investor decks. <code>body.board-safe</code> collapses all neon glow to inset 1px borders; scanlines and animations are removed. Focus rings stay visible for accessibility. The data leads; the cyberpunk register sits beneath.</p>
+
+<div class="cockpit-frame" style="opacity:0.96;">
+  <div class="cockpit-topbar">
+    <span class="brand" style="text-shadow:none;">PARSPEC · FINANCEOS</span>
+    <span><span style="color:var(--fg-muted);">env:</span> prod</span>
+    <span><span style="color:var(--fg-muted);">model:</span> <span style="color:var(--magenta);">claude-opus-4-7</span></span>
+    <span><span style="color:var(--fg-muted);">period:</span> FY26·Q2·CLOSED</span>
+    <div class="topbar-meta">
+      <span><span style="color:var(--fg-muted);">board export · </span>2026-05-25</span>
+    </div>
+  </div>
+  <div class="cockpit-body">
+    <nav class="cockpit-rail">
+      <div class="rail-item">Runway</div>
+      <div class="rail-item">Revenue</div>
+      <div class="rail-item" style="color:var(--fg);border-left-color:#3B3B92;background:transparent;">Opex</div>
+      <div class="rail-item">Headcount</div>
+      <div class="rail-item">Forecast</div>
+      <div class="rail-item">Board Pack</div>
+    </nav>
+    <main class="cockpit-main">
+      <div class="cockpit-kpi-strip">
+        <div class="kpi-card" style="border:1px solid #2C2A45;">
+          <div class="kpi-label"><span class="dot" style="color:var(--lime);"></span>Cash</div>
+          <div class="kpi-value">$12.8M</div>
+          <div class="kpi-delta gain">+8.4% MoM</div>
+        </div>
+        <div class="kpi-card" style="border:1px solid var(--amber);box-shadow:none;">
+          <div class="kpi-label" style="color:var(--amber);"><span class="dot"></span>Runway</div>
+          <div class="kpi-value">15.2mo</div>
+          <div class="kpi-delta loss">-1.8mo vs plan</div>
+        </div>
+        <div class="kpi-card" style="border:1px solid #2C2A45;">
+          <div class="kpi-label"><span class="dot" style="color:var(--loss);"></span>Burn</div>
+          <div class="kpi-value">$847K</div>
+          <div class="kpi-delta loss">+3.3% MoM</div>
+        </div>
+        <div class="kpi-card" style="border:1px solid var(--magenta);box-shadow:none;">
+          <div class="kpi-label" style="color:var(--magenta);"><span class="dot"></span>ARR · agent</div>
+          <div class="kpi-value">$14.2M</div>
+          <div class="kpi-delta gain">+18.4% YoY</div>
+        </div>
+        <div class="kpi-card" style="border:1px solid #2C2A45;">
+          <div class="kpi-label"><span class="dot" style="color:var(--cyan);"></span>Gross Margin</div>
+          <div class="kpi-value">74%</div>
+          <div class="kpi-delta gain">+220bps</div>
+        </div>
+      </div>
+      <div class="finance-panel" style="border:1px solid #2C2A45;box-shadow:none;">
+        <div class="fp-header">
+          <div class="fp-title">Operating expense · FY26 Q2 (board export)</div>
+          <div class="fp-meta">
+            <span style="color:var(--fg-muted);">closed · audit-ready</span>
+          </div>
+        </div>
+        <div class="variance-row header">
+          <div>Line</div><div class="num">Actual</div><div class="num">Budget</div><div class="num">Forecast</div><div class="num">Var $</div><div class="num">Var %</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">Payroll · Engineering</div>
+          <div class="num">847,212</div>
+          <div class="num budget">820,000</div>
+          <div class="num forecast">840,000</div>
+          <div class="num loss">-27,212</div>
+          <div class="num loss">-3.3%</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">AWS · compute</div>
+          <div class="num">142,847</div>
+          <div class="num budget">160,000</div>
+          <div class="num forecast">150,000</div>
+          <div class="num gain">+17,153</div>
+          <div class="num gain">+10.7%</div>
+        </div>
+        <div class="variance-row">
+          <div class="label">AI · model spend</div>
+          <div class="num">28,471</div>
+          <div class="num budget">22,000</div>
+          <div class="num forecast">26,000</div>
+          <div class="num loss">-6,471</div>
+          <div class="num loss">-29.4%</div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<h2 class="section">Live vs board-safe — what changed</h2>
+<ul style="font-family:'Inter',sans-serif;line-height:1.7;color:var(--fg-muted);">
+  <li>Magenta agent-active glow → flat magenta border (no halo)</li>
+  <li>Right-side agent event feed → removed (boards don't need real-time machine output)</li>
+  <li>Approval card → removed (no pending decisions in audit-ready snapshot)</li>
+  <li>Active rail item glow → muted to steel-violet boundary only</li>
+  <li>KPI sparkline glow → removed</li>
+  <li>Brand mark text-shadow → none</li>
+  <li>All static finance panels carry steel-violet border for crisp PDF rendering</li>
 </ul>
 
 <h2 class="section">Not for cepsra implementation reference</h2>

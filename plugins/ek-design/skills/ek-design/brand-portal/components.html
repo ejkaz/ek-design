@@ -4,8 +4,8 @@
 <!--
     AUTO-GENERATED FROM design-model.yaml — DO NOT EDIT MANUALLY
     Regenerate: python3 scripts/generate-brand-portal.py
-    Generated: 2026-05-25 06:39 UTC
-    design-model.yaml version: 0.2.0 · brand_version: ek-2026-Q4-v1
+    Generated: 2026-05-25 07:09 UTC
+    design-model.yaml version: 0.2.1 · brand_version: ek-2026-Q4-v1
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -255,12 +255,17 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
 .kpi-card .kpi-delta.loss { color: var(--loss); }
 .kpi-card.state-watch { border-color: var(--watch); }
 .kpi-card.state-breach { border-color: var(--red); }
-.kpi-card.state-agent { border-color: var(--magenta);
-  box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+/* ★ v0.2.1 — agent-active glow reduced ~50% (was 12px+24px @ 40%/20%).
+   Now hairline magenta border + tight halo. Reads as "agent is here"
+   without becoming a light source. */
+.kpi-card.state-agent { border-color: rgba(255, 42, 109, 0.78);
+  box-shadow: 0 0 0 1px rgba(255, 42, 109, 0.25), 0 0 10px rgba(255, 42, 109, 0.20); }
 
-.finance-panel { background: var(--bg-2); border: 1px solid var(--border-soft);
+.finance-panel { background: var(--bg-2); border: 1px solid #2C2A45;
   border-radius: 6px; padding: 16px; margin-bottom: var(--gap-sm); }
-.finance-panel.active { box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+/* ★ v0.2.1 — active panel glow reduced ~50%. Same logic as kpi state-agent. */
+.finance-panel.active { border-color: rgba(255, 42, 109, 0.78);
+  box-shadow: 0 0 0 1px rgba(255, 42, 109, 0.25), 0 0 10px rgba(255, 42, 109, 0.20); }
 .finance-panel .fp-header { display: flex; justify-content: space-between;
   align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
   margin-bottom: 12px; }
@@ -401,7 +406,7 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
   <div class="portal-header-inner">
     <div class="portal-mark">
       <strong>EK·DESIGN</strong>
-      <span class="portal-meta">Brand Portal · v0.2.0 · ek-2026-Q4-v1</span>
+      <span class="portal-meta">Brand Portal · v0.2.1 · ek-2026-Q4-v1</span>
     </div>
     <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item" href="motifs.html">Motifs</a><a class="portal-nav-item active" href="components.html">Components</a><a class="portal-nav-item" href="cockpit.html">Cockpit</a></nav>
   </div>

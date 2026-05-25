@@ -4,8 +4,8 @@
 <!--
     AUTO-GENERATED FROM design-model.yaml — DO NOT EDIT MANUALLY
     Regenerate: python3 scripts/generate-brand-portal.py
-    Generated: 2026-05-25 06:39 UTC
-    design-model.yaml version: 0.2.0 · brand_version: ek-2026-Q4-v1
+    Generated: 2026-05-25 07:09 UTC
+    design-model.yaml version: 0.2.1 · brand_version: ek-2026-Q4-v1
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -255,12 +255,17 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
 .kpi-card .kpi-delta.loss { color: var(--loss); }
 .kpi-card.state-watch { border-color: var(--watch); }
 .kpi-card.state-breach { border-color: var(--red); }
-.kpi-card.state-agent { border-color: var(--magenta);
-  box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+/* ★ v0.2.1 — agent-active glow reduced ~50% (was 12px+24px @ 40%/20%).
+   Now hairline magenta border + tight halo. Reads as "agent is here"
+   without becoming a light source. */
+.kpi-card.state-agent { border-color: rgba(255, 42, 109, 0.78);
+  box-shadow: 0 0 0 1px rgba(255, 42, 109, 0.25), 0 0 10px rgba(255, 42, 109, 0.20); }
 
-.finance-panel { background: var(--bg-2); border: 1px solid var(--border-soft);
+.finance-panel { background: var(--bg-2); border: 1px solid #2C2A45;
   border-radius: 6px; padding: 16px; margin-bottom: var(--gap-sm); }
-.finance-panel.active { box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+/* ★ v0.2.1 — active panel glow reduced ~50%. Same logic as kpi state-agent. */
+.finance-panel.active { border-color: rgba(255, 42, 109, 0.78);
+  box-shadow: 0 0 0 1px rgba(255, 42, 109, 0.25), 0 0 10px rgba(255, 42, 109, 0.20); }
 .finance-panel .fp-header { display: flex; justify-content: space-between;
   align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
   margin-bottom: 12px; }
@@ -401,7 +406,7 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
   <div class="portal-header-inner">
     <div class="portal-mark">
       <strong>EK·DESIGN</strong>
-      <span class="portal-meta">Brand Portal · v0.2.0 · ek-2026-Q4-v1</span>
+      <span class="portal-meta">Brand Portal · v0.2.1 · ek-2026-Q4-v1</span>
     </div>
     <nav class="portal-nav"><a class="portal-nav-item active" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item" href="motifs.html">Motifs</a><a class="portal-nav-item" href="components.html">Components</a><a class="portal-nav-item" href="cockpit.html">Cockpit</a></nav>
   </div>
@@ -414,17 +419,38 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
 
 <div class="callout">
   <div class="eyebrow">Active version</div>
-  <p style="margin:0;">Schema <strong>0.2.0</strong> · Brand version <strong>ek-2026-Q4-v1</strong> · Status <strong>ratified</strong> · Updated <strong>2026-05-24</strong> by <strong>eric@parspec.io</strong>.</p>
+  <p style="margin:0;">Schema <strong>0.2.1</strong> · Brand version <strong>ek-2026-Q4-v1</strong> · Status <strong>ratified</strong> · Updated <strong>2026-05-25</strong> by <strong>eric@parspec.io</strong>.</p>
 </div>
 
 <h2 class="section">Thesis · Dark Ledger / Neon Operator</h2>
-<p style="font-family:'Chakra Petch',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-0.010em;color:var(--magenta);text-shadow:0 0 12px rgba(255,42,109,0.3);max-width:60ch;margin-bottom:var(--gap-md);">The finance ledger stays dark; the agent layer emits signal.</p>
+<p style="font-family:'Chakra Petch',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-0.010em;color:var(--magenta);text-shadow:0 0 6px rgba(255,42,109,0.25);max-width:60ch;margin-bottom:var(--gap-md);">The finance ledger stays dark; the agent layer emits signal.</p>
+
+<div class="callout cyan" style="margin-bottom:var(--gap-md);background:rgba(0,209,255,0.04);"><div class="eyebrow" style="color:var(--cyan);">Principle · v0.2.1</div><p style="margin:0 0 0.6rem 0;font-family:'Chakra Petch',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-0.010em;color:var(--fg);">Purple is the world. Magenta is the command. Cyan is the proof.</p><pre style="margin:0;white-space:pre-wrap;font-family:'Inter',sans-serif;font-size:0.92rem;line-height:1.65;color:var(--fg-muted);background:transparent;border:0;padding:0;">Static finance truth is sober. Agentic execution is luminous.
+Source proof is cyan. Attention is amber. Risk is red.
+
+Violet-black is the operating environment.
+Steel-violet is the inactive architecture: borders, nested panels,
+dormant machine states, secondary chrome.
+Magenta means agentic command, automation, override, or approval.
+Cyan means traceability, source lineage, drill-through, sync proof,
+terminal output, and inspectability.
+Lime means health, completion, successful automation, or live status only.
+Amber means watch, stale, uncertain, approval required, or CFO attention.
+Red means true risk, failed sync, covenant breach, runway breach,
+material error, or destructive action.</pre></div>
+
 <div class="callout cyan" style="margin-bottom:var(--gap-md);">
 <p style="margin:0;font-size:0.95rem;line-height:1.65;">
 <strong style="color:var(--cyan);">Layer separation:</strong>
-the static finance truth layer is dark and sober · the data lineage layer is <span style="color:var(--cyan);">cyan</span> · the agentic execution layer is <span style="color:var(--magenta);">magenta</span> · CFO attention is <span style="color:var(--amber);">amber</span> · health and completion are <span style="color:var(--lime);">lime</span> · true risk is <span style="color:var(--red);">red</span> · atmosphere is steel-violet (rarely text).
+the ledger layer is dark, sober, and numerically precise · the architecture layer is <span style="color:var(--steel-violet);">steel-violet</span> · the command layer is <span style="color:var(--magenta);">magenta</span> · the proof layer is <span style="color:var(--cyan);">cyan</span> · the attention layer is <span style="color:var(--amber);">amber</span> · the health layer is <span style="color:var(--lime);">lime</span> · the risk layer is <span style="color:var(--red);">red</span>.
 </p>
 </div>
+
+<h2 class="section">Brand polarity (★ v0.2.1)</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">Two opposing forces held in tension. Neither side wins. The product
+is sober when it must be auditable, luminous when an agent is acting.
+</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-md);margin-bottom:var(--gap-md);"><div class="surface-card" style="margin-bottom:0;"><h3 style="margin:0 0 0.6rem 0;">CFO-grade</h3><ul style="list-style:none;padding:0;margin:0;"><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">accurate</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">traceable</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">restrained</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">board-safe</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">auditable</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">numerically dense</li></ul></div><div class="surface-card" style="margin-bottom:0;"><h3 style="margin:0 0 0.6rem 0;">Agentic / Neo-Tokyo</h3><ul style="list-style:none;padding:0;margin:0;"><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">luminous</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">autonomous</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">command-driven</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">eventful</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">cinematic</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.35rem;">machine-native</li></ul></div></div><p style="font-family:'Chakra Petch',sans-serif;font-size:1.0625rem;color:var(--fg);max-width:65ch;font-weight:500;">The product lives in the tension: sober financial truth with luminous autonomous execution.</p>
 
 <h2 class="section">Product metaphor</h2>
 <ul style="list-style:none;padding:0;margin:0 0 var(--gap-md) 0;"><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.4rem;">CFO cockpit</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.4rem;">Autonomous finance control plane</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.4rem;">Operator console</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.4rem;">Agentic FP&A command center</li><li style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--fg-muted);margin-bottom:0.4rem;">Project hub (Obsidian-adjacent)</li></ul>
@@ -532,6 +558,36 @@ Thesis statement (the v0.2 contract):
 This is NOT synthwave, NOT a Bloomberg clone, NOT decorative cyberpunk.
 It is "a Bloomberg Terminal from 2032, rebuilt by an autonomous CFO
 agent in Neo-Tokyo."
+
+v0.2.1 refinements (2026-05-25):
+  - PRINCIPLE: "Purple is the world. Magenta is the command. Cyan is
+    the proof." — short formulation that fits in a designer's head.
+    Also: "Static finance truth is sober. Agentic execution is
+    luminous. Source proof is cyan. Attention is amber. Risk is red."
+  - PRIMARY AXIS: lime_health REMOVED from primary_axis_preserved.
+    Demoted to semantic_states; never a brand pillar. Brand pillars
+    are now Foundation (substrate) + Operator Signal (magenta +
+    cyan only).
+  - COLOR TAXONOMY: explicit 4-tier organization — Foundation,
+    Operator Signal, Semantic States, Atmospheric Architecture.
+    Rendered as 4 distinct sections on color.html.
+  - GLOW INTENSITY: operator_layer_glow reduced ~50% — was
+    "0 0 12px M60, 0 0 24px M30"; now "0 0 0 1px M33, 0 0 10px M33".
+    Cockpit feels less like a light show, more like a console.
+  - STEEL-VIOLET: promoted to explicit motif (steel-violet-architecture).
+    Inactive machine structure: borders, nested panels, dormant
+    tool-use, gridlines, secondary chrome. Distinct role from
+    atmospheric depth.
+  - MOTIFS: Trace Rail re-described as "Cyan Proof Rail" — same
+    slug, sharpened language ("proof" beats "trace" for the role).
+  - CHAKRA PETCH: scoped — display family frames the cockpit (topbar,
+    rail labels, major headers) but does NOT fill the cockpit body.
+    Inter carries dense explanatory text in product mode.
+  - INVARIANTS: added 4 new — purple_is_environment_not_action,
+    steel_violet_is_architecture, glow_is_stateful,
+    cockpit_less_theatrical_than_portal.
+  - BRAND POLARITY: new block making the CFO-grade ↔ Agentic/
+    Neo-Tokyo tension explicit. The product lives in the tension.
 </pre>
 
 </main>

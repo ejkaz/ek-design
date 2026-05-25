@@ -4,8 +4,8 @@
 <!--
     AUTO-GENERATED FROM design-model.yaml — DO NOT EDIT MANUALLY
     Regenerate: python3 scripts/generate-brand-portal.py
-    Generated: 2026-05-25 06:39 UTC
-    design-model.yaml version: 0.2.0 · brand_version: ek-2026-Q4-v1
+    Generated: 2026-05-25 07:09 UTC
+    design-model.yaml version: 0.2.1 · brand_version: ek-2026-Q4-v1
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -255,12 +255,17 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
 .kpi-card .kpi-delta.loss { color: var(--loss); }
 .kpi-card.state-watch { border-color: var(--watch); }
 .kpi-card.state-breach { border-color: var(--red); }
-.kpi-card.state-agent { border-color: var(--magenta);
-  box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+/* ★ v0.2.1 — agent-active glow reduced ~50% (was 12px+24px @ 40%/20%).
+   Now hairline magenta border + tight halo. Reads as "agent is here"
+   without becoming a light source. */
+.kpi-card.state-agent { border-color: rgba(255, 42, 109, 0.78);
+  box-shadow: 0 0 0 1px rgba(255, 42, 109, 0.25), 0 0 10px rgba(255, 42, 109, 0.20); }
 
-.finance-panel { background: var(--bg-2); border: 1px solid var(--border-soft);
+.finance-panel { background: var(--bg-2); border: 1px solid #2C2A45;
   border-radius: 6px; padding: 16px; margin-bottom: var(--gap-sm); }
-.finance-panel.active { box-shadow: 0 0 12px rgba(255,42,109,0.4), 0 0 24px rgba(255,42,109,0.2); }
+/* ★ v0.2.1 — active panel glow reduced ~50%. Same logic as kpi state-agent. */
+.finance-panel.active { border-color: rgba(255, 42, 109, 0.78);
+  box-shadow: 0 0 0 1px rgba(255, 42, 109, 0.25), 0 0 10px rgba(255, 42, 109, 0.20); }
 .finance-panel .fp-header { display: flex; justify-content: space-between;
   align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
   margin-bottom: 12px; }
@@ -401,7 +406,7 @@ h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; f
   <div class="portal-header-inner">
     <div class="portal-mark">
       <strong>EK·DESIGN</strong>
-      <span class="portal-meta">Brand Portal · v0.2.0 · ek-2026-Q4-v1</span>
+      <span class="portal-meta">Brand Portal · v0.2.1 · ek-2026-Q4-v1</span>
     </div>
     <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item active" href="motifs.html">Motifs</a><a class="portal-nav-item" href="components.html">Components</a><a class="portal-nav-item" href="cockpit.html">Cockpit</a></nav>
   </div>
@@ -433,9 +438,10 @@ radius: 6px;
 padding: 16px;
 /* glow_default: none — sober by default */</pre></div><div class="motif-card"><h3 class="motif-title">Neon Operator Layer <code style="font-size:0.7rem;margin-left:0.5rem;">neon-operator-layer</code></h3><p class="motif-rationale">Thin luminous overlay applied ONLY when an agent is actively acting on a surface, a command is executing, or an approval is pending. Magenta = command, cyan = trace, lime = complete. <strong>When NOT to use:</strong> as decoration on every card — violates <code>agent_command_magenta_only</code> invariant.</p><div class="motif-stage"><div class="finance-panel active" style="width:100%;max-width:480px;"><div class="fp-header"><div class="fp-title" style="color:var(--magenta);">Revenue bridge · running forecast</div><div class="fp-meta"><span class="data-badge manual"><span class="dot"></span>agent · acting</span></div></div><div style="font-family:'JetBrains Mono',monospace;color:var(--fg-muted);font-size:0.78rem;">claude-opus-4-7 running forecast() · 4.2k tokens · 1.8s elapsed</div></div></div><pre class="spec-pre">box-shadow: 0 0 12px rgba(255,42,109,0.4),
             0 0 24px rgba(255,42,109,0.2);
-/* operator_layer_glow effect — used only on active surfaces */</pre></div><div class="motif-card"><h3 class="motif-title">Trace Rail <code style="font-size:0.7rem;margin-left:0.5rem;">trace-rail</code></h3><p class="motif-rationale">Cyan micro-line breadcrumb showing source lineage / drill-through path. Answers "where did this number come from?" Bound to <code>cyan_for_trace_only</code> invariant. <strong>When to use:</strong> any computed financial metric. <strong>When NOT to use:</strong> as decorative accent.</p><div class="motif-stage"><div class="trace-rail"><span class="crumb">QuickBooks</span><span class="arrow">→</span><span class="crumb">P&amp;L · operating expenses</span><span class="arrow">→</span><span class="crumb">payroll</span><span class="arrow">→</span><span class="crumb">eng headcount</span></div></div><pre class="spec-pre">color: var(--cyan, #00D1FF);
+/* operator_layer_glow effect — used only on active surfaces */</pre></div><div class="motif-card"><h3 class="motif-title">Trace Rail · Cyan Proof Rail (★ v0.2.1) <code style="font-size:0.7rem;margin-left:0.5rem;">trace-rail</code></h3><p class="motif-rationale">Cyan micro-line breadcrumb showing source <strong>proof</strong>. Answers "where did this number come from?" — cyan is the <em>proof</em> channel, not just lineage. Bound to <code>cyan_for_trace_only</code> invariant. <strong>When to use:</strong> any computed financial metric, source attribution, drill-through. <strong>When NOT to use:</strong> as decorative accent.</p><div class="motif-stage"><div style="display:flex;flex-direction:column;gap:8px;"><div class="trace-rail"><span class="crumb">QuickBooks</span><span class="arrow">→</span><span class="crumb">dbt model</span><span class="arrow">→</span><span class="crumb">FinanceOS KPI</span></div><div class="trace-rail"><span class="crumb">Gusto</span><span class="arrow">→</span><span class="crumb">headcount model</span><span class="arrow">→</span><span class="crumb">Opex forecast</span></div><div class="trace-rail"><span class="crumb">AWS CUR</span><span class="arrow">→</span><span class="crumb">AI COGS model</span><span class="arrow">→</span><span class="crumb">Gross margin bridge</span></div></div></div><pre class="spec-pre">color: var(--cyan, #00D1FF);
 font-family: "JetBrains Mono", monospace;
-/* crumb: border 1px solid rgba(0,209,255,0.3) */</pre></div><div class="motif-card"><h3 class="motif-title">Agent Event Feed <code style="font-size:0.7rem;margin-left:0.5rem;">agent-event-feed</code></h3><p class="motif-rationale">Timestamped feed of tool calls, sync events, approvals, blocked tasks. Terminal-inset styling sparingly. Each event-type maps to a semantic color (command → magenta, sync → cyan, approval → amber, complete → lime, error → red).</p><div class="motif-stage"><div class="terminal-demo" style="width:100%;max-width:520px;"><div><span class="term-meta">[22:35:54]</span> <span style="color:var(--cyan);">→ sync</span>: QuickBooks · invoices · <span class="term-prompt">204 records</span></div><div><span class="term-meta">[22:35:58]</span> <span style="color:var(--magenta);">→ command</span>: run forecast() · revenue · FY26</div><div><span class="term-meta">[22:36:12]</span> <span style="color:var(--amber);">→ approval-required</span>: model update · runway recalc</div><div><span class="term-meta">[22:36:24]</span> <span class="term-prompt">→ complete</span>: forecast accepted</div></div></div><pre class="spec-pre">inherits: terminal_block
+/* crumb: border 1px solid rgba(0,209,255,0.3) */
+/* "cyan is the proof" — v0.2.1 principle */</pre></div><div class="motif-card"><h3 class="motif-title">Agent Event Feed <code style="font-size:0.7rem;margin-left:0.5rem;">agent-event-feed</code></h3><p class="motif-rationale">Timestamped feed of tool calls, sync events, approvals, blocked tasks. Terminal-inset styling sparingly. Each event-type maps to a semantic color (command → magenta, sync → cyan, approval → amber, complete → lime, error → red).</p><div class="motif-stage"><div class="terminal-demo" style="width:100%;max-width:520px;"><div><span class="term-meta">[22:35:54]</span> <span style="color:var(--cyan);">→ sync</span>: QuickBooks · invoices · <span class="term-prompt">204 records</span></div><div><span class="term-meta">[22:35:58]</span> <span style="color:var(--magenta);">→ command</span>: run forecast() · revenue · FY26</div><div><span class="term-meta">[22:36:12]</span> <span style="color:var(--amber);">→ approval-required</span>: model update · runway recalc</div><div><span class="term-meta">[22:36:24]</span> <span class="term-prompt">→ complete</span>: forecast accepted</div></div></div><pre class="spec-pre">inherits: terminal_block
 event_types:
   command:           color: magenta
   sync:              color: cyan
@@ -452,7 +458,13 @@ border: 1px solid #2C2A45;
 radius: 8px;
 primary_action: background magenta · color white</pre></div><div class="motif-card"><h3 class="motif-title">Machine Identifier Strip <code style="font-size:0.7rem;margin-left:0.5rem;">machine-identifier-strip</code></h3><p class="motif-rationale">Compact monospace strip displaying agent IDs / model version / source freshness / period close status / environment metadata. Usually sits in topbar or page header. Mono-for-identifiers invariant locks the typography.</p><div class="motif-stage"><div style="background:var(--bg-1);border:1px solid #2C2A45;border-radius:6px;padding:10px 16px;display:flex;gap:20px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:0.72rem;"><span style="color:var(--fg-muted);">env:</span><span>prod</span><span style="color:var(--fg-muted);">model:</span><span style="color:var(--magenta);">claude-opus-4-7</span><span style="color:var(--fg-muted);">period:</span><span>FY26·Q2·CLOSED</span><span style="color:var(--fg-muted);">last sync:</span><span style="color:var(--lime);">12s ago</span><span style="color:var(--fg-muted);">agent:</span><span style="color:var(--cyan);">エ·0042</span></div></div><pre class="spec-pre">font-family: "JetBrains Mono", monospace;
 font-size: 0.72rem;
-/* identifiers in magenta (model) / lime (live) / cyan (agent) / fg (literal) */</pre></div>
+/* identifiers in magenta (model) / lime (live) / cyan (agent) / fg (literal) */</pre></div><div class="motif-card"><h3 class="motif-title">Steel-Violet Architecture (★ v0.2.1) <code style="font-size:0.7rem;margin-left:0.5rem;">steel-violet-architecture</code></h3><p class="motif-rationale">Inactive machine structure: borders, nested panels, dormant tool-use badges, rail boundaries, gridlines, secondary chrome, disabled machine chrome, forecast-confidence structure before it turns amber/red. <strong>Steel-violet is the color of the machine when it's quiet.</strong> Bound to <code>steel_violet_is_architecture</code> invariant. <strong>NEVER:</strong> primary CTA, error, success, links, finance gain/loss, agent command, decorative purple gradients.</p><div class="motif-stage"><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%;max-width:520px;"><div style="background:var(--bg-2);border:1px solid #3B3B92;border-radius:6px;padding:12px;"><div style="font-family:'Chakra Petch',sans-serif;font-size:0.7rem;letter-spacing:0.10em;text-transform:uppercase;color:#6B6BC4;margin-bottom:6px;">Inactive panel</div><div style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--fg-muted);">awaiting source...</div></div><div style="background:var(--bg-2);border:1px solid var(--border-soft);border-radius:6px;padding:12px;"><div style="font-family:'Chakra Petch',sans-serif;font-size:0.7rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:6px;">Nested · steel-violet outline</div><div style="background:var(--bg);border:1px solid #3B3B92;border-radius:4px;padding:8px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--fg-muted);">tool_use · python (idle)</div></div><div style="background:var(--bg-1);border:1px solid #2C2A45;border-radius:6px;padding:12px;"><div style="font-family:'Chakra Petch',sans-serif;font-size:0.7rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:6px;">Rail boundary</div><div style="height:60px;background:repeating-linear-gradient(0deg, transparent 0 11px, rgba(59,59,146,0.25) 11px 12px);"></div></div><div style="background:var(--bg-2);border:1px solid #2C2A45;border-radius:6px;padding:12px;"><div style="font-family:'Chakra Petch',sans-serif;font-size:0.7rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:6px;">Dormant badge</div><span style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border:1px solid #6B6BC4;border-radius:999px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.060em;color:#6B6BC4;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>tool_use</span></div></div></div><pre class="spec-pre">--steel-violet: #3B3B92;
+--border-architecture: #2C2A45;
+
+/* Use for: borders, nested panels, dormant
+   tool-use, rail boundaries, gridlines */
+/* NEVER for: CTA, success, error, links,
+   gain/loss, agent command, decorative grad */</pre></div>
 
 </main>
 

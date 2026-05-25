@@ -5,9 +5,17 @@
 # ════════════════════════════════════════════════════════════════════
 
 meta:
-  version: "0.2.0"
+  version: "0.2.1"
   brand_version: "ek-2026-Q4-v1"
   source: |
+    v0.2.1 refinement ratified 2026-05-25. Same brand_version as v0.2.0
+    (this is sharpening, not a new brand lock). Crystallizes the v0.2
+    architecture around a single one-line principle and tightens role
+    hierarchy so the system is unambiguously CFO-grade.
+
+    Principle (added v0.2.1): "Purple is the world. Magenta is the
+    command. Cyan is the proof."
+
     v0.2.0 ratified 2026-05-24. Evolves v0.1.0 (ek-2026-Q3-v1) around the
     "Dark Ledger / Neon Operator" thesis: static finance truth lives in
     sober dark surfaces; the agent layer emits signal. Adds finance
@@ -16,12 +24,12 @@ meta:
     motifs, 10 cockpit components, and 6 new invariants that lock the
     semantic boundaries (magenta = command not decoration, cyan = trace
     not decoration, amber = attention not failure).
-  updated: "2026-05-24"
+  updated: "2026-05-25"
   updated_by: "eric@parspec.io"
   status: "ratified"
-  ratified: "2026-05-24"
+  ratified: "2026-05-25"
   ratified_by: "eric@parspec.io"
-  supersedes: "0.1.0"
+  supersedes: "0.2.0"
   notes: |
     v0.1.0 — Founding (ek-2026-Q3-v1). Neo-Tokyo neon palette, magenta CTA
     monopoly, electric cyan secondary, acid lime alive/success on deep
@@ -97,6 +105,36 @@ meta:
     It is "a Bloomberg Terminal from 2032, rebuilt by an autonomous CFO
     agent in Neo-Tokyo."
 
+    v0.2.1 refinements (2026-05-25):
+      - PRINCIPLE: "Purple is the world. Magenta is the command. Cyan is
+        the proof." — short formulation that fits in a designer's head.
+        Also: "Static finance truth is sober. Agentic execution is
+        luminous. Source proof is cyan. Attention is amber. Risk is red."
+      - PRIMARY AXIS: lime_health REMOVED from primary_axis_preserved.
+        Demoted to semantic_states; never a brand pillar. Brand pillars
+        are now Foundation (substrate) + Operator Signal (magenta +
+        cyan only).
+      - COLOR TAXONOMY: explicit 4-tier organization — Foundation,
+        Operator Signal, Semantic States, Atmospheric Architecture.
+        Rendered as 4 distinct sections on color.html.
+      - GLOW INTENSITY: operator_layer_glow reduced ~50% — was
+        "0 0 12px M60, 0 0 24px M30"; now "0 0 0 1px M33, 0 0 10px M33".
+        Cockpit feels less like a light show, more like a console.
+      - STEEL-VIOLET: promoted to explicit motif (steel-violet-architecture).
+        Inactive machine structure: borders, nested panels, dormant
+        tool-use, gridlines, secondary chrome. Distinct role from
+        atmospheric depth.
+      - MOTIFS: Trace Rail re-described as "Cyan Proof Rail" — same
+        slug, sharpened language ("proof" beats "trace" for the role).
+      - CHAKRA PETCH: scoped — display family frames the cockpit (topbar,
+        rail labels, major headers) but does NOT fill the cockpit body.
+        Inter carries dense explanatory text in product mode.
+      - INVARIANTS: added 4 new — purple_is_environment_not_action,
+        steel_violet_is_architecture, glow_is_stateful,
+        cockpit_less_theatrical_than_portal.
+      - BRAND POLARITY: new block making the CFO-grade ↔ Agentic/
+        Neo-Tokyo tension explicit. The product lives in the tension.
+
 # ────────────────────────────────────────────────────────────────────
 # IDENTITY
 # ────────────────────────────────────────────────────────────────────
@@ -104,6 +142,22 @@ name: "ek-design"
 description: "Personal cyberpunk brand for Eric Kazmaier's agentic UI — finance cockpit and project hub surfaces"
 thesis: "Dark Ledger / Neon Operator"
 thesis_one_line: "The finance ledger stays dark; the agent layer emits signal."
+# ★ v0.2.1 — single-sentence principle that fits in a designer's head
+principle: "Purple is the world. Magenta is the command. Cyan is the proof."
+principle_expanded: |
+  Static finance truth is sober. Agentic execution is luminous.
+  Source proof is cyan. Attention is amber. Risk is red.
+
+  Violet-black is the operating environment.
+  Steel-violet is the inactive architecture: borders, nested panels,
+  dormant machine states, secondary chrome.
+  Magenta means agentic command, automation, override, or approval.
+  Cyan means traceability, source lineage, drill-through, sync proof,
+  terminal output, and inspectability.
+  Lime means health, completion, successful automation, or live status only.
+  Amber means watch, stale, uncertain, approval required, or CFO attention.
+  Red means true risk, failed sync, covenant breach, runway breach,
+  material error, or destructive action.
 philosophy: |
   Operator-facing software register pulled from the visual vocabulary of
   Neo-Tokyo cinema (Blade Runner 2049, Ghost in the Shell) and real
@@ -154,16 +208,23 @@ mono_for_finance_numerics: true   # NEW v0.2 — finance numerics in mono with t
 # ────────────────────────────────────────────────────────────────────
 primary_axis_preserved:
   description: |
-    The immovable anchors of the ek-design brand. Any palette evolution
-    may change tints, atmospheric secondaries, motifs, or motion — but
-    never these.
+    The immovable anchors of the ek-design brand: Foundation (the
+    substrate the operator stands in) + Operator Signal (the two
+    active signal channels: command + proof). Any palette evolution
+    may change tints, atmospheric secondaries, motifs, or motion —
+    but never these.
+
+    v0.2.1 demotion: lime moved OUT of primary axis into semantic_states.
+    Brand pillars are now Foundation + Operator Signal ONLY. Magenta
+    and cyan are the only two colors that constitute the brand's
+    active identity; everything else is foundation, semantic, or
+    atmospheric.
   background:          "#070711"   # Deeper violet-black (shifted v0.2 from #0A0A14)
   panel:               "#171727"   # Surface_2 finance panel (shifted v0.2 from #15151F)
   off_white:           "#F0F0F5"   # Inverted (light-mode opt-in)
   white:               "#FFFFFF"
-  magenta_command:     "#FF2A6D"   # Primary CTA + agentic command monopoly
-  cyan_trace:          "#00D1FF"   # Trace / lineage / inspectability / secondary action
-  lime_health:         "#A6FF00"   # Success + completion + agent active
+  magenta_command:     "#FF2A6D"   # ★ OPERATOR SIGNAL — agentic command monopoly
+  cyan_trace:          "#00D1FF"   # ★ OPERATOR SIGNAL — proof / lineage / inspectability
   typography_display:  "Chakra Petch"
   typography_body:     "Inter"
   typography_mono:     "JetBrains Mono"
@@ -177,12 +238,103 @@ primary_axis_preserved:
     # v0.2.0 finance motifs (new)
     - "dark-ledger-panel"        # Sober finance panel, low-contrast border, minimal glow, dense
     - "neon-operator-layer"      # Thin luminous layer for active agents / commands / approvals
-    - "trace-rail"               # Cyan micro-lines, source breadcrumbs, drill-through paths
+    - "trace-rail"               # Cyan proof rail — source breadcrumbs, drill-through, lineage
     - "agent-event-feed"         # Timestamped feed of tool calls / sync events / approvals
     - "forecast-confidence-halo" # Subtle border / inline confidence indicator
     - "board-safe-mode"          # Same dark system, reduced neon (PDF / board export)
     - "executive-command-state"  # Magenta command button/bar — "Run forecast", "Approve", etc.
     - "machine-identifier-strip" # Agent IDs / model version / source freshness in mono
+    # v0.2.1 motifs (new)
+    - "steel-violet-architecture" # ★ NEW — inactive machine structure: borders, nested panels,
+                                  # dormant tool-use, rail boundaries, gridlines, secondary chrome.
+                                  # Distinct role from atmospheric depth.
+
+# ★ v0.2.1 — Explicit 4-tier color taxonomy. Replaces the implicit grouping in
+# v0.2.0 where lime was over-promoted alongside magenta + cyan. Rendered as
+# 4 distinct sections on color.html.
+color_taxonomy:
+  description: |
+    Foundation colors build the world. Operator signal colors create meaning.
+    Purple is the environment; magenta and cyan are the two active signal
+    channels. Semantic states encode status. Atmospheric architecture
+    provides depth, structure, and secondary chrome.
+
+  foundation:
+    description: "The substrate the operator stands in. Dark, sober, layered."
+    tokens:
+      - { name: "Background",       hex: "#070711", role: "App / cockpit / marketing default" }
+      - { name: "Surface 1",        hex: "#10101A", role: "Topbar / rail / subtle chrome" }
+      - { name: "Surface 2",        hex: "#171727", role: "Default panel chrome (finance_panel)" }
+      - { name: "Surface 3",        hex: "#23233A", role: "Selected / nested panel" }
+      - { name: "Border",           hex: "#2C2A45", role: "Default architecture border (steel-violet-tinted)" }
+      - { name: "Text primary",     hex: "#FFFFFF", role: "Body text on dark" }
+      - { name: "Text muted",       hex: "#A8A8BC", role: "Secondary text (7.18:1)" }
+      - { name: "Text dim",         hex: "#5C5C70", role: "Tertiary / metadata" }
+
+  operator_signal:
+    description: "The two colors that constitute brand identity. Two channels, two meanings."
+    tokens:
+      - { name: "Magenta Command", hex: "#FF2A6D", role: "Agentic command / action / automation / approval / override" }
+      - { name: "Cyan Trace",      hex: "#00D1FF", role: "Proof / lineage / drill-through / inspectability / sync / terminal" }
+
+  semantic_states:
+    description: "Status / health / variance. Locked semantic roles, never decoration."
+    tokens:
+      - { name: "Lime Health",     hex: "#A6FF00", role: "Health / completion / live / successful automation (★ demoted from primary axis in v0.2.1)" }
+      - { name: "Amber Watch",     hex: "#FFB800", role: "Watch / stale / uncertain / approval required / CFO attention" }
+      - { name: "Red Risk",        hex: "#FF003C", role: "True risk / failed sync / covenant breach / destructive action" }
+      - { name: "Finance Gain",    hex: "#4ADE80", role: "Positive variance / favorable / on target" }
+      - { name: "Finance Loss",    hex: "#F87171", role: "Negative variance / unfavorable / over budget" }
+      - { name: "Info Blue",       hex: "#60A5FA", role: "Calm informational / model version / environment / NEVER as link (cyan)" }
+
+  atmospheric_architecture:
+    description: "Depth, structure, secondary chrome. Inactive machine state. Rarely text."
+    tokens:
+      - { name: "Deep Violet",     hex: "#16132D", role: "Background depth / hero atmospheric ground" }
+      - { name: "Steel Violet",    hex: "#3B3B92", role: "Inactive machine architecture: borders, nested panels, dormant tool-use, gridlines, secondary chrome" }
+      - { name: "Slate 300",       hex: "#9999B0", role: "Body chrome on dark (utility neutral)" }
+      - { name: "Slate 700",       hex: "#2E2E40", role: "Border neutral (utility)" }
+
+# ★ v0.2.1 — Brand polarity. The product lives in the tension between
+# CFO-grade sobriety and agentic Neo-Tokyo luminescence. Rendered on
+# index.html as a two-column section.
+brand_polarity:
+  description: |
+    Two opposing forces held in tension. Neither side wins. The product
+    is sober when it must be auditable, luminous when an agent is acting.
+  cfo_grade:
+    label: "CFO-grade"
+    traits:
+      - "accurate"
+      - "traceable"
+      - "restrained"
+      - "board-safe"
+      - "auditable"
+      - "numerically dense"
+  agentic_neo_tokyo:
+    label: "Agentic / Neo-Tokyo"
+    traits:
+      - "luminous"
+      - "autonomous"
+      - "command-driven"
+      - "eventful"
+      - "cinematic"
+      - "machine-native"
+  conclusion: "The product lives in the tension: sober financial truth with luminous autonomous execution."
+
+# ★ v0.2.1 — Token role notes. Hard "do not" rules for token consumption.
+# Read by ek-craft as advisory guidance (not all enforceable in lint).
+token_role_notes:
+  - "Do not use raw hex in components — always reference a token."
+  - "Do not use purple / violet-black / steel-violet as primary CTA. Purple is the environment, not the action."
+  - "Do not use lime as a brand accent. Lime is health, completion, live status — never decoration."
+  - "Do not use cyan decoratively. Cyan means proof: source lineage, drill-through, inspectability, sync."
+  - "Do not use magenta decoratively. Magenta means agent command, active automation, override, approval."
+  - "Do not use red except for true risk, failed sync, destructive action, or material negative state."
+  - "Do not use amber unless the interface is asking for attention (watch / stale / approval-required)."
+  - "Do not use green/lime for finance gain unless the role is specifically finance_gain (use --color-finance-gain)."
+  - "Do not stack neon glows. One glow per state context."
+  - "Do not use Chakra Petch as cockpit body text. Frame the cockpit; don't fill it."
 
 # ────────────────────────────────────────────────────────────────────
 # SURFACES — Mode-per-surface bindings
@@ -658,7 +810,11 @@ tokens:
     confidence_halo_amber: "inset 0 0 0 1px {amber.500}80"
     confidence_halo_red:   "inset 0 0 0 1px {red.500}80"
     trace_rail_glow_cyan:  "0 0 4px {cyan.500}80"
-    operator_layer_glow:   "0 0 12px {magenta.500}60, 0 0 24px {magenta.500}30"
+    # ★ v0.2.1 — operator_layer_glow REDUCED ~50%. Was: 0 0 12px M60, 0 0 24px M30
+    # (too luminous for a real CFO product — read as nightclub).
+    # Now: hairline magenta border + tight halo. Reads as "agent is here"
+    # without becoming a light source.
+    operator_layer_glow:   "0 0 0 1px {magenta.500}40, 0 0 10px {magenta.500}33"
 
     # ★ v0.2 — board-safe variants. Apply via `.board-safe` body class.
     # All neon glows collapse to subtle borders for export contexts.
@@ -1020,6 +1176,17 @@ avoid:
     reason: "v0.2 voice rule. Use colon, parens, comma, or n-dash. Em-dashes read as 2024-LLM-output."
     severity: "info"
 
+  # ★ v0.2.1 additions — purple-is-environment + glow-is-stateful enforcement
+  - pattern: "purple-as-cta"
+    reason: "v0.2.1: purple_is_environment_not_action invariant. Purple / violet / steel-violet may not be used as a primary CTA, primary action color, or active command state. Only magenta is command."
+    severity: "error"
+  - pattern: "always-on-decorative-glow"
+    reason: "v0.2.1: glow_is_stateful invariant. Production cockpit cards must not carry permanent neon glow. Glow indicates active state (agent acting, focused input, critical state) — not decoration."
+    severity: "warning"
+  - pattern: "chakra-petch-in-cockpit-body"
+    reason: "v0.2.1: cockpit_less_theatrical_than_portal invariant. Chakra Petch frames the cockpit (topbar / rail / major headings) but does not fill the cockpit body. Use Inter (or Geist) for dense explanatory text."
+    severity: "info"
+
 # ────────────────────────────────────────────────────────────────────
 # INVARIANTS — Hard structural rules. ek-craft enforces.
 # v0.2 adds 6 new finance/cockpit invariants.
@@ -1093,4 +1260,26 @@ invariants:
   board_safe_export_mode:
     rule: "When the body has class `board-safe` (PDF export, board screenshot, investor-deck asset), all effects.neon_glow_* must collapse to effects.board_safe_neon_glow_* (inset 1px border, no outer glow), all scanline overlays must be removed, and all animations must be paused. Focus-ring stays visible for accessibility."
     rationale: "Board materials should let the data lead. Neon glow that's a feature in the live cockpit becomes noise in a PDF screenshot embedded in an IC memo. Board-safe mode is the export-pressure-valve so the cyberpunk register doesn't need to be diluted for live ops."
+    severity: "warning"
+
+  # ─── ★ v0.2.1 NEW INVARIANTS — Purple-is-environment locks ───
+
+  purple_is_environment_not_action:
+    rule: "Purple / violet-black / steel-violet may define substrate, depth, borders, and architecture. It MUST NOT become the primary CTA, primary active command state, or any action color. Only magenta is action."
+    rationale: "Purple is the world. Magenta is the command. Cyan is the proof. If purple becomes a CTA, the operator-signal channels (magenta + cyan) lose their semantic distinctness against the environment. This is the central organizing principle of v0.2.1."
+    severity: "error"
+
+  steel_violet_is_architecture:
+    rule: "Steel-violet (steel_violet.500 #3B3B92) defines inactive machine architecture only: borders, nested panels, dormant tool-use badges, rail boundaries, gridlines, secondary chrome, forecast-confidence structure before it turns amber/red. NEVER a CTA, NEVER error/success/link, NEVER finance gain/loss, NEVER agent command, NEVER decorative purple gradient."
+    rationale: "Steel-violet has a specific job: 'the machine is here but quiet.' Mixing it into action or status roles dilutes the dormant-machine signal that gives operators their sense of system structure."
+    severity: "error"
+
+  glow_is_stateful:
+    rule: "Neon glow (effects.neon_glow_*, effects.operator_layer_glow) appears ONLY for active agentic computation, focus state, or critical state. No always-on decorative glow in production cockpit surfaces. Marketing / hero / brand-portal demo contexts may use glow more freely; the production cockpit must not."
+    rationale: "Glow is a signal that something is happening or needs attention. If every card glows, the operator can no longer pre-attentively spot where the action is. v0.2.1 reduced operator_layer_glow intensity ~50% explicitly to support this rule."
+    severity: "error"
+
+  cockpit_less_theatrical_than_portal:
+    rule: "Production cockpit surfaces (cepsra app, FinanceOS dashboards) must be more restrained than brand portal / marketing surfaces. Chakra Petch usage scoped to topbar / rail / major headings. Glow rare and stateful. Scanline overlay forbidden in cockpit (allowed in brand portal). Static finance panels must be sober (no glow by default)."
+    rationale: "Brand portal exists to communicate the brand expressively. Cockpit exists to let the operator work. Theatrical brand expression in the cockpit body interferes with finance density and CFO-grade trust. Same family, different register."
     severity: "warning"

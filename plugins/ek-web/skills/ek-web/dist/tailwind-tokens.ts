@@ -1,6 +1,6 @@
 // AUTO-GENERATED FROM ek-design design-model.yaml — DO NOT EDIT MANUALLY
-// Source: ek-design v0.2.0 · brand_version: ek-2026-Q4-v1
-// Generated: 2026-05-25T06:40:03Z
+// Source: ek-design v0.2.1 · brand_version: ek-2026-Q4-v1
+// Generated: 2026-05-25T07:09:16Z
 // Regenerate: python3 plugins/ek-web/skills/ek-web/scripts/export-tailwind.py
 
 /**
@@ -134,7 +134,7 @@ export const ekTokens = {
     "focus-ring-cyan": "0 0 0 2px #070711, 0 0 0 4px #00D1FF",
     "panel-lift": "0 1px 0 0 #2C2A45, 0 8px 24px -8px #00000080",
     "trace-rail-glow-cyan": "0 0 4px #00D1FF80",
-    "operator-layer-glow": "0 0 12px #FF2A6D60, 0 0 24px #FF2A6D30",
+    "operator-layer-glow": "0 0 0 1px #FF2A6D40, 0 0 10px #FF2A6D33",
     "board-safe-neon-glow-magenta": "inset 0 0 0 1px #FF2A6D",
     "board-safe-neon-glow-cyan": "inset 0 0 0 1px #00D1FF",
     "board-safe-neon-glow-lime": "inset 0 0 0 1px #A6FF00",
