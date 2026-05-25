@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+    AUTO-GENERATED FROM design-model.yaml — DO NOT EDIT MANUALLY
+    Regenerate: python3 scripts/generate-brand-portal.py
+    Generated: 2026-05-25 05:44 UTC
+    design-model.yaml version: 0.1.0 · brand_version: ek-2026-Q3-v1
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ek-design Brand Portal — Motifs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A14;
+  --bg-2: #15151F;
+  --bg-3: #1F1F2A;
+  --bg-deep: #000000;
+  --fg: #FFFFFF;
+  --fg-muted: rgba(255,255,255,0.68);
+  --fg-dim: rgba(255,255,255,0.40);
+  --magenta: #FF2A6D;
+  --cyan: #00D1FF;
+  --lime: #A6FF00;
+  --amber: #FFB800;
+  --red: #FF003C;
+  --steel-violet: #3B3B92;
+  --border: rgba(255,255,255,0.10);
+  --border-soft: rgba(255,255,255,0.06);
+  --gap-sm: clamp(0.5rem, 1vw, 1rem);
+  --gap-md: clamp(1rem, 2vw, 2rem);
+  --gap-lg: clamp(1.5rem, 3vw, 3rem);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg);
+  font-family: 'Inter', -apple-system, sans-serif; line-height: 1.55; font-feature-settings: "ss01", "cv11"; }
+.display, h1, h2, h3, .eyebrow { font-family: 'Chakra Petch', sans-serif; letter-spacing: -0.010em; }
+code, pre, .mono { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+code { font-size: 0.875em; background: rgba(0,209,255,0.10); padding: 0.12em 0.4em; border-radius: 3px;
+  color: var(--cyan); border: 1px solid rgba(0,209,255,0.22); }
+strong { font-weight: 700; }
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.portal-header { position: sticky; top: 0; background: rgba(10,10,20,0.92);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 10; padding: 1rem 0; }
+.portal-header-inner { max-width: 1240px; margin: 0 auto;
+  padding: 0 var(--gap-md); display: flex; justify-content: space-between;
+  align-items: center; gap: var(--gap-md); flex-wrap: wrap; }
+.portal-mark { display: flex; flex-direction: column; gap: 0.2rem; }
+.portal-mark strong { font-family: 'Chakra Petch', sans-serif; font-weight: 700;
+  letter-spacing: 0.18em; font-size: 1.05rem; color: var(--magenta);
+  text-shadow: 0 0 8px rgba(255,42,109,0.4); }
+.portal-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); }
+.portal-nav { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+.portal-nav-item { color: var(--fg-muted); text-decoration: none;
+  font-family: 'Chakra Petch', sans-serif; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.10em; text-transform: uppercase; padding: 0.45rem 0.85rem; border-radius: 4px;
+  border: 1px solid transparent; transition: all 0.12s ease; }
+.portal-nav-item:hover { color: var(--fg); border-color: var(--border); text-decoration: none; }
+.portal-nav-item.active { color: var(--magenta); border-color: var(--magenta);
+  box-shadow: 0 0 0 1px rgba(255,42,109,0.4), 0 0 12px rgba(255,42,109,0.3); }
+
+.portal-main { max-width: 1240px; margin: 0 auto; padding: var(--gap-lg) var(--gap-md); }
+.page-title { font-family: 'Chakra Petch', sans-serif; font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 700; letter-spacing: -0.020em; margin: 0 0 var(--gap-md) 0; line-height: 1.02; }
+.page-lead { color: var(--fg-muted); font-size: 1.0625rem; max-width: 70ch;
+  line-height: 1.6; margin-bottom: var(--gap-lg); }
+
+h2.section { font-family: 'Chakra Petch', sans-serif; font-size: 1.5rem; font-weight: 600;
+  letter-spacing: -0.012em; margin: var(--gap-lg) 0 var(--gap-md) 0;
+  padding-top: var(--gap-md); border-top: 1px solid var(--border); }
+h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; font-weight: 600;
+  letter-spacing: -0.005em; margin: var(--gap-md) 0 var(--gap-sm) 0; }
+.eyebrow { font-family: 'Chakra Petch', sans-serif; font-size: 0.7rem;
+  letter-spacing: 0.180em; text-transform: uppercase; font-weight: 600;
+  color: var(--magenta); margin-bottom: 0.5rem; }
+
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--gap-sm); margin-bottom: var(--gap-md); }
+.swatch { aspect-ratio: 1.6 / 1; border-radius: 4px; padding: 0.85rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  font-size: 0.75rem; font-weight: 500; border: 1px solid var(--border-soft);
+  position: relative; overflow: hidden; }
+.swatch::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  border-radius: inherit; box-shadow: inset 0 1px 0 rgba(255,255,255,0.06); }
+.swatch .swatch-name { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.85rem; line-height: 1.15; letter-spacing: 0; }
+.swatch .swatch-hex { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  font-weight: 500; opacity: 0.88; padding: 0; background: transparent; color: inherit; border: 0; }
+.swatch .swatch-role { font-size: 0.7rem; opacity: 0.78; line-height: 1.35; margin-top: 0.3rem; }
+
+.token-row { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(180px, 1.4fr) 2fr;
+  gap: var(--gap-md); padding: 0.65rem 0; border-bottom: 1px solid var(--border-soft);
+  align-items: start; font-size: 0.9rem; }
+.token-row .role-name { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 0.84rem; }
+.token-row .role-ref { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+  color: var(--fg-muted); }
+.token-row .role-desc { color: var(--fg-muted); line-height: 1.5; font-size: 0.84rem; }
+.token-chip { display: inline-block; width: 1em; height: 1em; vertical-align: -0.15em;
+  border-radius: 2px; margin-right: 0.5em; border: 1px solid rgba(255,255,255,0.15); }
+
+.callout { border-left: 2px solid var(--magenta); background: rgba(255,42,109,0.05);
+  padding: var(--gap-md); margin: var(--gap-md) 0; border-radius: 0 4px 4px 0; }
+.callout strong { color: var(--magenta); }
+.callout.cyan { border-left-color: var(--cyan); background: rgba(0,209,255,0.05); }
+.callout.cyan strong { color: var(--cyan); }
+.callout.lime { border-left-color: var(--lime); background: rgba(166,255,0,0.05); }
+.callout.lime strong { color: var(--lime); }
+
+.avoid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--gap-sm); margin-top: var(--gap-sm); }
+.avoid-item { background: rgba(255,255,255,0.025); border: 1px solid var(--border-soft);
+  padding: 0.85rem; border-radius: 4px; font-size: 0.85rem; }
+.avoid-item .av-swatch { display: inline-block; width: 1.4em; height: 1.4em;
+  border-radius: 3px; margin-right: 0.5em; vertical-align: -0.4em;
+  border: 1px solid rgba(255,255,255,0.18); }
+.avoid-item .av-name { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.95rem; }
+.avoid-item .av-reason { color: var(--fg-muted); font-size: 0.8rem;
+  margin-top: 0.4rem; line-height: 1.45; }
+.avoid-item .av-severity { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+  letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: 2px; margin-left: 0.4em; }
+.av-severity.error { background: rgba(255,0,60,0.18); color: var(--red); border: 1px solid rgba(255,0,60,0.4); }
+.av-severity.warning { background: rgba(255,184,0,0.18); color: var(--amber); border: 1px solid rgba(255,184,0,0.4); }
+
+.surface-card { background: var(--bg-2); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: var(--gap-md); margin-bottom: var(--gap-sm); }
+.surface-card h3 { margin: 0 0 0.4rem 0; }
+.surface-card .surface-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  color: var(--fg-muted); padding: 0; background: transparent; border: 0; }
+.surface-card .surface-rationale { color: var(--fg-muted); font-size: 0.9rem;
+  line-height: 1.6; margin-top: 0.6rem; }
+
+.invariant-row { padding: 0.85rem 0; border-bottom: 1px solid var(--border-soft); font-size: 0.9rem; }
+.invariant-row .inv-name { font-family: 'JetBrains Mono', monospace; font-weight: 500;
+  font-size: 0.88rem; color: var(--magenta); }
+.invariant-row .inv-rule { margin: 0.35rem 0; }
+.invariant-row .inv-rationale { color: var(--fg-muted); font-size: 0.84rem; line-height: 1.55; }
+.invariant-row .inv-severity { float: right; }
+
+.type-sample { padding: 1.25rem; border: 1px solid var(--border-soft); border-radius: 4px;
+  margin-bottom: 0.85rem; background: rgba(255,255,255,0.02); }
+.type-sample .type-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  color: var(--fg-muted); margin-bottom: 0.5rem; letter-spacing: 0.02em; }
+.type-sample .type-render { line-height: 1.15; }
+
+.motif-card { background: var(--bg-2); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: var(--gap-md); margin-bottom: var(--gap-md); }
+.motif-card .motif-title { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 1.0625rem; margin: 0 0 0.4rem 0; }
+.motif-card .motif-rationale { color: var(--fg-muted); font-size: 0.88rem;
+  line-height: 1.55; margin-bottom: var(--gap-md); }
+.motif-stage { background: var(--bg); border: 1px dashed var(--border);
+  border-radius: 4px; padding: var(--gap-lg); display: grid; place-items: center;
+  min-height: 200px; margin-bottom: var(--gap-sm); position: relative; overflow: hidden; }
+.motif-stage pre { font-size: 0.78rem; color: var(--fg-muted); margin: 0;
+  white-space: pre-wrap; word-break: break-all; }
+
+.spec-pre { background: var(--bg-2); border: 1px solid var(--border-soft);
+  border-radius: 4px; padding: var(--gap-md); margin: var(--gap-sm) 0;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; line-height: 1.55;
+  overflow-x: auto; color: var(--fg-muted); }
+.spec-pre .spec-key { color: var(--cyan); }
+.spec-pre .spec-val { color: var(--lime); }
+
+.component-stage { background: var(--bg); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: var(--gap-lg); margin-bottom: var(--gap-sm);
+  display: flex; gap: var(--gap-md); flex-wrap: wrap; align-items: center; }
+
+/* Live cyberpunk components used inside the portal demos */
+.btn-primary { background: var(--magenta); color: #FFFFFF; padding: 10px 20px;
+  border: 0; border-radius: 4px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.020em; cursor: pointer;
+  transition: all 100ms cubic-bezier(0.2,0.8,0.2,1); }
+.btn-primary:hover { background: #E11D5F; box-shadow: 0 0 8px var(--magenta), 0 0 16px rgba(255,42,109,0.25); }
+.btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--magenta); }
+.btn-secondary { background: transparent; color: var(--cyan); padding: 10px 20px;
+  border: 1px solid var(--cyan); border-radius: 4px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.020em; cursor: pointer;
+  transition: all 100ms cubic-bezier(0.2,0.8,0.2,1); }
+.btn-secondary:hover { background: rgba(0,209,255,0.10); color: #2DD9FF; }
+.btn-destructive { background: transparent; color: var(--red); padding: 10px 20px;
+  border: 1px solid var(--red); border-radius: 4px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.020em; cursor: pointer; }
+
+.card-demo { background: var(--bg-2); border: 1px solid #2E2E40; border-radius: 6px;
+  padding: 24px; max-width: 320px; }
+.card-demo .card-eyebrow { font-family: 'Chakra Petch', sans-serif; font-size: 0.7rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--magenta); margin-bottom: 0.5rem; }
+.card-demo h4 { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 1.125rem; margin: 0 0 0.5rem 0; }
+.card-demo p { color: var(--fg-muted); font-size: 0.875rem; margin: 0; line-height: 1.55; }
+
+.terminal-demo { background: #000000; border: 1px solid #0090B8; border-radius: 2px;
+  padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem;
+  color: var(--cyan); line-height: 1.55; max-width: 480px; }
+.terminal-demo .term-prompt { color: var(--lime); }
+.terminal-demo .term-meta { color: var(--fg-muted); }
+
+.input-demo { background: var(--bg-2); color: var(--fg); padding: 10px 12px;
+  border: 1px solid #2E2E40; border-radius: 4px; font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem; width: 280px; transition: all 100ms ease; }
+.input-demo::placeholder { color: #5C5C70; }
+.input-demo:focus { outline: none; border-color: var(--cyan);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--cyan); }
+
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px;
+  border: 1px solid currentColor; border-radius: 999px; font-family: 'JetBrains Mono', monospace;
+  font-weight: 500; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.060em; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.badge.active { color: var(--lime); box-shadow: 0 0 6px var(--lime), 0 0 12px rgba(166,255,0,0.25); }
+.badge.thinking { color: var(--cyan); }
+.badge.thinking .dot { animation: ek-pulse 1.5s ease-in-out infinite; }
+.badge.tool { color: #6B6BC4; }
+.badge.complete { color: var(--lime); }
+.badge.blocked { color: var(--amber); }
+.badge.error { color: var(--red); }
+.badge.idle { color: #5C5C70; }
+
+@keyframes ek-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.scanline-stage { position: relative; }
+.scanline-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,0.06) 2px, rgba(255,255,255,0.06) 3px); }
+
+.diagonal-cut { background: var(--bg-2); border: 1px solid #2E2E40;
+  padding: 24px 28px; color: var(--fg); font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
+
+.portal-footer { max-width: 1240px; margin: var(--gap-lg) auto 0;
+  padding: var(--gap-md); border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; gap: var(--gap-md);
+  font-size: 0.75rem; color: var(--fg-dim); flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace; }
+
+@media (max-width: 720px) {
+  .portal-nav { width: 100%; justify-content: flex-start; }
+  .token-row { grid-template-columns: 1fr; gap: 0.35rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 80ms !important; }
+}
+</style>
+</head>
+<body>
+<header class="portal-header">
+  <div class="portal-header-inner">
+    <div class="portal-mark">
+      <strong>EK·DESIGN</strong>
+      <span class="portal-meta">Brand Portal · v0.1.0 · ek-2026-Q3-v1</span>
+    </div>
+    <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item active" href="motifs.html">Motifs</a><a class="portal-nav-item" href="components.html">Components</a></nav>
+  </div>
+</header>
+
+<main class="portal-main">
+  <h1 class="page-title">Motifs</h1>
+  
+<p class="page-lead">Cyberpunk-coded visual signatures. Each motif has a narrow role binding (focus / hover / status / hero / identifier); decorative overuse collapses the register. <code>ek-craft</code> warns on <code>decorative-neon-glow</code> and <code>drop-shadow-as-elevation</code>.</p>
+
+<div class="motif-card"><h3 class="motif-title">Neon edge glow <code style="font-size:0.7rem;margin-left:0.5rem;">neon-edge-glow</code></h3><p class="motif-rationale">Replaces gray drop-shadow as elevation cue. Bound to focus / hover / agent_status_active. <code>box-shadow</code> with brand-color RGBA; never decorative.</p><div class="motif-stage"><button class="btn-primary" style="box-shadow:0 0 8px var(--magenta), 0 0 16px rgba(255,42,109,0.25);">Hover state</button></div><pre class="spec-pre">box-shadow: 0 0 8px var(--magenta), 0 0 16px rgba(255,42,109,0.25);</pre></div><div class="motif-card"><h3 class="motif-title">Terminal block inset <code style="font-size:0.7rem;margin-left:0.5rem;">terminal-block-inset</code></h3><p class="motif-rationale">Pure-black recess with cyan border, JetBrains Mono content. The visually-distinct surface for machine output (logs, tool calls, JSON streams). Maps to <code>surfaces.terminal_inset</code>.</p><div class="motif-stage"><div class="terminal-demo"><span class="term-meta">[2026-05-24T22:35:54.013Z]</span> <span class="term-prompt">›</span> agent_0042 invoking <span style="color:var(--magenta);">claude-opus-4-7</span><br><span class="term-meta">  → tool_use: bash · </span>echo "deploy ready"<br><span class="term-meta">  → 212ms · 47 tokens · $0.0009</span></div></div><pre class="spec-pre">background: #000000;
+border: 1px solid var(--cyan, #00D1FF);
+color: var(--cyan);
+font-family: "JetBrains Mono", monospace;</pre></div><div class="motif-card"><h3 class="motif-title">Katakana-numeric agent ID <code style="font-size:0.7rem;margin-left:0.5rem;">katakana-numeric-id</code></h3><p class="motif-rationale">Agent / job IDs styled in mono with leading-zero numerics and optional katakana prefix glyph. Establishes the 'these are machine identifiers' visual register at a glance.</p><div class="motif-stage"><div style="font-family:'JetBrains Mono',monospace;display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.95rem;"><span style="color:var(--cyan);">エ·0042</span><span style="color:var(--lime);">JOB·001847</span><span style="color:var(--magenta);">PR·00139</span><span style="color:var(--fg-muted);">2026·05·24·T22·35·54</span></div></div><pre class="spec-pre">font-family: "JetBrains Mono", monospace;
+letter-spacing: 0.02em;
+/* Format IDs with leading zeros + middle-dot separators */</pre></div><div class="motif-card"><h3 class="motif-title">Scanline overlay (optional, reduced-motion-safe) <code style="font-size:0.7rem;margin-left:0.5rem;">scanline-overlay</code></h3><p class="motif-rationale">Subtle CRT-line texture for hero / marketing surfaces. Pure-CSS gradient overlay, no motion. <strong>Must</strong> respect <code>prefers-reduced-motion</code>; can trigger vestibular issues if animated.</p><div class="motif-stage"><div class="scanline-stage" style="background:var(--bg-2);padding:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',sans-serif;font-weight:600;font-size:1.5rem;color:var(--cyan);text-shadow:0 0 12px var(--cyan);width:100%;">SYSTEM ONLINE</div></div><pre class="spec-pre">background: repeating-linear-gradient(
+  0deg,
+  transparent 0,
+  transparent 2px,
+  rgba(255,255,255,0.06) 2px,
+  rgba(255,255,255,0.06) 3px
+);</pre></div><div class="motif-card"><h3 class="motif-title">Diagonal cut corner (alt to rounded) <code style="font-size:0.7rem;margin-left:0.5rem;">diagonal-cut-corner</code></h3><p class="motif-rationale">Replaces <code>border-radius</code> on hero / feature surfaces for an angular cyber register. Use sparingly — overuse reads as costume. Render via <code>clip-path</code>.</p><div class="motif-stage"><div class="diagonal-cut">CYBERPUNK PANEL</div></div><pre class="spec-pre">clip-path: polygon(
+  12px 0, 100% 0,
+  100% calc(100% - 12px), calc(100% - 12px) 100%,
+  0 100%, 0 12px
+);</pre></div>
+
+</main>
+
+<footer class="portal-footer">
+  <div>Auto-generated from <code>design-model.yaml</code>. Manual edits not permitted.</div>
+  <div>Regenerate: <code>python3 scripts/generate-brand-portal.py</code></div>
+</footer>
+</body>
+</html>

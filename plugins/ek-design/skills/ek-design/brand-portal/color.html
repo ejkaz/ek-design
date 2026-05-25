@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+    AUTO-GENERATED FROM design-model.yaml — DO NOT EDIT MANUALLY
+    Regenerate: python3 scripts/generate-brand-portal.py
+    Generated: 2026-05-25 05:44 UTC
+    design-model.yaml version: 0.1.0 · brand_version: ek-2026-Q3-v1
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ek-design Brand Portal — Color</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A14;
+  --bg-2: #15151F;
+  --bg-3: #1F1F2A;
+  --bg-deep: #000000;
+  --fg: #FFFFFF;
+  --fg-muted: rgba(255,255,255,0.68);
+  --fg-dim: rgba(255,255,255,0.40);
+  --magenta: #FF2A6D;
+  --cyan: #00D1FF;
+  --lime: #A6FF00;
+  --amber: #FFB800;
+  --red: #FF003C;
+  --steel-violet: #3B3B92;
+  --border: rgba(255,255,255,0.10);
+  --border-soft: rgba(255,255,255,0.06);
+  --gap-sm: clamp(0.5rem, 1vw, 1rem);
+  --gap-md: clamp(1rem, 2vw, 2rem);
+  --gap-lg: clamp(1.5rem, 3vw, 3rem);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg);
+  font-family: 'Inter', -apple-system, sans-serif; line-height: 1.55; font-feature-settings: "ss01", "cv11"; }
+.display, h1, h2, h3, .eyebrow { font-family: 'Chakra Petch', sans-serif; letter-spacing: -0.010em; }
+code, pre, .mono { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+code { font-size: 0.875em; background: rgba(0,209,255,0.10); padding: 0.12em 0.4em; border-radius: 3px;
+  color: var(--cyan); border: 1px solid rgba(0,209,255,0.22); }
+strong { font-weight: 700; }
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.portal-header { position: sticky; top: 0; background: rgba(10,10,20,0.92);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 10; padding: 1rem 0; }
+.portal-header-inner { max-width: 1240px; margin: 0 auto;
+  padding: 0 var(--gap-md); display: flex; justify-content: space-between;
+  align-items: center; gap: var(--gap-md); flex-wrap: wrap; }
+.portal-mark { display: flex; flex-direction: column; gap: 0.2rem; }
+.portal-mark strong { font-family: 'Chakra Petch', sans-serif; font-weight: 700;
+  letter-spacing: 0.18em; font-size: 1.05rem; color: var(--magenta);
+  text-shadow: 0 0 8px rgba(255,42,109,0.4); }
+.portal-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); }
+.portal-nav { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+.portal-nav-item { color: var(--fg-muted); text-decoration: none;
+  font-family: 'Chakra Petch', sans-serif; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.10em; text-transform: uppercase; padding: 0.45rem 0.85rem; border-radius: 4px;
+  border: 1px solid transparent; transition: all 0.12s ease; }
+.portal-nav-item:hover { color: var(--fg); border-color: var(--border); text-decoration: none; }
+.portal-nav-item.active { color: var(--magenta); border-color: var(--magenta);
+  box-shadow: 0 0 0 1px rgba(255,42,109,0.4), 0 0 12px rgba(255,42,109,0.3); }
+
+.portal-main { max-width: 1240px; margin: 0 auto; padding: var(--gap-lg) var(--gap-md); }
+.page-title { font-family: 'Chakra Petch', sans-serif; font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 700; letter-spacing: -0.020em; margin: 0 0 var(--gap-md) 0; line-height: 1.02; }
+.page-lead { color: var(--fg-muted); font-size: 1.0625rem; max-width: 70ch;
+  line-height: 1.6; margin-bottom: var(--gap-lg); }
+
+h2.section { font-family: 'Chakra Petch', sans-serif; font-size: 1.5rem; font-weight: 600;
+  letter-spacing: -0.012em; margin: var(--gap-lg) 0 var(--gap-md) 0;
+  padding-top: var(--gap-md); border-top: 1px solid var(--border); }
+h3.subsection { font-family: 'Chakra Petch', sans-serif; font-size: 1.0625rem; font-weight: 600;
+  letter-spacing: -0.005em; margin: var(--gap-md) 0 var(--gap-sm) 0; }
+.eyebrow { font-family: 'Chakra Petch', sans-serif; font-size: 0.7rem;
+  letter-spacing: 0.180em; text-transform: uppercase; font-weight: 600;
+  color: var(--magenta); margin-bottom: 0.5rem; }
+
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--gap-sm); margin-bottom: var(--gap-md); }
+.swatch { aspect-ratio: 1.6 / 1; border-radius: 4px; padding: 0.85rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  font-size: 0.75rem; font-weight: 500; border: 1px solid var(--border-soft);
+  position: relative; overflow: hidden; }
+.swatch::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  border-radius: inherit; box-shadow: inset 0 1px 0 rgba(255,255,255,0.06); }
+.swatch .swatch-name { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.85rem; line-height: 1.15; letter-spacing: 0; }
+.swatch .swatch-hex { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  font-weight: 500; opacity: 0.88; padding: 0; background: transparent; color: inherit; border: 0; }
+.swatch .swatch-role { font-size: 0.7rem; opacity: 0.78; line-height: 1.35; margin-top: 0.3rem; }
+
+.token-row { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(180px, 1.4fr) 2fr;
+  gap: var(--gap-md); padding: 0.65rem 0; border-bottom: 1px solid var(--border-soft);
+  align-items: start; font-size: 0.9rem; }
+.token-row .role-name { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 0.84rem; }
+.token-row .role-ref { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+  color: var(--fg-muted); }
+.token-row .role-desc { color: var(--fg-muted); line-height: 1.5; font-size: 0.84rem; }
+.token-chip { display: inline-block; width: 1em; height: 1em; vertical-align: -0.15em;
+  border-radius: 2px; margin-right: 0.5em; border: 1px solid rgba(255,255,255,0.15); }
+
+.callout { border-left: 2px solid var(--magenta); background: rgba(255,42,109,0.05);
+  padding: var(--gap-md); margin: var(--gap-md) 0; border-radius: 0 4px 4px 0; }
+.callout strong { color: var(--magenta); }
+.callout.cyan { border-left-color: var(--cyan); background: rgba(0,209,255,0.05); }
+.callout.cyan strong { color: var(--cyan); }
+.callout.lime { border-left-color: var(--lime); background: rgba(166,255,0,0.05); }
+.callout.lime strong { color: var(--lime); }
+
+.avoid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--gap-sm); margin-top: var(--gap-sm); }
+.avoid-item { background: rgba(255,255,255,0.025); border: 1px solid var(--border-soft);
+  padding: 0.85rem; border-radius: 4px; font-size: 0.85rem; }
+.avoid-item .av-swatch { display: inline-block; width: 1.4em; height: 1.4em;
+  border-radius: 3px; margin-right: 0.5em; vertical-align: -0.4em;
+  border: 1px solid rgba(255,255,255,0.18); }
+.avoid-item .av-name { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 0.95rem; }
+.avoid-item .av-reason { color: var(--fg-muted); font-size: 0.8rem;
+  margin-top: 0.4rem; line-height: 1.45; }
+.avoid-item .av-severity { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+  letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: 2px; margin-left: 0.4em; }
+.av-severity.error { background: rgba(255,0,60,0.18); color: var(--red); border: 1px solid rgba(255,0,60,0.4); }
+.av-severity.warning { background: rgba(255,184,0,0.18); color: var(--amber); border: 1px solid rgba(255,184,0,0.4); }
+
+.surface-card { background: var(--bg-2); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: var(--gap-md); margin-bottom: var(--gap-sm); }
+.surface-card h3 { margin: 0 0 0.4rem 0; }
+.surface-card .surface-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  color: var(--fg-muted); padding: 0; background: transparent; border: 0; }
+.surface-card .surface-rationale { color: var(--fg-muted); font-size: 0.9rem;
+  line-height: 1.6; margin-top: 0.6rem; }
+
+.invariant-row { padding: 0.85rem 0; border-bottom: 1px solid var(--border-soft); font-size: 0.9rem; }
+.invariant-row .inv-name { font-family: 'JetBrains Mono', monospace; font-weight: 500;
+  font-size: 0.88rem; color: var(--magenta); }
+.invariant-row .inv-rule { margin: 0.35rem 0; }
+.invariant-row .inv-rationale { color: var(--fg-muted); font-size: 0.84rem; line-height: 1.55; }
+.invariant-row .inv-severity { float: right; }
+
+.type-sample { padding: 1.25rem; border: 1px solid var(--border-soft); border-radius: 4px;
+  margin-bottom: 0.85rem; background: rgba(255,255,255,0.02); }
+.type-sample .type-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  color: var(--fg-muted); margin-bottom: 0.5rem; letter-spacing: 0.02em; }
+.type-sample .type-render { line-height: 1.15; }
+
+.motif-card { background: var(--bg-2); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: var(--gap-md); margin-bottom: var(--gap-md); }
+.motif-card .motif-title { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 1.0625rem; margin: 0 0 0.4rem 0; }
+.motif-card .motif-rationale { color: var(--fg-muted); font-size: 0.88rem;
+  line-height: 1.55; margin-bottom: var(--gap-md); }
+.motif-stage { background: var(--bg); border: 1px dashed var(--border);
+  border-radius: 4px; padding: var(--gap-lg); display: grid; place-items: center;
+  min-height: 200px; margin-bottom: var(--gap-sm); position: relative; overflow: hidden; }
+.motif-stage pre { font-size: 0.78rem; color: var(--fg-muted); margin: 0;
+  white-space: pre-wrap; word-break: break-all; }
+
+.spec-pre { background: var(--bg-2); border: 1px solid var(--border-soft);
+  border-radius: 4px; padding: var(--gap-md); margin: var(--gap-sm) 0;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; line-height: 1.55;
+  overflow-x: auto; color: var(--fg-muted); }
+.spec-pre .spec-key { color: var(--cyan); }
+.spec-pre .spec-val { color: var(--lime); }
+
+.component-stage { background: var(--bg); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: var(--gap-lg); margin-bottom: var(--gap-sm);
+  display: flex; gap: var(--gap-md); flex-wrap: wrap; align-items: center; }
+
+/* Live cyberpunk components used inside the portal demos */
+.btn-primary { background: var(--magenta); color: #FFFFFF; padding: 10px 20px;
+  border: 0; border-radius: 4px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.020em; cursor: pointer;
+  transition: all 100ms cubic-bezier(0.2,0.8,0.2,1); }
+.btn-primary:hover { background: #E11D5F; box-shadow: 0 0 8px var(--magenta), 0 0 16px rgba(255,42,109,0.25); }
+.btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--magenta); }
+.btn-secondary { background: transparent; color: var(--cyan); padding: 10px 20px;
+  border: 1px solid var(--cyan); border-radius: 4px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.020em; cursor: pointer;
+  transition: all 100ms cubic-bezier(0.2,0.8,0.2,1); }
+.btn-secondary:hover { background: rgba(0,209,255,0.10); color: #2DD9FF; }
+.btn-destructive { background: transparent; color: var(--red); padding: 10px 20px;
+  border: 1px solid var(--red); border-radius: 4px; font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.020em; cursor: pointer; }
+
+.card-demo { background: var(--bg-2); border: 1px solid #2E2E40; border-radius: 6px;
+  padding: 24px; max-width: 320px; }
+.card-demo .card-eyebrow { font-family: 'Chakra Petch', sans-serif; font-size: 0.7rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--magenta); margin-bottom: 0.5rem; }
+.card-demo h4 { font-family: 'Chakra Petch', sans-serif; font-weight: 600;
+  font-size: 1.125rem; margin: 0 0 0.5rem 0; }
+.card-demo p { color: var(--fg-muted); font-size: 0.875rem; margin: 0; line-height: 1.55; }
+
+.terminal-demo { background: #000000; border: 1px solid #0090B8; border-radius: 2px;
+  padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem;
+  color: var(--cyan); line-height: 1.55; max-width: 480px; }
+.terminal-demo .term-prompt { color: var(--lime); }
+.terminal-demo .term-meta { color: var(--fg-muted); }
+
+.input-demo { background: var(--bg-2); color: var(--fg); padding: 10px 12px;
+  border: 1px solid #2E2E40; border-radius: 4px; font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem; width: 280px; transition: all 100ms ease; }
+.input-demo::placeholder { color: #5C5C70; }
+.input-demo:focus { outline: none; border-color: var(--cyan);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--cyan); }
+
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px;
+  border: 1px solid currentColor; border-radius: 999px; font-family: 'JetBrains Mono', monospace;
+  font-weight: 500; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.060em; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.badge.active { color: var(--lime); box-shadow: 0 0 6px var(--lime), 0 0 12px rgba(166,255,0,0.25); }
+.badge.thinking { color: var(--cyan); }
+.badge.thinking .dot { animation: ek-pulse 1.5s ease-in-out infinite; }
+.badge.tool { color: #6B6BC4; }
+.badge.complete { color: var(--lime); }
+.badge.blocked { color: var(--amber); }
+.badge.error { color: var(--red); }
+.badge.idle { color: #5C5C70; }
+
+@keyframes ek-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.scanline-stage { position: relative; }
+.scanline-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,0.06) 2px, rgba(255,255,255,0.06) 3px); }
+
+.diagonal-cut { background: var(--bg-2); border: 1px solid #2E2E40;
+  padding: 24px 28px; color: var(--fg); font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600; clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
+
+.portal-footer { max-width: 1240px; margin: var(--gap-lg) auto 0;
+  padding: var(--gap-md); border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; gap: var(--gap-md);
+  font-size: 0.75rem; color: var(--fg-dim); flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace; }
+
+@media (max-width: 720px) {
+  .portal-nav { width: 100%; justify-content: flex-start; }
+  .token-row { grid-template-columns: 1fr; gap: 0.35rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 80ms !important; }
+}
+</style>
+</head>
+<body>
+<header class="portal-header">
+  <div class="portal-header-inner">
+    <div class="portal-mark">
+      <strong>EK·DESIGN</strong>
+      <span class="portal-meta">Brand Portal · v0.1.0 · ek-2026-Q3-v1</span>
+    </div>
+    <nav class="portal-nav"><a class="portal-nav-item" href="index.html">Overview</a><a class="portal-nav-item active" href="color.html">Color</a><a class="portal-nav-item" href="typography.html">Typography</a><a class="portal-nav-item" href="motifs.html">Motifs</a><a class="portal-nav-item" href="components.html">Components</a></nav>
+  </div>
+</header>
+
+<main class="portal-main">
+  <h1 class="page-title">Color</h1>
+  
+<p class="page-lead">Two-tier token model: primitive ramps → role tokens. Every consumer references a role (e.g. <code>roles.cta</code>), never a raw hex. CTA monopoly, semantic-locked statuses, and the no-consumer-indigo rule are enforced by <code>ek-craft</code> (when shipped) reading the <code>invariants</code> block at the bottom of this page.</p>
+
+<h2 class="section">Primary axis (locked)</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">These do not change. Any palette evolution may modify atmospheric tints / motifs — never these.</p>
+<div class="swatch-grid"><div class="swatch" style="background:#0A0A14;color:#FFFFFF;"><div><div class="swatch-name">Background</div><span class="swatch-hex">#0A0A14</span></div><div class="swatch-role">Default app + marketing surface</div></div><div class="swatch" style="background:#15151F;color:#FFFFFF;"><div><div class="swatch-name">Panel</div><span class="swatch-hex">#15151F</span></div><div class="swatch-role">Layered surface</div></div><div class="swatch" style="background:#F0F0F5;color:#0A0A14;"><div><div class="swatch-name">Off-white</div><span class="swatch-hex">#F0F0F5</span></div><div class="swatch-role">Inverted (light-mode opt-in)</div></div><div class="swatch" style="background:#FFFFFF;color:#0A0A14;"><div><div class="swatch-name">White</div><span class="swatch-hex">#FFFFFF</span></div><div class="swatch-role">Text on dark</div></div><div class="swatch" style="background:#FF2A6D;color:#FFFFFF;"><div><div class="swatch-name">Magenta CTA</div><span class="swatch-hex">#FF2A6D</span></div><div class="swatch-role">Primary CTA monopoly</div></div><div class="swatch" style="background:#00D1FF;color:#0A0A14;"><div><div class="swatch-name">Cyan Secondary</div><span class="swatch-hex">#00D1FF</span></div><div class="swatch-role">Secondary action / info / link</div></div><div class="swatch" style="background:#A6FF00;color:#0A0A14;"><div><div class="swatch-name">Lime Alive</div><span class="swatch-hex">#A6FF00</span></div><div class="swatch-role">Success + agent active indicator</div></div></div>
+
+<h2 class="section">Surfaces — mode per surface</h2>
+<div class="surface-card"><h3>App</h3><div class="surface-meta">mode: <strong>dark</strong> · background: <span class="mono">{neutral.950}</span> → <span class="mono">#0A0A14</span></div><div style="margin-top:0.5rem;font-size:0.85rem;color:var(--fg-muted);"><strong>Examples:</strong> app-shell, dashboard, agent-console, task-list, briefing-view, chat-panel</div><p class="surface-rationale">cepsra and any future agentic surface defaults to dark. Reduces
+eye strain during long operator sessions; neon accents read
+vividly on near-black; mono identifiers maintain phosphor-CRT
+legibility. All major agentic UI references (Claude desktop,
+ChatGPT desktop, Cursor, Linear dark) are dark-default.</p></div><div class="surface-card"><h3>Marketing</h3><div class="surface-meta">mode: <strong>dark</strong> · background: <span class="mono">{neutral.950}</span> → <span class="mono">#0A0A14</span></div><div style="margin-top:0.5rem;font-size:0.85rem;color:var(--fg-muted);"><strong>Examples:</strong> landing-page, hero-sections, feature-grid, pricing, docs-homepage</div><p class="surface-rationale">Marketing site sits in the same dark register as the app so
+brand-to-app transition is seamless. Cyberpunk register reads
+as "for operators" — self-selects the right audience.</p></div><div class="surface-card"><h3>Light</h3><div class="surface-meta">mode: <strong>light</strong> · background: <span class="mono">{neutral.50}</span> → <span class="mono">#F0F0F5</span></div><div style="margin-top:0.5rem;font-size:0.85rem;color:var(--fg-muted);"><strong>Examples:</strong> print-views, exported-pdf, accessibility-mode</div><p class="surface-rationale">Opt-in inverted mode for print exports, accessibility override,
+and any surface where dark mode is wrong (rare). Same primary
+axis; only mode bindings differ.</p></div><div class="surface-card"><h3>Terminal Inset</h3><div class="surface-meta">mode: <strong>dark</strong> · background: <span class="mono">{neutral.1000}</span> → <span class="mono">#000000</span></div><div style="margin-top:0.5rem;font-size:0.85rem;color:var(--fg-muted);"><strong>Examples:</strong> code-block, agent-log, command-output, jsonl-stream, token-debug</div><p class="surface-rationale">The "console window inside the app" wedge. Pure black ground
++ cyan border + JetBrains Mono content. Agentic UIs need a
+visually-distinct surface for raw machine output (logs,
+tool calls, JSON streams) — this is it.</p></div>
+
+<h2 class="section">Roles — semantic tokens</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">64 role tokens. Each resolves to exactly one primitive.</p>
+<div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FF2A6D;"></span>cta</div><div class="role-ref">{magenta.500} → #FF2A6D</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#E11D5F;"></span>cta_hover</div><div class="role-ref">{magenta.600} → #E11D5F</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#B0144A;"></span>cta_active</div><div class="role-ref">{magenta.700} → #B0144A</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FFFFFF;"></span>cta_text</div><div class="role-ref">{neutral.0} → #FFFFFF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#00D1FF;"></span>secondary_action</div><div class="role-ref">{cyan.500} → #00D1FF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#2DD9FF;"></span>secondary_action_hover</div><div class="role-ref">{cyan.400} → #2DD9FF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#00D1FF;"></span>link_on_dark</div><div class="role-ref">{cyan.500} → #00D1FF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#0090B8;"></span>link_on_light</div><div class="role-ref">{cyan.700} → #0090B8</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#00D1FF;"></span>info_on_dark</div><div class="role-ref">{cyan.500} → #00D1FF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#0090B8;"></span>info_on_light</div><div class="role-ref">{cyan.700} → #0090B8</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FF2A6D;"></span>accent_type_on_dark</div><div class="role-ref">{magenta.500} → #FF2A6D</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#7A0E33;"></span>accent_type_on_light</div><div class="role-ref">{magenta.800} → #7A0E33</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#A6FF00;"></span>status_success_on_dark</div><div class="role-ref">{lime.500} → #A6FF00</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#4A6E00;"></span>status_success_on_light</div><div class="role-ref">{lime.800} → #4A6E00</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#A6FF00;"></span>agent_status_active</div><div class="role-ref">{lime.500} → #A6FF00</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#A6FF00;"></span>agent_status_complete</div><div class="role-ref">{lime.500} → #A6FF00</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#5C5C70;"></span>agent_status_idle</div><div class="role-ref">{slate.500} → #5C5C70</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FF003C;"></span>status_error_on_dark</div><div class="role-ref">{red.500} → #FF003C</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#B0142D;"></span>status_error_on_light</div><div class="role-ref">{red.700} → #B0142D</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FFB800;"></span>status_warn_on_dark</div><div class="role-ref">{amber.500} → #FFB800</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#8C6500;"></span>status_warn_on_light</div><div class="role-ref">{amber.700} → #8C6500</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FF003C;"></span>destructive_action</div><div class="role-ref">{red.500} → #FF003C</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#3B3B92;"></span>ambient_glow</div><div class="role-ref">{steel_violet.500} → #3B3B92</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#1E1E60;"></span>ambient_deep</div><div class="role-ref">{steel_violet.700} → #1E1E60</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#0F0F33;"></span>ambient_subtle</div><div class="role-ref">{steel_violet.900} → #0F0F33</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#9999B0;"></span>body_chrome_on_dark</div><div class="role-ref">{slate.300} → #9999B0</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#5C5C70;"></span>body_chrome_on_light</div><div class="role-ref">{slate.500} → #5C5C70</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#2E2E40;"></span>border_neutral_dark</div><div class="role-ref">{slate.700} → #2E2E40</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#E0E0E8;"></span>border_neutral_light</div><div class="role-ref">{slate.100} → #E0E0E8</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#0A0A14;"></span>surface_app</div><div class="role-ref">{neutral.950} → #0A0A14</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#15151F;"></span>surface_panel</div><div class="role-ref">{neutral.850} → #15151F</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#1F1F2A;"></span>surface_panel_alt</div><div class="role-ref">{neutral.800} → #1F1F2A</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#0A0A14;"></span>surface_marketing</div><div class="role-ref">{neutral.950} → #0A0A14</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#F0F0F5;"></span>surface_light</div><div class="role-ref">{neutral.50} → #F0F0F5</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#000000;"></span>surface_terminal</div><div class="role-ref">{neutral.1000} → #000000</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#0090B8;"></span>surface_terminal_border</div><div class="role-ref">{cyan.700} → #0090B8</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FFFFFF;"></span>text_dark_primary</div><div class="role-ref">{neutral.0} → #FFFFFF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#A8A8BC;"></span>text_dark_secondary</div><div class="role-ref">{neutral.300} → #A8A8BC</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#5C5C70;"></span>text_dark_tertiary</div><div class="role-ref">{neutral.500} → #5C5C70</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#0A0A14;"></span>text_light_primary</div><div class="role-ref">{neutral.950} → #0A0A14</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#2E2E40;"></span>text_light_secondary</div><div class="role-ref">{neutral.700} → #2E2E40</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#5C5C70;"></span>text_light_tertiary</div><div class="role-ref">{neutral.500} → #5C5C70</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FFFFFF;"></span>text_mono_default</div><div class="role-ref">{neutral.0} → #FFFFFF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#00D1FF;"></span>text_mono_accent</div><div class="role-ref">{cyan.500} → #00D1FF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#2E2E40;"></span>border_dark</div><div class="role-ref">{slate.700} → #2E2E40</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#E0E0E8;"></span>border_light</div><div class="role-ref">{slate.100} → #E0E0E8</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FF2A6D;"></span>border_focus</div><div class="role-ref">{magenta.500} → #FF2A6D</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#00D1FF;"></span>border_focus_secondary</div><div class="role-ref">{cyan.500} → #00D1FF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#00D1FF;"></span>agent_thinking</div><div class="role-ref">{cyan.500} → #00D1FF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#3B3B92;"></span>agent_tool_use</div><div class="role-ref">{steel_violet.500} → #3B3B92</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FF003C;"></span>agent_error</div><div class="role-ref">{red.500} → #FF003C</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FFB800;"></span>agent_blocked</div><div class="role-ref">{amber.500} → #FFB800</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FF2A6D;"></span>chart_1_dark</div><div class="role-ref">{magenta.500} → #FF2A6D</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#00D1FF;"></span>chart_2_dark</div><div class="role-ref">{cyan.500} → #00D1FF</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#A6FF00;"></span>chart_3_dark</div><div class="role-ref">{lime.500} → #A6FF00</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#6B6BC4;"></span>chart_4_dark</div><div class="role-ref">{steel_violet.300} → #6B6BC4</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#FFB800;"></span>chart_5_dark</div><div class="role-ref">{amber.500} → #FFB800</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#9999B0;"></span>chart_6_dark</div><div class="role-ref">{slate.300} → #9999B0</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#B0144A;"></span>chart_1_light</div><div class="role-ref">{magenta.700} → #B0144A</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#0090B8;"></span>chart_2_light</div><div class="role-ref">{cyan.700} → #0090B8</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#4A6E00;"></span>chart_3_light</div><div class="role-ref">{lime.800} → #4A6E00</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#1E1E60;"></span>chart_4_light</div><div class="role-ref">{steel_violet.700} → #1E1E60</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#8C6500;"></span>chart_5_light</div><div class="role-ref">{amber.700} → #8C6500</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div><div class="token-row"><div class="role-name"><span class="token-chip" style="background:#5C5C70;"></span>chart_6_light</div><div class="role-ref">{slate.500} → #5C5C70</div><div class="role-desc">Every consumer references the role token name, never the resolved hex.</div></div>
+
+<h2 class="section">Primitive ramps</h2>
+<h3 class="subsection"><code>primitives.colors.neutral</code></h3><div class="swatch-grid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr));"><div class="swatch" style="background:#FFFFFF;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">0</div></div><span class="swatch-hex">#FFFFFF</span></div><div class="swatch" style="background:#F0F0F5;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">50</div></div><span class="swatch-hex">#F0F0F5</span></div><div class="swatch" style="background:#E0E0EA;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">100</div></div><span class="swatch-hex">#E0E0EA</span></div><div class="swatch" style="background:#C8C8D6;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">200</div></div><span class="swatch-hex">#C8C8D6</span></div><div class="swatch" style="background:#A8A8BC;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">300</div></div><span class="swatch-hex">#A8A8BC</span></div><div class="swatch" style="background:#7A7A92;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">400</div></div><span class="swatch-hex">#7A7A92</span></div><div class="swatch" style="background:#5C5C70;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">500</div></div><span class="swatch-hex">#5C5C70</span></div><div class="swatch" style="background:#3F3F50;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">600</div></div><span class="swatch-hex">#3F3F50</span></div><div class="swatch" style="background:#2E2E40;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">700</div></div><span class="swatch-hex">#2E2E40</span></div><div class="swatch" style="background:#1F1F2A;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">800</div></div><span class="swatch-hex">#1F1F2A</span></div><div class="swatch" style="background:#15151F;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">850</div></div><span class="swatch-hex">#15151F</span></div><div class="swatch" style="background:#0F0F18;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">900</div></div><span class="swatch-hex">#0F0F18</span></div><div class="swatch" style="background:#0A0A14;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">950</div></div><span class="swatch-hex">#0A0A14</span></div><div class="swatch" style="background:#000000;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">1000</div></div><span class="swatch-hex">#000000</span></div></div><h3 class="subsection"><code>primitives.colors.magenta</code></h3><div class="swatch-grid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr));"><div class="swatch" style="background:#FFE5EF;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">50</div></div><span class="swatch-hex">#FFE5EF</span></div><div class="swatch" style="background:#FFCCDF;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">100</div></div><span class="swatch-hex">#FFCCDF</span></div><div class="swatch" style="background:#FF99BF;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">200</div></div><span class="swatch-hex">#FF99BF</span></div><div class="swatch" style="background:#FF7BAA;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">300</div></div><span class="swatch-hex">#FF7BAA</span></div><div class="swatch" style="background:#FF4D8C;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">400</div></div><span class="swatch-hex">#FF4D8C</span></div><div class="swatch" style="background:#FF2A6D;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">500</div></div><span class="swatch-hex">#FF2A6D</span></div><div class="swatch" style="background:#E11D5F;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">600</div></div><span class="swatch-hex">#E11D5F</span></div><div class="swatch" style="background:#B0144A;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">700</div></div><span class="swatch-hex">#B0144A</span></div><div class="swatch" style="background:#7A0E33;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">800</div></div><span class="swatch-hex">#7A0E33</span></div><div class="swatch" style="background:#4F0820;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">900</div></div><span class="swatch-hex">#4F0820</span></div></div><h3 class="subsection"><code>primitives.colors.cyan</code></h3><div class="swatch-grid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr));"><div class="swatch" style="background:#E0FAFF;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">50</div></div><span class="swatch-hex">#E0FAFF</span></div><div class="swatch" style="background:#B8F3FF;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">100</div></div><span class="swatch-hex">#B8F3FF</span></div><div class="swatch" style="background:#80EAFF;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">200</div></div><span class="swatch-hex">#80EAFF</span></div><div class="swatch" style="background:#5EEAFF;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">300</div></div><span class="swatch-hex">#5EEAFF</span></div><div class="swatch" style="background:#2DD9FF;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">400</div></div><span class="swatch-hex">#2DD9FF</span></div><div class="swatch" style="background:#00D1FF;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">500</div></div><span class="swatch-hex">#00D1FF</span></div><div class="swatch" style="background:#00A3CC;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">600</div></div><span class="swatch-hex">#00A3CC</span></div><div class="swatch" style="background:#0090B8;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">700</div></div><span class="swatch-hex">#0090B8</span></div><div class="swatch" style="background:#005F77;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">800</div></div><span class="swatch-hex">#005F77</span></div><div class="swatch" style="background:#003344;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">900</div></div><span class="swatch-hex">#003344</span></div></div><h3 class="subsection"><code>primitives.colors.lime</code></h3><div class="swatch-grid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr));"><div class="swatch" style="background:#F2FFCC;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">50</div></div><span class="swatch-hex">#F2FFCC</span></div><div class="swatch" style="background:#E5FF99;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">100</div></div><span class="swatch-hex">#E5FF99</span></div><div class="swatch" style="background:#D2FF66;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">200</div></div><span class="swatch-hex">#D2FF66</span></div><div class="swatch" style="background:#C8FF40;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">300</div></div><span class="swatch-hex">#C8FF40</span></div><div class="swatch" style="background:#B3FF1A;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">400</div></div><span class="swatch-hex">#B3FF1A</span></div><div class="swatch" style="background:#A6FF00;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">500</div></div><span class="swatch-hex">#A6FF00</span></div><div class="swatch" style="background:#86CC00;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">600</div></div><span class="swatch-hex">#86CC00</span></div><div class="swatch" style="background:#6B9E00;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">700</div></div><span class="swatch-hex">#6B9E00</span></div><div class="swatch" style="background:#4A6E00;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">800</div></div><span class="swatch-hex">#4A6E00</span></div><div class="swatch" style="background:#2A3F00;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">900</div></div><span class="swatch-hex">#2A3F00</span></div></div><h3 class="subsection"><code>primitives.colors.steel_violet</code></h3><div class="swatch-grid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr));"><div class="swatch" style="background:#6B6BC4;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">300</div></div><span class="swatch-hex">#6B6BC4</span></div><div class="swatch" style="background:#3B3B92;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">500</div></div><span class="swatch-hex">#3B3B92</span></div><div class="swatch" style="background:#1E1E60;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">700</div></div><span class="swatch-hex">#1E1E60</span></div><div class="swatch" style="background:#0F0F33;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">900</div></div><span class="swatch-hex">#0F0F33</span></div></div><h3 class="subsection"><code>primitives.colors.slate</code></h3><div class="swatch-grid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr));"><div class="swatch" style="background:#F2F2F7;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">50</div></div><span class="swatch-hex">#F2F2F7</span></div><div class="swatch" style="background:#E0E0E8;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">100</div></div><span class="swatch-hex">#E0E0E8</span></div><div class="swatch" style="background:#9999B0;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">300</div></div><span class="swatch-hex">#9999B0</span></div><div class="swatch" style="background:#5C5C70;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">500</div></div><span class="swatch-hex">#5C5C70</span></div><div class="swatch" style="background:#2E2E40;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">700</div></div><span class="swatch-hex">#2E2E40</span></div><div class="swatch" style="background:#15151F;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">900</div></div><span class="swatch-hex">#15151F</span></div></div><h3 class="subsection"><code>primitives.colors.red</code></h3><div class="swatch-grid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr));"><div class="swatch" style="background:#FF003C;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">500</div></div><span class="swatch-hex">#FF003C</span></div><div class="swatch" style="background:#CC0030;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">600</div></div><span class="swatch-hex">#CC0030</span></div><div class="swatch" style="background:#B0142D;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">700</div></div><span class="swatch-hex">#B0142D</span></div></div><h3 class="subsection"><code>primitives.colors.amber</code></h3><div class="swatch-grid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr));"><div class="swatch" style="background:#FFB800;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">500</div></div><span class="swatch-hex">#FFB800</span></div><div class="swatch" style="background:#CC9300;color:#0A0A14;"><div><div class="swatch-name" style="font-size:0.78rem;">600</div></div><span class="swatch-hex">#CC9300</span></div><div class="swatch" style="background:#8C6500;color:#FFFFFF;"><div><div class="swatch-name" style="font-size:0.78rem;">700</div></div><span class="swatch-hex">#8C6500</span></div></div>
+
+<h2 class="section">Invariants — hard rules</h2>
+<p style="color:var(--fg-muted);margin-bottom:var(--gap-md);">Surfaced from <code>invariants</code>. <code>ek-craft</code> enforces.</p>
+<div class="invariant-row"><div class="inv-name">magenta_cta_monopoly</div><div class="inv-rule">Magenta #FF2A6D (magenta.500) is the only primary-CTA color. No secondary may be used as a primary CTA fill.</div><div class="inv-rationale">Preserves the action signal across every ek surface. If cyan becomes a CTA too, the user can't pre-attentively spot the action. <span class="av-severity error">error</span></div></div><div class="invariant-row"><div class="inv-name">cyan_secondary_and_info</div><div class="inv-rule">Cyan #00D1FF (cyan.500) is restricted to secondary action, info, link, terminal_inset text, and AA-bound chart series. NEVER a primary CTA fill.</div><div class="inv-rationale">Cyan competes hard with magenta for attention; reserving it for navigation (links) and information (info badges) keeps the magenta CTA monopoly readable. <span class="av-severity error">error</span></div></div><div class="invariant-row"><div class="inv-name">lime_alive_and_success_only</div><div class="inv-rule">Lime #A6FF00 (lime.500) appears ONLY in status_success_*, agent_status_active, agent_status_complete roles. Never decorative, never in chart series without success semantics.</div><div class="inv-rationale">Lime carries dual semantic load (success + alive). If it leaks into decoration, the operator can no longer trust 'green = working'. <span class="av-severity error">error</span></div></div><div class="invariant-row"><div class="inv-name">red_error_only</div><div class="inv-rule">Red #FF003C (red.500) appears ONLY in status_error_*, destructive_action, agent_error roles. Never decorative, never in chart series.</div><div class="inv-rationale">Same construction as magenta CTA monopoly — semantic-locked statuses are non-negotiable. <span class="av-severity error">error</span></div></div><div class="invariant-row"><div class="inv-name">amber_warn_only</div><div class="inv-rule">Amber #FFB800 (amber.500) appears ONLY in status_warn_*, agent_blocked roles.</div><div class="inv-rationale">Locks the warn semantic; prevents amber-as-decorative drift. <span class="av-severity error">error</span></div></div><div class="invariant-row"><div class="inv-name">mono_for_identifiers</div><div class="inv-rule">JetBrains Mono is required for code, file paths, IDs, timestamps, model names, hashes, token counts, and any other machine-generated identifier. Inter/Chakra Petch must NOT be used for these.</div><div class="inv-rationale">Agentic UI is operator-facing; the operator scans identifiers constantly. Mono preserves alignment, prevents I/l/1 confusion, and visually separates 'machine output' from 'product chrome'. Single biggest UX win in operator interfaces. <span class="av-severity error">error</span></div></div><div class="invariant-row"><div class="inv-name">no_consumer_indigo_purple</div><div class="inv-rule">Tailwind-indigo #6366F1 and consumer-violet #8B5CF6 / #A78BFA are forbidden. ek-design's atmospheric purple-blue is steel_violet.500 #3B3B92 (darker, more blue-violet).</div><div class="inv-rationale">Indigo-500 is the single most-overused color in 2024-2026 AI products. Defaulting to it instantly reads as 'AI-template starter' rather than brand. <span class="av-severity error">error</span></div></div><div class="invariant-row"><div class="inv-name">dark_primary_register</div><div class="inv-rule">Surfaces app + marketing default to dark mode (background #0A0A14). Light mode is opt-in only (print, accessibility override).</div><div class="inv-rationale">The neon palette reads correctly on near-black; on light it's anemic. Dark-default is also the agentic-UI norm (Claude desktop, Cursor, Linear dark, Vercel dark). <span class="av-severity warning">warning</span></div></div><div class="invariant-row"><div class="inv-name">reduced_motion_required</div><div class="inv-rule">Any animation (transitions, pulses, scanline overlay) must include an @media (prefers-reduced-motion: reduce) override that disables or substantially reduces motion.</div><div class="inv-rationale">Accessibility baseline. Scanline overlay especially can trigger vestibular issues — must be disable-able. <span class="av-severity error">error</span></div></div>
+
+<h2 class="section">Avoid · forbidden colors / fonts / patterns</h2>
+<p style="color:var(--fg-muted);">Surfaced from <code>avoid</code>. <code>ek-craft</code> lints any <code>.tsx</code>/<code>.css</code> against this list.</p>
+<div class="avoid-grid"><div class="avoid-item"><span class="av-swatch" style="background:#6366F1;"></span><span class="av-name">Tailwind Indigo 500</span> <code style="font-size:0.7rem;">#6366F1</code> <span class="av-severity error">error</span><div class="av-reason">Generic AI-default palette — every Tailwind starter app uses this. The single most-overused color in 2024-2026 AI products. ek-design's steel_violet ramp is the differentiated atmospheric purple-blue.</div></div><div class="avoid-item"><span class="av-swatch" style="background:#8B5CF6;"></span><span class="av-name">Tailwind Violet 500</span> <code style="font-size:0.7rem;">#8B5CF6</code> <span class="av-severity error">error</span><div class="av-reason">Same family as #6366F1 — consumer-SaaS-purple cliché.</div></div><div class="avoid-item"><span class="av-swatch" style="background:#A78BFA;"></span><span class="av-name">Tailwind Violet 400</span> <code style="font-size:0.7rem;">#A78BFA</code> <span class="av-severity error">error</span><div class="av-reason">Pastel-violet — wrong register for cyberpunk + AI-default.</div></div><div class="avoid-item"><span class="av-name">trust-gradient</span> <span class="av-severity error">error</span><div class="av-reason"><em>Purple-to-pink gradient backgrounds (#6366F1 → #EC4899 and similar).</em><br>Quintessential AI-slop visual. Reads as marketing-template-purchased.</div></div><div class="avoid-item"><span class="av-name">pastel-tints</span> <span class="av-severity warning">warning</span><div class="av-reason"><em>Any color with saturation < 30% AND lightness > 75%.</em><br>Pastels are off-register for cyberpunk. ek-design uses saturated neons on near-black; pastels collapse the whole aesthetic.</div></div><div class="avoid-item"><span class="av-swatch" style="background:#00FFFF;"></span><span class="av-name">Pure Cyan (#00FFFF)</span> <code style="font-size:0.7rem;">#00FFFF</code> <span class="av-severity warning">warning</span><div class="av-reason">Sci-fi-cliché cyan. ek-design uses #00D1FF (cyan.500) — biased slightly toward blue for a more refined, less Tron-cosplay register.</div></div><div class="avoid-item"><span class="av-name">font: Roboto</span> <span class="av-severity error">error</span><div class="av-reason">Generic Material-default font. Inter is the locked ek body face; Chakra Petch the display.</div></div><div class="avoid-item"><span class="av-name">font: Arial</span> <span class="av-severity error">error</span><div class="av-reason">System default — never use as display.</div></div><div class="avoid-item"><span class="av-name">font: Helvetica</span> <span class="av-severity error">error</span><div class="av-reason">Reads corporate / generic. Inter + Chakra Petch are the locked stack.</div></div><div class="avoid-item"><span class="av-name">font: system-ui</span> <span class="av-severity error">error</span><div class="av-reason">Inherits OS defaults — never use as display.</div></div><div class="avoid-item"><span class="av-name">font: Comic Sans MS</span> <span class="av-severity error">error</span><div class="av-reason">Obvious.</div></div><div class="avoid-item"><span class="av-name">font: Orbitron</span> <span class="av-severity warning">warning</span><div class="av-reason">Sci-fi cosplay font — too costume-y for production agentic UI. Chakra Petch reads cyber-coded without going full Tron.</div></div><div class="avoid-item"><span class="av-name">font: Press Start 2P</span> <span class="av-severity warning">warning</span><div class="av-reason">8-bit pixel cosplay — wrong register for agentic productivity.</div></div><div class="avoid-item"><span class="av-name">pattern: drop-shadow-as-elevation</span> <span class="av-severity warning">warning</span><div class="av-reason">Cyberpunk elevation = neon edge glow (box-shadow with brand color), not gray drop shadow. See effects.neon_glow_*.</div></div><div class="avoid-item"><span class="av-name">pattern: glassmorphism-heavy-blur</span> <span class="av-severity warning">warning</span><div class="av-reason">Heavy backdrop-blur reads as 2020-Apple, not cyberpunk. If you need a frosted surface, use a 4-8px blur max plus subtle border-glow.</div></div><div class="avoid-item"><span class="av-name">pattern: gradient-mesh-background</span> <span class="av-severity warning">warning</span><div class="av-reason">Iridescent / mesh-gradient backgrounds read as 2022 design template, not cyberpunk. ek-design hero atmosphere = flat dark + neon edge accents + optional scanline overlay.</div></div><div class="avoid-item"><span class="av-name">pattern: emoji-as-icon</span> <span class="av-severity error">error</span><div class="av-reason">Lucide SVG icons only. Emojis in UI chrome read as casual / consumer.</div></div><div class="avoid-item"><span class="av-name">pattern: lorem-ipsum</span> <span class="av-severity warning">warning</span><div class="av-reason">Use real content or honest placeholders ('Task title here', 'Agent output appears below').</div></div><div class="avoid-item"><span class="av-name">pattern: rounded-card-with-colored-left-border</span> <span class="av-severity warning">warning</span><div class="av-reason">Overused B2B SaaS trope.</div></div><div class="avoid-item"><span class="av-name">pattern: decorative-neon-glow</span> <span class="av-severity warning">warning</span><div class="av-reason">Neon edge glow is reserved for focus, hover, and the agent_status_active badge. Decorative glow everywhere = cyberpunk costume, not brand.</div></div></div>
+
+</main>
+
+<footer class="portal-footer">
+  <div>Auto-generated from <code>design-model.yaml</code>. Manual edits not permitted.</div>
+  <div>Regenerate: <code>python3 scripts/generate-brand-portal.py</code></div>
+</footer>
+</body>
+</html>

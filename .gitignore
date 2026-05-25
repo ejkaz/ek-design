@@ -18,5 +18,6 @@ __pycache__/
 *.pem
 credentials*.json
 
-# Generated previews (regenerated from yaml on demand)
-plugins/ek-design/skills/ek-design/brand-portal/
+# Brand portal regen artifacts (regenerable, not source)
+# (kept tracked — they ARE the artifact, mirrors parspec-design policy)
+
