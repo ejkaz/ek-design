@@ -1,0 +1,13 @@
+{
+  "name": "ek-craft",
+  "version": "0.1.0",
+  "description": "ek-craft — data-driven brand lint for .tsx / .css / .html targets. Two layers: universal anti-AI-slop / color / typography rules adapted for cyberpunk web UI (in this skill), and palette enforcement that reads design-model.yaml from the sibling ek-design plugin (avoid list, primary axis, invariants). Brand evolution auto-adapts; no code changes here.",
+  "author": {
+    "name": "ejkaz",
+    "url": "https://github.com/ejkaz"
+  },
+  "homepage": "https://github.com/ejkaz/ek-design",
+  "repository": "https://github.com/ejkaz/ek-design",
+  "license": "MIT",
+  "keywords": ["ek-design", "ek-craft", "lint", "anti-ai-slop", "brand-compliance", "tailwind", "react", "tsx"]
+}

@@ -20,6 +20,13 @@
       "source": "./plugins/ek-web",
       "category": "design-system",
       "tags": ["ek-design", "tailwind", "shadcn", "css-variables", "design-tokens", "exporter", "web"]
+    },
+    {
+      "name": "ek-craft",
+      "description": "ek-craft brand-compliance lint. Data-driven Python linter reads design-model.yaml from the sibling ek-design plugin (avoid list, primary axis, invariants) and applies them to .tsx / .jsx / .css / .html targets. Plus universal anti-AI-slop rules adapted for cyberpunk web UI. Catches Tailwind indigo/violet, costume cyberpunk fonts, drop-shadow-as-elevation, glassmorphism heavy blur, hex literals where role tokens exist, magenta CTA monopoly violations, mono-for-identifiers misses.",
+      "source": "./plugins/ek-craft",
+      "category": "design-system",
+      "tags": ["ek-design", "lint", "anti-ai-slop", "brand-compliance", "tailwind", "react", "tsx", "ci"]
     }
   ]
 }
