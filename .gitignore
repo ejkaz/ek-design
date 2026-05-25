@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+._*
+
+# Editors
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Secrets — never commit
+.env
+.env.*
+*.key
+*.pem
+credentials*.json
+
+# Generated previews (regenerated from yaml on demand)
+plugins/ek-design/skills/ek-design/brand-portal/

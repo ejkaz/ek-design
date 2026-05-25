@@ -1,0 +1,13 @@
+{
+  "name": "ek-design",
+  "version": "0.1.0",
+  "description": "ek-design brand SSoT — maintains design-model.yaml (the single file every other ek-* skill reads). Neo-Tokyo cyberpunk register for agentic UI. Versioned via YAML frontmatter (version, brand_version, supersedes, updated_by) and git tags for rollback.",
+  "author": {
+    "name": "ejkaz",
+    "url": "https://github.com/ejkaz"
+  },
+  "homepage": "https://github.com/ejkaz/ek-design",
+  "repository": "https://github.com/ejkaz/ek-design",
+  "license": "MIT",
+  "keywords": ["ek-design", "brand", "design-system", "design-model", "cyberpunk", "neo-tokyo", "agentic-ui", "tokens"]
+}

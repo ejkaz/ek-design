@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ek-design",
+  "description": "Eric Kazmaier's personal cyberpunk brand stack — composable Claude Code plugins that compile a single brand SSoT (design-model.yaml) into Neo-Tokyo-neon themed agentic UI surfaces. Architecturally inherited from ejkaz/parspec-design.",
+  "owner": {
+    "name": "ejkaz",
+    "url": "https://github.com/ejkaz"
+  },
+  "plugins": [
+    {
+      "name": "ek-design",
+      "description": "Brand SSoT skill. Maintains ek-design design-model.yaml (Neo-Tokyo neon palette, typography, motion, voice, invariants) and operates inspect / evolve / roll back. Versioned via YAML frontmatter and git tags so brand evolution is mechanical, not manual. First consumer: cepsra (cepsr.app).",
+      "source": "./plugins/ek-design",
+      "category": "design-system",
+      "tags": ["brand", "design-system", "cyberpunk", "neo-tokyo", "agentic-ui", "tokens", "design-model"]
+    }
+  ]
+}

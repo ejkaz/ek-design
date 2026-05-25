@@ -1,0 +1,666 @@
+# ════════════════════════════════════════════════════════════════════
+# ek-design — Brand SSoT for Eric Kazmaier's personal agentic UI
+# Neo-Tokyo cyberpunk register. Read by ek-web, ek-craft, ek-review
+# (as they ship). Updated via the ek-design skill.
+# ════════════════════════════════════════════════════════════════════
+
+meta:
+  version: "0.1.0"
+  brand_version: "ek-2026-Q3-v1"
+  source: |
+    Founding palette ratified 2026-05-24. Architecturally inherited from
+    ejkaz/parspec-design v2.0.0 (composable-plugin pattern, yaml frontmatter
+    versioning, data-driven invariants). Brand tokens entirely replaced.
+    Aesthetic reference: Blade Runner 2049 / Ghost in the Shell / real
+    Shinjuku-Akihabara neon. Production-tuned for agentic UI (operator-
+    facing, mono-for-identifiers, dark-primary).
+  updated: "2026-05-24"
+  updated_by: "eric@parspec.io"
+  status: "ratified"
+  ratified: "2026-05-24"
+  ratified_by: "eric@parspec.io"
+  supersedes: null
+  notes: |
+    v0.1.0 — Founding. Picked Neo-Tokyo Neon over Synthwave (too nostalgic),
+    Terminal/CRT (too austere for product), and Brutalist-cyber (too
+    monochrome — defeats the cyberpunk register). Magenta CTA monopoly chosen
+    deliberately to NOT collide with parspec orange; if I ever cross-brand
+    artifacts (parspec deck embedded in a cepsra screenshot), the CTA hues
+    sit far apart on the wheel.
+
+    First consumer: cepsra (cepsr.app). Decision log: hub
+    Decisions.md D001-D003.
+
+# ────────────────────────────────────────────────────────────────────
+# IDENTITY
+# ────────────────────────────────────────────────────────────────────
+name: "ek-design"
+description: "Personal cyberpunk brand for Eric Kazmaier's agentic UI surfaces"
+philosophy: |
+  Operator-facing software register pulled from the visual vocabulary of
+  Neo-Tokyo cinema (Blade Runner 2049, Ghost in the Shell) and real
+  Tokyo-after-dark neon. Deep blue-black ground, magenta-cyan-lime triad
+  with locked semantic roles, JetBrains Mono for everything that's an
+  identifier (model name, agent ID, timestamp, file path, token count).
+  The brand reads as "the operator's console" — Eric is always the
+  pilot, the UI is always one of his agents.
+primary_mode: "dark"
+brand_source: "Neo-Tokyo cinema visual reference + production agentic-UI requirements"
+brand_domain: "Personal / agentic productivity software"
+brand_type: "ui-rich"
+mono_for_code: true
+mono_for_metrics: true        # ← diverges from parspec: agentic UI surfaces every metric in mono
+mono_for_identifiers: true    # ← new vs parspec: locked invariant
+
+# ────────────────────────────────────────────────────────────────────
+# PRIMARY AXIS — LOCKED. Never modify without explicit override.
+# ek-craft (when shipped) enforces these as required tokens.
+# ────────────────────────────────────────────────────────────────────
+primary_axis_preserved:
+  description: |
+    The immovable anchors of the ek-design brand. Any palette evolution
+    may change tints, atmospheric secondaries, motifs, or motion — but
+    never these.
+  background:          "#0A0A14"   # Deep blue-black Tokyo night
+  panel:               "#15151F"   # Layered surface
+  off_white:           "#F0F0F5"   # Inverted (light-mode opt-in)
+  white:               "#FFFFFF"
+  magenta_cta:         "#FF2A6D"   # Primary CTA monopoly
+  cyan_secondary:      "#00D1FF"   # Secondary action / info / link
+  lime_alive:          "#A6FF00"   # Success + agent active indicator
+  typography_display:  "Chakra Petch"
+  typography_body:     "Inter"
+  typography_mono:     "JetBrains Mono"
+  motifs:
+    - "neon-edge-glow"          # CSS box-shadow on focus/active surfaces
+    - "terminal-block-inset"    # Mono content on cyan-bordered black recess
+    - "katakana-numeric-id"     # Agent / job IDs styled with monospace + leading zeros
+    - "scanline-overlay"        # Optional, reduced-motion-safe horizontal CRT lines on hero
+    - "diagonal-cut-corner"     # Alternative to rounded corners on hero/feature surfaces
+
+# ────────────────────────────────────────────────────────────────────
+# SURFACES — Mode-per-surface bindings
+# Codifies the dark-primary register. ek-craft enforces:
+# app + marketing default to dark; light is opt-in only.
+# ────────────────────────────────────────────────────────────────────
+surfaces:
+  app:
+    mode: dark
+    examples: [app-shell, dashboard, agent-console, task-list, briefing-view, chat-panel]
+    background: "{neutral.950}"        # #0A0A14
+    text_primary: "{neutral.0}"        # White
+    rationale: |
+      cepsra and any future agentic surface defaults to dark. Reduces
+      eye strain during long operator sessions; neon accents read
+      vividly on near-black; mono identifiers maintain phosphor-CRT
+      legibility. All major agentic UI references (Claude desktop,
+      ChatGPT desktop, Cursor, Linear dark) are dark-default.
+  marketing:
+    mode: dark
+    examples: [landing-page, hero-sections, feature-grid, pricing, docs-homepage]
+    background: "{neutral.950}"        # #0A0A14
+    text_primary: "{neutral.0}"        # White
+    rationale: |
+      Marketing site sits in the same dark register as the app so
+      brand-to-app transition is seamless. Cyberpunk register reads
+      as "for operators" — self-selects the right audience.
+  light:
+    mode: light
+    examples: [print-views, exported-pdf, accessibility-mode]
+    background: "{neutral.50}"         # #F0F0F5 cool off-white
+    text_primary: "{neutral.950}"      # #0A0A14
+    rationale: |
+      Opt-in inverted mode for print exports, accessibility override,
+      and any surface where dark mode is wrong (rare). Same primary
+      axis; only mode bindings differ.
+  terminal_inset:
+    mode: dark
+    examples: [code-block, agent-log, command-output, jsonl-stream, token-debug]
+    background: "{neutral.1000}"       # #000000 — pure black, deeper than app bg
+    text_primary: "{cyan.500}"         # Cyan mono — phosphor terminal
+    border: "1px solid {cyan.700}"
+    rationale: |
+      The "console window inside the app" wedge. Pure black ground
+      + cyan border + JetBrains Mono content. Agentic UIs need a
+      visually-distinct surface for raw machine output (logs,
+      tool calls, JSON streams) — this is it.
+
+# ────────────────────────────────────────────────────────────────────
+# PRIMITIVES — Raw scales
+# ────────────────────────────────────────────────────────────────────
+primitives:
+  colors:
+    # Neutral ramp — cool-biased (subtle blue cast for Tokyo night atmosphere).
+    # Distinct from pure grayscale and from parspec's warm-charcoal neutral.
+    neutral:
+      0:    "#FFFFFF"  # White
+      50:   "#F0F0F5"  # Off-white (cool) — inverted/light-mode bg
+      100:  "#E0E0EA"
+      200:  "#C8C8D6"
+      300:  "#A8A8BC"
+      400:  "#7A7A92"
+      500:  "#5C5C70"
+      600:  "#3F3F50"
+      700:  "#2E2E40"
+      800:  "#1F1F2A"
+      850:  "#15151F"  # Panel — layered surface
+      900:  "#0F0F18"
+      950:  "#0A0A14"  # Background — Tokyo night (LOCKED)
+      1000: "#000000"  # Pure black — terminal_inset only
+
+    # Magenta — hero CTA monopoly. Cyberpunk pink anchor.
+    # ΔE from parspec brand orange = wide (different hue family entirely).
+    magenta:
+      50:   "#FFE5EF"
+      100:  "#FFCCDF"
+      200:  "#FF99BF"
+      300:  "#FF7BAA"
+      400:  "#FF4D8C"
+      500:  "#FF2A6D"   # ★ LOCKED — Primary CTA monopoly
+      600:  "#E11D5F"   # CTA hover
+      700:  "#B0144A"   # CTA active (press)
+      800:  "#7A0E33"   # accent_type_on_light — AA-safe on off-white (8.27:1)
+      900:  "#4F0820"
+
+    # Cyan — electric, secondary action / info / link / data viz cool.
+    # Phosphor-terminal cyan, biased slightly toward blue to differentiate
+    # from sci-fi-cliché pure-cyan (#00FFFF).
+    cyan:
+      50:   "#E0FAFF"
+      100:  "#B8F3FF"
+      200:  "#80EAFF"
+      300:  "#5EEAFF"   # tint — dark-mode chart accent
+      400:  "#2DD9FF"
+      500:  "#00D1FF"   # ★ ANCHOR — Secondary, info, link, terminal_inset text
+      600:  "#00A3CC"
+      700:  "#0090B8"   # info_on_light — passes AA at 4.51:1 on off-white
+      800:  "#005F77"
+      900:  "#003344"
+
+    # Lime — acid green, dual-bound to success AND agent-alive state.
+    # Locked semantic via `lime_alive_and_success_only` invariant.
+    # Cyberpunk register: green = phosphor terminal = "online / running".
+    lime:
+      50:   "#F2FFCC"
+      100:  "#E5FF99"
+      200:  "#D2FF66"
+      300:  "#C8FF40"   # tint — chart series 3
+      400:  "#B3FF1A"
+      500:  "#A6FF00"   # ★ ANCHOR — Success + agent.status_active
+      600:  "#86CC00"
+      700:  "#6B9E00"   # success_on_light — passes AA at 3.18:1 (large text only)
+      800:  "#4A6E00"   # success_on_light_normal — AA 5.81:1
+      900:  "#2A3F00"
+
+    # Steel-violet — atmospheric Tokyo-night purple-blue.
+    # Narrative job: secondary surface tints, narrative depth, "deep field"
+    # ambient color on hero/marketing. NOT a CTA, NOT a status. Distinct
+    # from the banned consumer-indigo `#6366F1` (this is darker, more
+    # blue-violet, less indigo).
+    steel_violet:
+      300:  "#6B6BC4"
+      500:  "#3B3B92"   # info_on_dark accent, hero atmospheric glow
+      700:  "#1E1E60"
+      900:  "#0F0F33"
+
+    # Slate — cool-neutral utility. Body chrome, table borders, secondary
+    # text, neutral chart fills. NOT a brand color — utility only.
+    slate:
+      50:   "#F2F2F7"
+      100:  "#E0E0E8"
+      300:  "#9999B0"   # body_chrome_on_dark — 6.21:1 on background
+      500:  "#5C5C70"
+      700:  "#2E2E40"   # border_dark
+      900:  "#15151F"
+
+    # Status — semantic-locked. Each hue has narrow role bindings.
+    red:
+      500:  "#FF003C"   # ★ ANCHOR — error / destructive only
+      600:  "#CC0030"   # error_on_dark deeper variant
+      700:  "#B0142D"   # error_on_light — AA 5.43:1 on off-white
+
+    amber:
+      500:  "#FFB800"   # ★ ANCHOR — warn only
+      600:  "#CC9300"
+      700:  "#8C6500"   # warn_on_light — AA 6.84:1 on off-white
+
+  spacing: [0, 2, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192]
+  radii:   [0, 2, 4, 6, 8, 12, 999]
+  cuts:    [0, 4, 8, 12, 16]   # Diagonal corner cut sizes (alt to radii on hero/feature surfaces)
+
+# ────────────────────────────────────────────────────────────────────
+# ROLES — Two-tier token model
+# Every role token references EXACTLY ONE primitive. ek-craft (when
+# shipped) lints any .tsx/.css where a hex literal is used for a
+# role-mapped purpose without referencing the role token.
+# ────────────────────────────────────────────────────────────────────
+roles:
+
+  # ─── Action verbs (CTA monopoly enforced) ───
+  cta:                       "{magenta.500}"      # Primary CTA fill — monopoly invariant
+  cta_hover:                 "{magenta.600}"
+  cta_active:                "{magenta.700}"
+  cta_text:                  "{neutral.0}"        # White text on magenta CTA fill — 4.97:1 AA pass
+
+  # ─── Secondary action / info / link ───
+  secondary_action:          "{cyan.500}"         # Secondary buttons, ghost CTAs
+  secondary_action_hover:    "{cyan.400}"
+  link_on_dark:              "{cyan.500}"         # 10.41:1 on background — AAA pass
+  link_on_light:             "{cyan.700}"         # 4.51:1 on off-white — AA pass
+  info_on_dark:              "{cyan.500}"
+  info_on_light:             "{cyan.700}"
+
+  # ─── Magenta-as-type bindings (mode-aware — AA-safe) ───
+  accent_type_on_dark:       "{magenta.500}"      # 5.18:1 on background — AA pass
+  accent_type_on_light:      "{magenta.800}"      # 8.27:1 on off-white — AAA pass. NEVER magenta.500 on light (3.21:1 fails normal text)
+
+  # ─── Lime — alive/success dual binding (locked) ───
+  status_success_on_dark:    "{lime.500}"         # 13.92:1 on background — AAA
+  status_success_on_light:   "{lime.800}"         # 5.81:1 on off-white — AA
+  agent_status_active:       "{lime.500}"         # The "running / processing" indicator
+  agent_status_complete:     "{lime.500}"         # Completion checkmarks
+  agent_status_idle:         "{slate.500}"        # Inactive — neutral
+
+  # ─── Status (semantic-locked) ───
+  status_error_on_dark:      "{red.500}"          # 5.18:1 on background — AA
+  status_error_on_light:     "{red.700}"          # 5.43:1 on off-white — AA
+  status_warn_on_dark:       "{amber.500}"        # 11.43:1 on background — AAA
+  status_warn_on_light:      "{amber.700}"        # 6.84:1 on off-white — AAA
+  destructive_action:        "{red.500}"          # Delete / archive / cancel buttons
+
+  # ─── Atmospheric secondaries — steel-violet ───
+  ambient_glow:              "{steel_violet.500}" # Hero atmospheric glow (box-shadow color)
+  ambient_deep:              "{steel_violet.700}" # Deep field on marketing hero
+  ambient_subtle:            "{steel_violet.900}" # Subtle panel tint on dark
+
+  # ─── Cool-neutral utility — slate ───
+  body_chrome_on_dark:       "{slate.300}"        # 6.21:1 on background
+  body_chrome_on_light:      "{slate.500}"
+  border_neutral_dark:       "{slate.700}"        # Default border on dark surfaces
+  border_neutral_light:      "{slate.100}"
+
+  # ─── Surface tokens — keyed to surfaces.* mode bindings ───
+  surface_app:               "{neutral.950}"      # #0A0A14 — app background
+  surface_panel:             "{neutral.850}"      # #15151F — layered panel
+  surface_panel_alt:         "{neutral.800}"      # #1F1F2A — nested panel
+  surface_marketing:         "{neutral.950}"      # same as app
+  surface_light:             "{neutral.50}"       # #F0F0F5 — opt-in light mode
+  surface_terminal:          "{neutral.1000}"     # #000000 — terminal_inset
+  surface_terminal_border:   "{cyan.700}"
+
+  # ─── Text tokens — split by mode ───
+  text_dark_primary:         "{neutral.0}"        # White on dark
+  text_dark_secondary:       "{neutral.300}"      # 7.18:1 on background
+  text_dark_tertiary:        "{neutral.500}"      # 4.04:1 — large text only
+  text_light_primary:        "{neutral.950}"      # #0A0A14 on off-white
+  text_light_secondary:      "{neutral.700}"
+  text_light_tertiary:       "{neutral.500}"
+  text_mono_default:         "{neutral.0}"        # Default mono color on dark
+  text_mono_accent:          "{cyan.500}"         # Accented mono (e.g., syntax highlight)
+
+  # ─── Borders ───
+  border_dark:               "{slate.700}"
+  border_light:              "{slate.100}"
+  border_focus:              "{magenta.500}"      # Focus ring — magenta (CTA family)
+  border_focus_secondary:    "{cyan.500}"         # Secondary focus (input fields)
+
+  # ─── Agent-state semantic bindings (cepsra primary use) ───
+  agent_thinking:            "{cyan.500}"         # Pulsing cyan = "model is generating"
+  agent_tool_use:            "{steel_violet.500}" # Tool call in progress
+  agent_error:               "{red.500}"
+  agent_blocked:             "{amber.500}"        # Waiting on user input
+
+  # ─── Chart series — pre-built per-mode recipes ───
+  chart_1_dark: "{magenta.500}"       # Hero series
+  chart_2_dark: "{cyan.500}"          # Cool complement
+  chart_3_dark: "{lime.500}"          # Acid accent
+  chart_4_dark: "{steel_violet.300}"  # Atmospheric mid
+  chart_5_dark: "{amber.500}"         # Warm accent
+  chart_6_dark: "{slate.300}"         # Neutral
+
+  chart_1_light: "{magenta.700}"      # Deeper magenta — AA on off-white
+  chart_2_light: "{cyan.700}"
+  chart_3_light: "{lime.800}"
+  chart_4_light: "{steel_violet.700}"
+  chart_5_light: "{amber.700}"
+  chart_6_light: "{slate.500}"
+
+# ────────────────────────────────────────────────────────────────────
+# SEMANTIC TOKENS
+# ────────────────────────────────────────────────────────────────────
+tokens:
+  colors:
+    dark:
+      background:    "{neutral.950}"
+      surface_1:     "{neutral.850}"
+      surface_2:     "{neutral.800}"
+      surface_3:     "{neutral.900}"
+      border:        "{slate.700}"
+      text_1:        "{neutral.0}"
+      text_2:        "{neutral.300}"
+      text_3:        "{neutral.500}"
+      accent:        "{magenta.500}"
+      accent_subtle: "{magenta.900}"
+      secondary:     "{cyan.500}"
+      success:       "{lime.500}"
+    light:
+      background:    "{neutral.50}"
+      surface_1:     "{neutral.0}"
+      surface_2:     "{neutral.100}"
+      border:        "{slate.100}"
+      text_1:        "{neutral.950}"
+      text_2:        "{neutral.700}"
+      text_3:        "{neutral.500}"
+      accent:        "{magenta.800}"
+      accent_subtle: "{magenta.50}"
+      secondary:     "{cyan.700}"
+      success:       "{lime.800}"
+    success: "{lime.500}"
+    warning: "{amber.500}"
+    error:   "{red.500}"
+    info:    "{cyan.500}"
+
+  typography:
+    families:
+      display: "Chakra Petch"          # Headers, eyebrows, hero — angled cyber-coded cuts
+      body:    "Inter"                  # UI body, labels, prose
+      mono:    "JetBrains Mono"         # Code, IDs, timestamps, model names, file paths — REQUIRED
+    google_fonts_url: "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    weights_used: [400, 500, 600, 700]
+    display:  { family: "Chakra Petch", weight: 700, size_clamp: "clamp(2.5rem, 6vw, 5.5rem)", line_height: 1.00, letter_spacing: "-0.020em" }
+    h1:       { family: "Chakra Petch", weight: 700, size_clamp: "clamp(1.875rem, 4.5vw, 3.75rem)", line_height: 1.05, letter_spacing: "-0.015em" }
+    h2:       { family: "Chakra Petch", weight: 600, size_clamp: "clamp(1.5rem, 3vw, 2.5rem)", line_height: 1.10, letter_spacing: "-0.010em" }
+    h3:       { family: "Chakra Petch", weight: 600, size_clamp: "clamp(1.125rem, 2vw, 1.5rem)", line_height: 1.15, letter_spacing: "-0.005em" }
+    body:     { family: "Inter",        weight: 400, size_clamp: "clamp(0.875rem, 1.4vw, 1rem)", line_height: 1.55, letter_spacing: "0" }
+    body_lg:  { family: "Inter",        weight: 400, size_clamp: "clamp(1rem, 1.6vw, 1.125rem)", line_height: 1.55, letter_spacing: "0" }
+    small:    { family: "Inter",        weight: 500, size_clamp: "clamp(0.75rem, 1vw, 0.875rem)", line_height: 1.45, letter_spacing: "0.003em" }
+    eyebrow:  { family: "Chakra Petch", weight: 600, size_clamp: "clamp(0.7rem, 0.9vw, 0.85rem)", line_height: 1.20, letter_spacing: "0.180em", transform: "uppercase" }
+    mono:     { family: "JetBrains Mono", weight: 400, size_clamp: "clamp(0.8125rem, 1.1vw, 0.9375rem)", line_height: 1.50, letter_spacing: "0" }
+    mono_sm:  { family: "JetBrains Mono", weight: 400, size_clamp: "clamp(0.6875rem, 0.85vw, 0.8125rem)", line_height: 1.45, letter_spacing: "0" }
+    code:     { family: "JetBrains Mono", weight: 400, size_clamp: "clamp(0.8125rem, 1.1vw, 0.9375rem)", line_height: 1.55, letter_spacing: "0" }
+
+  spacing:
+    xs:    4
+    sm:    8
+    md:    16
+    lg:    24
+    xl:    32
+    "2xl": 48
+    "3xl": 64
+    "4xl": 96
+    "5xl": 128
+
+  radii:
+    element:   2
+    control:   4    # buttons, inputs, badges
+    component: 6    # cards, panels (tighter than parspec's 8 — angular cyberpunk register)
+    container: 8    # modals, sheets
+    pill:      999
+
+  cuts:
+    sm: 8           # subtle hero corner cut
+    md: 12          # default hero / feature corner cut
+    lg: 16          # large hero corner cut
+
+  motion:
+    personality: "kinetic"           # vs parspec "mechanical" — quicker, sharper
+    easing: "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    duration_fast:   "100ms"          # button press, focus
+    duration_normal: "200ms"          # panel transitions
+    duration_slow:   "400ms"          # hero entrance
+    reduced_motion_required: true     # @media (prefers-reduced-motion: reduce) — always
+
+  iconography:
+    family: "Lucide"
+    weight: "regular"
+    stroke_width: "1.75px"            # slightly thicker than default — reads better on dark
+    sizes:
+      inline: "16px"
+      button: "18px"
+      nav:    "20px"
+      hero:   "32px"
+    color_default: "{neutral.300}"    # body_chrome_on_dark
+    color_active:  "{magenta.500}"    # active nav / selected state
+    color_alive:   "{lime.500}"       # agent-status-active glyphs
+
+  effects:
+    # Cyberpunk-specific decorative effects. Use sparingly — each binding
+    # has a narrow role; ek-craft (when shipped) will warn on decorative
+    # overuse.
+    neon_glow_magenta: "0 0 8px {magenta.500}, 0 0 16px {magenta.500}40"
+    neon_glow_cyan:    "0 0 8px {cyan.500}, 0 0 16px {cyan.500}40"
+    neon_glow_lime:    "0 0 6px {lime.500}, 0 0 12px {lime.500}40"
+    focus_ring_magenta: "0 0 0 2px {neutral.950}, 0 0 0 4px {magenta.500}"
+    focus_ring_cyan:    "0 0 0 2px {neutral.950}, 0 0 0 4px {cyan.500}"
+    panel_lift:         "0 1px 0 0 {slate.700}, 0 8px 24px -8px #00000080"
+    scanline_overlay:   "repeating-linear-gradient(0deg, transparent 0, transparent 2px, {neutral.0}06 2px, {neutral.0}06 3px)"
+
+# ────────────────────────────────────────────────────────────────────
+# COMPONENTS — Specs read by ek-web (when shipped) for token export
+# ────────────────────────────────────────────────────────────────────
+components:
+  button_primary:
+    background:  "{magenta.500}"
+    color:       "{neutral.0}"
+    padding:     "10px 20px"
+    radius:      "{radii.control}"
+    font_family: "Chakra Petch"
+    font_weight: 600
+    font_size:   "0.9375rem"
+    letter_spacing: "0.020em"
+    transition:  "background {motion.duration_fast} {motion.easing}"
+    hover:       { background: "{magenta.600}", box_shadow: "{effects.neon_glow_magenta}" }
+    active:      { background: "{magenta.700}" }
+    focus:       { outline: "none", box_shadow: "{effects.focus_ring_magenta}" }
+
+  button_secondary:
+    background:  "transparent"
+    color:       "{cyan.500}"
+    border:      "1px solid {cyan.500}"
+    padding:     "10px 20px"
+    radius:      "{radii.control}"
+    font_family: "Chakra Petch"
+    font_weight: 600
+    font_size:   "0.9375rem"
+    letter_spacing: "0.020em"
+    hover:       { background: "{cyan.500}10", color: "{cyan.400}" }
+    focus:       { outline: "none", box_shadow: "{effects.focus_ring_cyan}" }
+
+  card:
+    background: "{neutral.850}"
+    color:      "{neutral.0}"
+    border:     "1px solid {slate.700}"
+    radius:     "{radii.component}"
+    padding:    "{spacing.lg}"
+
+  terminal_block:
+    background:  "{neutral.1000}"       # pure black
+    color:       "{cyan.500}"
+    border:      "1px solid {cyan.700}"
+    radius:      "{radii.element}"
+    padding:     "{spacing.md}"
+    font_family: "JetBrains Mono"
+    font_size:   "0.8125rem"
+    line_height: 1.50
+
+  agent_status_badge:
+    base:
+      display: "inline-flex"
+      align: "center"
+      gap: "{spacing.xs}"
+      padding: "2px 8px"
+      border: "1px solid currentColor"
+      radius: "{radii.pill}"
+      font_family: "JetBrains Mono"
+      font_weight: 500
+      font_size: "0.6875rem"
+      text_transform: "uppercase"
+      letter_spacing: "0.060em"
+    variants:
+      active:    { color: "{lime.500}",  box_shadow: "{effects.neon_glow_lime}" }
+      thinking:  { color: "{cyan.500}",  animation: "pulse 1.5s ease-in-out infinite" }
+      tool_use:  { color: "{steel_violet.300}" }
+      complete:  { color: "{lime.500}" }
+      blocked:   { color: "{amber.500}" }
+      error:     { color: "{red.500}" }
+      idle:      { color: "{slate.500}" }
+
+  code_block:
+    background: "{neutral.900}"
+    color:      "{neutral.0}"
+    border:     "1px solid {slate.700}"
+    radius:     "{radii.component}"
+    padding:    "{spacing.md}"
+    font_family: "JetBrains Mono"
+    syntax_accent: "{cyan.500}"
+
+  input_field:
+    background: "{neutral.850}"
+    color:      "{neutral.0}"
+    border:     "1px solid {slate.700}"
+    radius:     "{radii.control}"
+    padding:    "10px 12px"
+    font_family: "Inter"
+    placeholder_color: "{neutral.500}"
+    focus:      { border_color: "{cyan.500}", box_shadow: "{effects.focus_ring_cyan}" }
+
+# ────────────────────────────────────────────────────────────────────
+# VOICE
+# ────────────────────────────────────────────────────────────────────
+voice:
+  register: "agentic, operator-respecting, terminal-native"
+  do:
+    - "Treat the user as the operator — surface state plainly (model, agent ID, latency, token count, cost)"
+    - "Use mono for any identifier (file paths, IDs, timestamps, model names, hashes)"
+    - "Prefer concrete metrics over hype ('212ms', '4.2k tokens' beats 'fast')"
+    - "Terminal-style timestamps where appropriate (HH:MM:SS.mmm or ISO-8601)"
+    - "Direct verbs in CTAs ('Run', 'Send', 'Apply', 'Cancel' — not 'Get Started', not 'Begin Your Journey')"
+    - "Density is fine — the operator wants information, not whitespace"
+  avoid:
+    - "Consumer-SaaS verbs ('delight', 'magic', 'effortless', 'unlock', 'empower')"
+    - "AI-hype clichés ('powered by AI', 'AI-first', 'intelligent', 'smart')"
+    - "Generic startup grandiosity ('transform', 'revolutionize', 'reimagine')"
+    - "Lorem ipsum — use real ek/cepsra content or honest placeholders"
+    - "Faux-handwritten signatures or 'made with ❤️' footer copy"
+    - "Decorative emoji in UI (functional emoji in user-authored content is fine)"
+    - "Cyberpunk cosplay vocabulary ('jacked in', 'the matrix', 'neural') — the brand is visually cyberpunk; the copy stays grounded"
+
+# ────────────────────────────────────────────────────────────────────
+# AVOID — Data-driven rules consumed by ek-craft (when shipped)
+# Each entry: { color | color_family | font_family | pattern }, reason, severity
+# ────────────────────────────────────────────────────────────────────
+avoid:
+  # Consumer-AI-default colors — the single biggest brand-collision risk
+  - color: "#6366F1"
+    name: "Tailwind Indigo 500"
+    reason: "Generic AI-default palette — every Tailwind starter app uses this. The single most-overused color in 2024-2026 AI products. ek-design's steel_violet ramp is the differentiated atmospheric purple-blue."
+    severity: "error"
+  - color: "#8B5CF6"
+    name: "Tailwind Violet 500"
+    reason: "Same family as #6366F1 — consumer-SaaS-purple cliché."
+    severity: "error"
+  - color: "#A78BFA"
+    name: "Tailwind Violet 400"
+    reason: "Pastel-violet — wrong register for cyberpunk + AI-default."
+    severity: "error"
+  - color_family: "trust-gradient"
+    description: "Purple-to-pink gradient backgrounds (#6366F1 → #EC4899 and similar)."
+    reason: "Quintessential AI-slop visual. Reads as marketing-template-purchased."
+    severity: "error"
+  - color_family: "pastel-tints"
+    description: "Any color with saturation < 30% AND lightness > 75%."
+    reason: "Pastels are off-register for cyberpunk. ek-design uses saturated neons on near-black; pastels collapse the whole aesthetic."
+    severity: "warning"
+
+  # Cyberpunk-cliché color we deliberately avoid
+  - color: "#00FFFF"
+    name: "Pure Cyan (#00FFFF)"
+    reason: "Sci-fi-cliché cyan. ek-design uses #00D1FF (cyan.500) — biased slightly toward blue for a more refined, less Tron-cosplay register."
+    severity: "warning"
+
+  # Forbidden fonts
+  - font_family: "Roboto"
+    reason: "Generic Material-default font. Inter is the locked ek body face; Chakra Petch the display."
+    severity: "error"
+  - font_family: "Arial"
+    reason: "System default — never use as display."
+    severity: "error"
+  - font_family: "Helvetica"
+    reason: "Reads corporate / generic. Inter + Chakra Petch are the locked stack."
+    severity: "error"
+  - font_family: "system-ui"
+    reason: "Inherits OS defaults — never use as display."
+    severity: "error"
+  - font_family: "Comic Sans MS"
+    reason: "Obvious."
+    severity: "error"
+  - font_family: "Orbitron"
+    reason: "Sci-fi cosplay font — too costume-y for production agentic UI. Chakra Petch reads cyber-coded without going full Tron."
+    severity: "warning"
+  - font_family: "Press Start 2P"
+    reason: "8-bit pixel cosplay — wrong register for agentic productivity."
+    severity: "warning"
+
+  # Forbidden patterns
+  - pattern: "drop-shadow-as-elevation"
+    reason: "Cyberpunk elevation = neon edge glow (box-shadow with brand color), not gray drop shadow. See effects.neon_glow_*."
+    severity: "warning"
+  - pattern: "glassmorphism-heavy-blur"
+    reason: "Heavy backdrop-blur reads as 2020-Apple, not cyberpunk. If you need a frosted surface, use a 4-8px blur max plus subtle border-glow."
+    severity: "warning"
+  - pattern: "gradient-mesh-background"
+    reason: "Iridescent / mesh-gradient backgrounds read as 2022 design template, not cyberpunk. ek-design hero atmosphere = flat dark + neon edge accents + optional scanline overlay."
+    severity: "warning"
+  - pattern: "emoji-as-icon"
+    reason: "Lucide SVG icons only. Emojis in UI chrome read as casual / consumer."
+    severity: "error"
+  - pattern: "lorem-ipsum"
+    reason: "Use real content or honest placeholders ('Task title here', 'Agent output appears below')."
+    severity: "warning"
+  - pattern: "rounded-card-with-colored-left-border"
+    reason: "Overused B2B SaaS trope."
+    severity: "warning"
+  - pattern: "decorative-neon-glow"
+    reason: "Neon edge glow is reserved for focus, hover, and the agent_status_active badge. Decorative glow everywhere = cyberpunk costume, not brand."
+    severity: "warning"
+
+# ────────────────────────────────────────────────────────────────────
+# INVARIANTS — Hard structural rules. ek-craft (when shipped) enforces.
+# ────────────────────────────────────────────────────────────────────
+invariants:
+  magenta_cta_monopoly:
+    rule: "Magenta #FF2A6D (magenta.500) is the only primary-CTA color. No secondary may be used as a primary CTA fill."
+    rationale: "Preserves the action signal across every ek surface. If cyan becomes a CTA too, the user can't pre-attentively spot the action."
+    severity: "error"
+  cyan_secondary_and_info:
+    rule: "Cyan #00D1FF (cyan.500) is restricted to secondary action, info, link, terminal_inset text, and AA-bound chart series. NEVER a primary CTA fill."
+    rationale: "Cyan competes hard with magenta for attention; reserving it for navigation (links) and information (info badges) keeps the magenta CTA monopoly readable."
+    severity: "error"
+  lime_alive_and_success_only:
+    rule: "Lime #A6FF00 (lime.500) appears ONLY in status_success_*, agent_status_active, agent_status_complete roles. Never decorative, never in chart series without success semantics."
+    rationale: "Lime carries dual semantic load (success + alive). If it leaks into decoration, the operator can no longer trust 'green = working'."
+    severity: "error"
+  red_error_only:
+    rule: "Red #FF003C (red.500) appears ONLY in status_error_*, destructive_action, agent_error roles. Never decorative, never in chart series."
+    rationale: "Same construction as magenta CTA monopoly — semantic-locked statuses are non-negotiable."
+    severity: "error"
+  amber_warn_only:
+    rule: "Amber #FFB800 (amber.500) appears ONLY in status_warn_*, agent_blocked roles."
+    rationale: "Locks the warn semantic; prevents amber-as-decorative drift."
+    severity: "error"
+  mono_for_identifiers:
+    rule: "JetBrains Mono is required for code, file paths, IDs, timestamps, model names, hashes, token counts, and any other machine-generated identifier. Inter/Chakra Petch must NOT be used for these."
+    rationale: "Agentic UI is operator-facing; the operator scans identifiers constantly. Mono preserves alignment, prevents I/l/1 confusion, and visually separates 'machine output' from 'product chrome'. Single biggest UX win in operator interfaces."
+    severity: "error"
+  no_consumer_indigo_purple:
+    rule: "Tailwind-indigo #6366F1 and consumer-violet #8B5CF6 / #A78BFA are forbidden. ek-design's atmospheric purple-blue is steel_violet.500 #3B3B92 (darker, more blue-violet)."
+    rationale: "Indigo-500 is the single most-overused color in 2024-2026 AI products. Defaulting to it instantly reads as 'AI-template starter' rather than brand."
+    severity: "error"
+  dark_primary_register:
+    rule: "Surfaces app + marketing default to dark mode (background #0A0A14). Light mode is opt-in only (print, accessibility override)."
+    rationale: "The neon palette reads correctly on near-black; on light it's anemic. Dark-default is also the agentic-UI norm (Claude desktop, Cursor, Linear dark, Vercel dark)."
+    severity: "warning"
+  reduced_motion_required:
+    rule: "Any animation (transitions, pulses, scanline overlay) must include an @media (prefers-reduced-motion: reduce) override that disables or substantially reduces motion."
+    rationale: "Accessibility baseline. Scanline overlay especially can trigger vestibular issues — must be disable-able."
+    severity: "error"
