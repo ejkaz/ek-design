@@ -1,6 +1,6 @@
 // AUTO-GENERATED FROM ek-design design-model.yaml — DO NOT EDIT MANUALLY
 // Source: ek-design v0.2.1 · brand_version: ek-2026-Q4-v1
-// Generated: 2026-05-25T07:09:16Z
+// Generated: 2026-05-27T17:52:13Z
 // Regenerate: python3 plugins/ek-web/skills/ek-web/scripts/export-tailwind.py
 
 /**

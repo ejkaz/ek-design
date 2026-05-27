@@ -1,0 +1,87 @@
+name: Publish @ekdesign/web
+
+# Triggers on any tag matching web-vMAJOR.MINOR.PATCH (e.g. web-v0.2.1).
+# Build runs the exporters from design-model.yaml, stamps the package version,
+# and publishes to npm with public access.
+#
+# Required repo secret: NPM_TOKEN  (npm.com → Profile → Access Tokens →
+# Generate New Token → "Automation" → granular scope: read-write on
+# @ekdesign/web. Add to repo: Settings → Secrets and variables → Actions).
+#
+# To release:
+#   1. Bump design-model.yaml meta.version
+#   2. Commit
+#   3. git tag -a web-v<new-version> -m "..."  (annotated tag)
+#   4. git push origin main web-v<new-version>
+#   5. CI publishes; verify at https://www.npmjs.com/package/@ekdesign/web
+
+on:
+  push:
+    tags:
+      - "web-v*.*.*"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry-run only (don't publish)"
+        type: boolean
+        default: true
+
+jobs:
+  publish:
+    name: Build + publish to npm
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write   # for npm provenance
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Build package (run exporters + assemble dist + stamp version)
+        run: python3 plugins/ek-web/skills/ek-web/scripts/build-package.py
+
+      - name: Verify package shape
+        working-directory: plugins/ek-web/skills/ek-web/package
+        run: |
+          echo "Package contents:"
+          ls -la
+          echo "--- package.json ---"
+          cat package.json
+          echo "--- dist/ ---"
+          ls -la dist/
+
+      - name: Dry-run publish
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true'
+        working-directory: plugins/ek-web/skills/ek-web/package
+        run: npm publish --dry-run --access public --provenance
+
+      - name: Publish to npm
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run != 'true')
+        working-directory: plugins/ek-web/skills/ek-web/package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public --provenance
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## @ekdesign/web release" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Tag: \`${GITHUB_REF_NAME}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: \`${GITHUB_SHA::8}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- npm: https://www.npmjs.com/package/@ekdesign/web" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,59 @@
+{
+  "name": "@ekdesign/web",
+  "version": "0.2.1",
+  "description": "ek-design tokens for web consumers \u2014 Tailwind v4 (default), legacy Tailwind v3, shadcn/ui theme, flat CSS variables. Generated from design-model.yaml. Brand thesis: Dark Ledger / Neon Operator. Principle: Purple is the world. Magenta is the command. Cyan is the proof.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Eric Kazmaier",
+    "url": "https://github.com/ejkaz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ejkaz/ek-design.git",
+    "directory": "plugins/ek-web/skills/ek-web/package"
+  },
+  "homepage": "https://github.com/ejkaz/ek-design#readme",
+  "bugs": {
+    "url": "https://github.com/ejkaz/ek-design/issues"
+  },
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "tailwind",
+    "tailwind-v4",
+    "shadcn",
+    "css-variables",
+    "cyberpunk",
+    "ek-design"
+  ],
+  "files": [
+    "dist/*.css",
+    "dist/*.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    "./tailwind-v4.css": "./dist/tailwind-v4.css",
+    "./tailwind-tokens": "./dist/tailwind-tokens.ts",
+    "./tailwind-tokens.ts": "./dist/tailwind-tokens.ts",
+    "./shadcn-theme.css": "./dist/shadcn-theme.css",
+    "./ek-tokens.css": "./dist/ek-tokens.css",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "peerDependencies": {
+    "tailwindcss": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  }
+}
